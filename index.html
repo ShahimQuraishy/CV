@@ -3,396 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lebenslauf - Shahim Quraishy</title>
+    <title>Shahim Quraishy – AI Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons via CDN -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
         :root {
-            --navy: #0f1f3d;
-            --navy-light: #1a3460;
-            --accent: #4f8ef7;
-            --accent-glow: rgba(79, 142, 247, 0.15);
+            --navy: #0f1f3d; --navy-light: #1a3460;
+            --accent: #4f8ef7; --accent-glow: rgba(79,142,247,0.15);
             --accent-2: #7c3aed;
-            --bg-main: #f0f4f8;
-            --bg-card: #ffffff;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --text-muted: #94a3b8;
-            --border: #e2e8f0;
+            --bg-main: #f0f4f8; --bg-card: #ffffff;
+            --text-primary: #1e293b; --text-secondary: #64748b;
+            --text-muted: #94a3b8; --border: #e2e8f0;
             --sidebar-width: 310px;
             --gradient: linear-gradient(135deg, #0f1f3d 0%, #1a3460 60%, #1e4080 100%);
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #c9d6e0 0%, #e8eef5 100%);
-            min-height: 100vh;
-            padding: 40px 20px;
-            color: var(--text-primary);
+            min-height: 100vh; padding: 40px 20px; color: var(--text-primary);
         }
-
         .resume-container {
-            display: flex;
-            max-width: 1050px;
-            margin: 0 auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow:
-                0 25px 60px rgba(15, 31, 61, 0.18),
-                0 8px 20px rgba(15, 31, 61, 0.10);
+            display: flex; max-width: 1050px; margin: 0 auto;
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 25px 60px rgba(15,31,61,0.18), 0 8px 20px rgba(15,31,61,0.10);
         }
-
-        /* ===== SIDEBAR ===== */
         .sidebar {
-            width: var(--sidebar-width);
-            min-width: var(--sidebar-width);
-            background: var(--gradient);
-            color: #fff;
-            padding: 48px 32px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
+            width: var(--sidebar-width); min-width: var(--sidebar-width);
+            background: var(--gradient); color: #fff;
+            padding: 48px 32px; display: flex; flex-direction: column;
+            position: relative; overflow: hidden;
         }
         .sidebar::before {
-            content: '';
-            position: absolute;
-            top: -80px; right: -80px;
-            width: 260px; height: 260px;
-            border-radius: 50%;
+            content: ''; position: absolute; top: -80px; right: -80px;
+            width: 260px; height: 260px; border-radius: 50%;
             background: radial-gradient(circle, rgba(79,142,247,0.22) 0%, transparent 70%);
             pointer-events: none;
         }
         .sidebar::after {
-            content: '';
-            position: absolute;
-            bottom: -60px; left: -60px;
-            width: 200px; height: 200px;
-            border-radius: 50%;
+            content: ''; position: absolute; bottom: -60px; left: -60px;
+            width: 200px; height: 200px; border-radius: 50%;
             background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
             pointer-events: none;
         }
-
-        /* Avatar */
-        .profile-pic-container {
-            text-align: center;
-            margin-bottom: 36px;
-            position: relative;
-            z-index: 1;
-        }
+        .profile-pic-container { text-align: center; margin-bottom: 36px; position: relative; z-index: 1; }
         .avatar-ring {
-            display: inline-block;
-            padding: 4px;
-            border-radius: 50%;
+            display: inline-block; padding: 4px; border-radius: 50%;
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
         }
-        .profile-pic {
-            width: 140px; height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-            border: 3px solid var(--navy);
-        }
+        .profile-pic { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; display: block; border: 3px solid var(--navy); }
         .name-badge { margin-top: 18px; }
-        .name-badge h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.45rem;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-            line-height: 1.2;
-            color: #fff;
-        }
-        .name-badge .role-pill {
-            display: inline-block;
-            margin-top: 8px;
+        .name-badge h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.45rem; font-weight: 700; letter-spacing: -0.3px; line-height: 1.2; color: #fff; }
+        .role-pill {
+            display: inline-block; margin-top: 8px;
             background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
-            color: #fff;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            padding: 5px 14px;
-            border-radius: 20px;
+            color: #fff; font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.8px; text-transform: uppercase;
+            padding: 5px 14px; border-radius: 20px;
         }
-
-        /* Sidebar section */
-        .s-section {
-            margin-top: 30px;
-            position: relative;
-            z-index: 1;
-        }
+        .s-section { margin-top: 30px; position: relative; z-index: 1; }
         .s-section h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.68rem;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            color: var(--accent);
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem;
+            text-transform: uppercase; letter-spacing: 2.5px; color: var(--accent);
+            margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
         }
-        .s-section h2::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(79,142,247,0.3);
-        }
-
-        /* ===== CONTACT CARDS (NEU) ===== */
-        .contact-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+        .s-section h2::after { content: ''; flex: 1; height: 1px; background: rgba(79,142,247,0.3); }
+        .contact-cards { display: flex; flex-direction: column; gap: 10px; }
         .contact-card {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.10);
-            border-radius: 12px;
-            padding: 11px 14px;
-            transition: background 0.2s, border-color 0.2s, transform 0.15s;
-            text-decoration: none;
-            cursor: default;
+            display: flex; align-items: center; gap: 13px;
+            background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 12px; padding: 11px 14px;
+            transition: background 0.2s, border-color 0.2s, transform 0.15s; cursor: default;
         }
-        .contact-card:hover {
-            background: rgba(79,142,247,0.18);
-            border-color: rgba(79,142,247,0.4);
-            transform: translateX(3px);
-        }
-        .contact-icon-wrap {
-            width: 36px; height: 36px;
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-        }
-        /* individuelle Farben je Icon */
+        .contact-card:hover { background: rgba(79,142,247,0.18); border-color: rgba(79,142,247,0.4); transform: translateX(3px); }
+        .contact-icon-wrap { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .ci-location { background: linear-gradient(135deg, #f97316, #ea580c); }
         .ci-phone    { background: linear-gradient(135deg, #22c55e, #16a34a); }
         .ci-email    { background: linear-gradient(135deg, #4f8ef7, #3b6fd6); }
         .ci-github   { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
-
-        .contact-icon-wrap svg {
-            width: 17px; height: 17px;
-            stroke: #fff;
-            stroke-width: 2;
-            fill: none;
-        }
-        .contact-text {
-            display: flex;
-            flex-direction: column;
-        }
-        .contact-label {
-            font-size: 0.68rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: rgba(255,255,255,0.45);
-            line-height: 1;
-            margin-bottom: 3px;
-        }
-        .contact-value {
-            font-size: 0.82rem;
-            font-weight: 500;
-            color: rgba(255,255,255,0.92);
-            line-height: 1.3;
-        }
-
-        /* Skill groups */
+        .ci-linkedin { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
+        .contact-icon-wrap svg { width: 17px; height: 17px; stroke: #fff; stroke-width: 2; fill: none; }
+        .contact-text { display: flex; flex-direction: column; }
+        .contact-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: rgba(255,255,255,0.45); line-height: 1; margin-bottom: 3px; }
+        .contact-value { font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.92); line-height: 1.3; }
         .skill-group { margin-bottom: 14px; }
-        .skill-group .skill-label {
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: rgba(255,255,255,0.55);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 7px;
-        }
+        .skill-group .skill-label { font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 7px; }
         .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-        .s-tag {
-            font-size: 0.75rem;
-            font-weight: 500;
-            padding: 3px 10px;
-            border-radius: 5px;
-            background: rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.88);
-            border: 1px solid rgba(255,255,255,0.12);
-            transition: background 0.2s;
-        }
+        .s-tag { font-size: 0.75rem; font-weight: 500; padding: 3px 10px; border-radius: 5px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.88); border: 1px solid rgba(255,255,255,0.12); transition: background 0.2s; }
         .s-tag:hover { background: rgba(79,142,247,0.3); }
-
-        /* Language bars */
+        .s-tag.highlight { background: rgba(79,142,247,0.25); border-color: rgba(79,142,247,0.5); color: #a5c8ff; }
         .lang-item { margin-bottom: 12px; }
-        .lang-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.83rem;
-            margin-bottom: 5px;
-            color: rgba(255,255,255,0.9);
-        }
-        .lang-bar-bg {
-            height: 4px;
-            border-radius: 4px;
-            background: rgba(255,255,255,0.12);
-        }
-        .lang-bar {
-            height: 100%;
-            border-radius: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-2));
-        }
+        .lang-header { display: flex; justify-content: space-between; font-size: 0.83rem; margin-bottom: 5px; color: rgba(255,255,255,0.9); }
+        .lang-bar-bg { height: 4px; border-radius: 4px; background: rgba(255,255,255,0.12); }
+        .lang-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
 
-        /* ===== MAIN CONTENT ===== */
-        .main-content {
-            flex: 1;
-            background: var(--bg-main);
-            padding: 52px 48px;
-        }
-        .hero-header {
-            padding-bottom: 30px;
-            border-bottom: 2px solid var(--border);
-            margin-bottom: 36px;
-        }
-        .hero-header h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--navy);
-            letter-spacing: -1.5px;
-            line-height: 1;
-            margin-bottom: 6px;
-        }
+        /* MAIN */
+        .main-content { flex: 1; background: var(--bg-main); padding: 52px 48px; }
+        .hero-header { padding-bottom: 30px; border-bottom: 2px solid var(--border); margin-bottom: 36px; }
+        .hero-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 700; color: var(--navy); letter-spacing: -1.5px; line-height: 1; margin-bottom: 6px; }
         .hero-header .subtitle {
-            font-size: 1.05rem;
-            font-weight: 500;
+            font-size: 1.05rem; font-weight: 500; margin-bottom: 16px;
             background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 16px;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .hero-header .summary {
-            font-size: 0.92rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            max-width: 560px;
+        .hero-header .summary { font-size: 0.92rem; line-height: 1.7; color: var(--text-secondary); max-width: 560px; }
+
+        /* Highlight-Leiste */
+        .highlight-bar {
+            display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;
         }
+        .hl-chip {
+            display: flex; align-items: center; gap: 7px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 10px; padding: 8px 14px;
+            font-size: 0.82rem; font-weight: 600; color: var(--navy);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .hl-chip span { font-size: 1.1rem; }
+
         .section-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-            margin-top: 38px;
+            display: flex; align-items: center; gap: 12px;
+            font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2.5px; color: var(--text-muted);
+            margin-bottom: 24px; margin-top: 38px;
         }
-        .section-title::before {
-            content: '';
-            width: 4px; height: 18px;
-            border-radius: 4px;
-            background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
-        }
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
+        .section-title::before { content: ''; width: 4px; height: 18px; border-radius: 4px; background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%); }
+        .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
         .timeline-card {
-            background: var(--bg-card);
-            border-radius: 14px;
-            padding: 22px 26px;
-            margin-bottom: 16px;
-            border: 1px solid var(--border);
-            position: relative;
-            transition: box-shadow 0.2s, transform 0.2s;
+            background: var(--bg-card); border-radius: 14px; padding: 22px 26px;
+            margin-bottom: 16px; border: 1px solid var(--border);
+            position: relative; transition: box-shadow 0.2s, transform 0.2s;
         }
-        .timeline-card:hover {
-            box-shadow: 0 8px 24px rgba(15,31,61,0.10);
-            transform: translateY(-2px);
-        }
+        .timeline-card:hover { box-shadow: 0 8px 24px rgba(15,31,61,0.10); transform: translateY(-2px); }
         .timeline-card::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 4px;
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
             border-radius: 14px 0 0 14px;
             background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
         }
-        .card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 4px;
-            gap: 12px;
-        }
-        .card-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--navy);
-        }
-        .date-badge {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--accent);
-            background: var(--accent-glow);
-            padding: 3px 10px;
-            border-radius: 20px;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .card-sub {
-            font-size: 0.83rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            font-style: italic;
-        }
-        .card-body {
-            font-size: 0.88rem;
-            line-height: 1.6;
-            color: var(--text-secondary);
-        }
+        .timeline-card.green::before { background: linear-gradient(180deg, #22c55e, #16a34a); }
+        .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; gap: 12px; }
+        .card-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; color: var(--navy); }
+        .date-badge { font-size: 0.75rem; font-weight: 600; color: var(--accent); background: var(--accent-glow); padding: 3px 10px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+        .date-badge.green { color: #16a34a; background: rgba(34,197,94,0.12); }
+        .card-sub { font-size: 0.83rem; color: var(--text-muted); margin-bottom: 12px; font-style: italic; }
+        .card-body { font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary); }
         .card-body ul { padding-left: 18px; margin-top: 6px; }
-        .card-body li { margin-bottom: 4px; }
-        .tech-row {
-            margin-top: 12px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-        .tech-pill {
-            font-size: 0.73rem;
-            font-weight: 600;
-            padding: 3px 10px;
-            border-radius: 6px;
-            background: linear-gradient(90deg, rgba(79,142,247,0.08) 0%, rgba(124,58,237,0.08) 100%);
-            color: var(--accent);
-            border: 1px solid rgba(79,142,247,0.2);
-        }
+        .card-body li { margin-bottom: 5px; }
+        .card-body li strong { color: var(--navy); }
+        .tech-row { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+        .tech-pill { font-size: 0.73rem; font-weight: 600; padding: 3px 10px; border-radius: 6px; background: linear-gradient(90deg, rgba(79,142,247,0.08) 0%, rgba(124,58,237,0.08) 100%); color: var(--accent); border: 1px solid rgba(79,142,247,0.2); }
+        .tech-pill.green { background: rgba(34,197,94,0.08); color: #16a34a; border-color: rgba(34,197,94,0.2); }
+
+        /* Impact-Bullet */
+        .impact { color: var(--accent); font-weight: 700; }
+
+        /* Kurs-Grid */
+        .course-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .course-item { background: #f8fafc; border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; }
+        .course-item .course-title { font-size: 0.82rem; font-weight: 600; color: var(--navy); }
 
         @media (max-width: 820px) {
             .resume-container { flex-direction: column; }
             .sidebar { width: 100%; min-width: unset; }
             .main-content { padding: 32px 24px; }
             .hero-header h1 { font-size: 2.2rem; }
+            .course-grid { grid-template-columns: 1fr; }
+            .highlight-bar { gap: 8px; }
         }
+
+        /* CHATBOT */
+        #chat-widget { position: fixed; bottom: 24px; right: 24px; z-index: 9999; font-family: 'Inter', sans-serif; }
+        #chat-toggle-btn {
+            width: 58px; height: 58px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+            border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 8px 28px rgba(79,142,247,0.5), 0 2px 8px rgba(0,0,0,0.2);
+            transition: transform 0.25s, box-shadow 0.25s; margin-left: auto; position: relative;
+        }
+        #chat-toggle-btn:hover { transform: scale(1.08); box-shadow: 0 12px 36px rgba(79,142,247,0.65); }
+        #chat-toggle-btn svg { width: 26px; height: 26px; stroke: #fff; stroke-width: 2; fill: none; transition: opacity 0.2s, transform 0.2s; position: absolute; }
+        #icon-chat { opacity: 1; transform: scale(1); }
+        #icon-close { opacity: 0; transform: scale(0.7); }
+        #chat-widget.open #icon-chat { opacity: 0; transform: scale(0.7); }
+        #chat-widget.open #icon-close { opacity: 1; transform: scale(1); }
+        #unread-dot { position: absolute; top: 4px; right: 4px; width: 12px; height: 12px; border-radius: 50%; background: #ef4444; border: 2px solid #fff; display: none; animation: pulse-dot 2s infinite; }
+        @keyframes pulse-dot { 0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:0.8} }
+        #chat-panel { width: 360px; border-radius: 20px; overflow: hidden; box-shadow: 0 24px 64px rgba(15,31,61,0.22), 0 4px 16px rgba(0,0,0,0.12); margin-bottom: 14px; transform-origin: bottom right; transform: scale(0.85) translateY(20px); opacity: 0; pointer-events: none; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s ease; background: #fff; border: 1px solid var(--border); }
+        #chat-widget.open #chat-panel { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+        #chat-header { background: var(--gradient); padding: 18px 20px; display: flex; align-items: center; gap: 14px; }
+        .chat-avatar { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .chat-avatar svg { width: 22px; height: 22px; stroke: #fff; stroke-width: 2; fill: none; }
+        .chat-header-text { flex: 1; }
+        .chat-header-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.95rem; color: #fff; margin-bottom: 2px; }
+        .chat-header-status { font-size: 0.73rem; color: rgba(255,255,255,0.6); display: flex; align-items: center; gap: 5px; }
+        .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; animation: pulse-status 2.5s infinite; }
+        @keyframes pulse-status { 0%,100%{opacity:1}50%{opacity:0.5} }
+        #minimize-btn { width: 30px; height: 30px; border-radius: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        #minimize-btn:hover { background: rgba(255,255,255,0.2); }
+        #minimize-btn svg { width: 14px; height: 14px; stroke: #fff; stroke-width: 2.5; fill: none; }
+        #chat-box { height: 310px; overflow-y: auto; padding: 18px 16px; display: flex; flex-direction: column; gap: 10px; background: #f8fafc; scroll-behavior: smooth; }
+        #chat-box::-webkit-scrollbar { width: 4px; }
+        #chat-box::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .message { padding: 10px 14px; border-radius: 16px; max-width: 82%; line-height: 1.5; font-size: 0.85rem; animation: msg-in 0.25s ease; }
+        @keyframes msg-in { from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)} }
+        .bot-message { background: #fff; color: var(--text-primary); align-self: flex-start; border: 1px solid var(--border); border-radius: 4px 16px 16px 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .user-message { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); color: white; align-self: flex-end; border-radius: 16px 4px 16px 16px; }
+        .typing-indicator { display: flex; gap: 5px; padding: 12px 14px; background: #fff; border: 1px solid var(--border); border-radius: 4px 16px 16px 16px; align-self: flex-start; align-items: center; }
+        .typing-dot { width: 7px; height: 7px; border-radius: 50%; background: #94a3b8; animation: typing-bounce 1.2s infinite; }
+        .typing-dot:nth-child(2){animation-delay:0.2s}.typing-dot:nth-child(3){animation-delay:0.4s}
+        @keyframes typing-bounce { 0%,80%,100%{transform:translateY(0);opacity:0.5}40%{transform:translateY(-6px);opacity:1} }
+        .quick-replies { display: flex; flex-wrap: wrap; gap: 7px; padding: 10px 16px; background: #f8fafc; border-top: 1px solid var(--border); }
+        .quick-btn { font-size: 0.75rem; font-weight: 500; padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(79,142,247,0.35); background: rgba(79,142,247,0.07); color: var(--accent); cursor: pointer; transition: background 0.15s, transform 0.1s; }
+        .quick-btn:hover { background: rgba(79,142,247,0.18); transform: translateY(-1px); }
+        #chat-input-area { display: flex; padding: 12px 14px; border-top: 1px solid var(--border); background: #fff; gap: 8px; align-items: center; }
+        #user-input { flex: 1; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 12px; outline: none; font-size: 0.85rem; font-family: 'Inter', sans-serif; transition: border-color 0.2s; background: #f8fafc; }
+        #user-input:focus { border-color: var(--accent); background: #fff; }
+        #send-btn { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 2px 8px rgba(79,142,247,0.3); }
+        #send-btn:hover { transform: scale(1.08); box-shadow: 0 4px 14px rgba(79,142,247,0.5); }
+        #send-btn svg { width: 18px; height: 18px; stroke: #fff; stroke-width: 2.5; fill: none; }
+        .chat-footer { text-align: center; padding: 8px; background: #fff; font-size: 0.68rem; color: var(--text-muted); border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
 
 <div class="resume-container">
-
-    <!-- ===== SIDEBAR ===== -->
+    <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="profile-pic-container">
             <div class="avatar-ring">
@@ -405,11 +241,9 @@
             </div>
         </div>
 
-        <!-- KONTAKT (neu gestaltet) -->
         <div class="s-section">
             <h2>Kontakt</h2>
             <div class="contact-cards">
-
                 <div class="contact-card">
                     <div class="contact-icon-wrap ci-location">
                         <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
@@ -419,7 +253,6 @@
                         <span class="contact-value">Hillscheiderstr. 9, 56179 Vallendar</span>
                     </div>
                 </div>
-
                 <div class="contact-card">
                     <div class="contact-icon-wrap ci-phone">
                         <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.66A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
@@ -429,17 +262,24 @@
                         <span class="contact-value">01525 8414 768</span>
                     </div>
                 </div>
-
                 <div class="contact-card">
                     <div class="contact-icon-wrap ci-email">
                         <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
                     </div>
                     <div class="contact-text">
                         <span class="contact-label">E-Mail</span>
-                        <span class="contact-value">Shahimquraishy@icloud.com</span>
+                        <span class="contact-value">quraishyshahim@gmail.com</span>
                     </div>
                 </div>
-
+                <div class="contact-card">
+                    <div class="contact-icon-wrap ci-linkedin">
+                        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </div>
+                    <div class="contact-text">
+                        <span class="contact-label">LinkedIn</span>
+                        <span class="contact-value">shahim-quraishy</span>
+                    </div>
+                </div>
                 <div class="contact-card">
                     <div class="contact-icon-wrap ci-github">
                         <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
@@ -449,55 +289,63 @@
                         <span class="contact-value">github.com/ShahimQuraishy</span>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <!-- TECH STACK -->
         <div class="s-section">
-            <h2>Tech Stack</h2>
+            <h2>Core Skills</h2>
             <div class="skill-group">
-                <div class="skill-label">KI &amp; Data Science</div>
+                <div class="skill-label">KI &amp; Machine Learning</div>
                 <div class="skill-tags">
-                    <span class="s-tag">LLMs / GPT-4</span>
-                    <span class="s-tag">RAG</span>
-                    <span class="s-tag">Prompt Eng.</span>
-                    <span class="s-tag">ML</span>
+                    <span class="s-tag highlight">LLMs / GPT-4</span>
+                    <span class="s-tag highlight">RAG-Systeme</span>
+                    <span class="s-tag highlight">Prompt Engineering</span>
+                    <span class="s-tag">Deep Learning</span>
                     <span class="s-tag">Scikit-Learn</span>
+                    <span class="s-tag">Vektor-Embeddings</span>
                 </div>
             </div>
             <div class="skill-group">
                 <div class="skill-label">Programmierung</div>
                 <div class="skill-tags">
-                    <span class="s-tag">Python</span>
-                    <span class="s-tag">Java</span>
+                    <span class="s-tag highlight">Python</span>
+                    <span class="s-tag highlight">Java (OOP)</span>
                     <span class="s-tag">JavaScript</span>
-                    <span class="s-tag">React</span>
-                    <span class="s-tag">Node.js</span>
+                    <span class="s-tag">SQL</span>
                     <span class="s-tag">HTML/CSS</span>
                 </div>
             </div>
             <div class="skill-group">
-                <div class="skill-label">Cloud &amp; DevOps</div>
+                <div class="skill-label">Cloud &amp; Infrastructure</div>
                 <div class="skill-tags">
-                    <span class="s-tag">AWS</span>
-                    <span class="s-tag">Azure</span>
-                    <span class="s-tag">Docker</span>
-                    <span class="s-tag">Git</span>
+                    <span class="s-tag highlight">AWS (EC2, S3, Lambda)</span>
+                    <span class="s-tag">Azure (AZ-900)</span>
+                    <span class="s-tag">IAM / VPC</span>
                     <span class="s-tag">CI/CD</span>
+                    <span class="s-tag">Docker</span>
+                    <span class="s-tag">GitHub</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="skill-label">Systemdesign</div>
+                <div class="skill-tags">
+                    <span class="s-tag">Microservices</span>
+                    <span class="s-tag">REST / GraphQL</span>
+                    <span class="s-tag">Event-Driven</span>
+                    <span class="s-tag">CQRS</span>
                 </div>
             </div>
             <div class="skill-group">
                 <div class="skill-label">Datenbanken</div>
                 <div class="skill-tags">
-                    <span class="s-tag">SQL</span>
                     <span class="s-tag">PostgreSQL</span>
                     <span class="s-tag">ChromaDB</span>
+                    <span class="s-tag">DynamoDB</span>
+                    <span class="s-tag">RDS</span>
                 </div>
             </div>
         </div>
 
-        <!-- SPRACHEN -->
         <div class="s-section">
             <h2>Sprachen</h2>
             <div class="lang-item">
@@ -514,262 +362,280 @@
             </div>
         </div>
 
-        <!-- METHODIK -->
         <div class="s-section">
             <h2>Methodik</h2>
             <div class="skill-tags">
                 <span class="s-tag">Scrum</span>
                 <span class="s-tag">Kanban</span>
                 <span class="s-tag">Systemanalyse</span>
-                <span class="s-tag">Architektur</span>
+                <span class="s-tag">Unit-Testing</span>
+                <span class="s-tag">IT-Security</span>
             </div>
         </div>
     </div>
 
-    <!-- ===== MAIN CONTENT ===== -->
+    <!-- MAIN CONTENT -->
     <div class="main-content">
-
         <div class="hero-header">
             <h1>Shahim<br>Quraishy</h1>
-            <div class="subtitle">Angehender AI Engineer &amp; Softwareentwickler</div>
+            <div class="subtitle">AI Engineer · LLM-Integration · Cloud-Architektur</div>
             <p class="summary">
-                Informatikstudent mit Zertifizierung als Agiler Junior Softwareentwickler und starkem Fokus auf Künstliche Intelligenz. Spezialisiert auf RAG-Systeme, LLM-Integration und Cloud-Architekturen – bereit, komplexe Herausforderungen mit modernen Tech-Stacks effizient zu lösen.
+                Ich entwickle produktionsreife KI-Systeme — von RAG-Pipelines über LLM-Integrationen bis hin zu skalierbaren Cloud-Architekturen. Als Informatikstudent (Uni Koblenz) mit <strong>zertifizierter KI-Ausbildung</strong> und praktischer Werkstudenten-Erfahrung bei 1&amp;1 bringe ich das seltene Paket aus solider Theorie, echtem Produktivcode und unternehmerischem Denken mit.
             </p>
+            <div class="highlight-bar">
+                <div class="hl-chip"><span>🤖</span> LLM / RAG spezialisiert</div>
+                <div class="hl-chip"><span>☁️</span> AWS &amp; Azure</div>
+                <div class="hl-chip"><span>💻</span> Python · Java · SQL</div>
+                <div class="hl-chip"><span>🚀</span> Produktivcode-Erfahrung (1&amp;1)</div>
+            </div>
         </div>
 
+        <!-- KI-PROJEKTE ZUERST — das überzeugt Recruiter sofort -->
+        <div class="section-title">KI-Projekte &amp; Eigenentwicklungen</div>
+
+        <div class="timeline-card green">
+            <div class="card-top">
+                <span class="card-title">RAG-Wissenssystem für die Pflegebranche</span>
+                <span class="date-badge green">Aktuell · GitHub</span>
+            </div>
+            <div class="card-sub">Portfolio-Projekt · Python · LangChain · ChromaDB</div>
+            <div class="card-body">
+                <ul>
+                    <li><strong>Ziel:</strong> Semantische KI-Suchmaschine, die unstrukturierte PDF-Handbücher in sekundenschnelle durchsuchbare Wissensbasis verwandelt.</li>
+                    <li><strong>Umsetzung:</strong> End-to-End-Pipeline mit Text-Chunking, Vektor-Embeddings (ChromaDB), LLM-Prompting (LangChain) und kontextbezogener Antwortgenerierung.</li>
+                    <li><strong>Ergebnis:</strong> Vollständig lauffähiges System — kein Demo, sondern echter Code auf GitHub.</li>
+                </ul>
+            </div>
+            <div class="tech-row">
+                <span class="tech-pill green">Python</span>
+                <span class="tech-pill green">LangChain</span>
+                <span class="tech-pill green">ChromaDB</span>
+                <span class="tech-pill green">Hugging Face</span>
+                <span class="tech-pill green">RAG-Pipeline</span>
+                <span class="tech-pill green">PDF-Processing</span>
+            </div>
+        </div>
+
+        <div class="timeline-card green">
+            <div class="card-top">
+                <span class="card-title">AgeTech-Plattform „hilfefuersenioren" – KI-Vermittlungssystem</span>
+                <span class="date-badge green">Seit 09/2025</span>
+            </div>
+            <div class="card-sub">EXIST-Gründungsvorhaben · Universität Koblenz</div>
+            <div class="card-body">
+                <ul>
+                    <li><strong>Ziel:</strong> Voice-First-KI-Plattform, die Senioren telefonisch mit Fahrdienstleistern und Helfern vernetzt — vollautomatisch.</li>
+                    <li><strong>Architektur:</strong> Node.js-Backend, React-Native-Frontend, PostgreSQL-Datenbank, Twilio Voice API für Spracherkennung und Anrufsteuerung.</li>
+                    <li><strong>Besonderheit:</strong> Komplett als Solo-Entwickler konzipiert und umgesetzt — von Business-Modell bis Deployment.</li>
+                </ul>
+            </div>
+            <div class="tech-row">
+                <span class="tech-pill green">Node.js</span>
+                <span class="tech-pill green">React Native</span>
+                <span class="tech-pill green">PostgreSQL</span>
+                <span class="tech-pill green">Twilio Voice</span>
+                <span class="tech-pill green">KI-Routing</span>
+            </div>
+        </div>
+
+        <!-- BERUFSERFAHRUNG -->
         <div class="section-title">Berufserfahrung</div>
 
         <div class="timeline-card">
             <div class="card-top">
-                <span class="card-title">Werkstudent Development Business Systems</span>
-                <span class="date-badge">11/2024 – 05/2025</span>
+                <span class="card-title">Werkstudent – Development Business Systems</span>
+                <span class="date-badge">11/2024 – 04/2025</span>
             </div>
-            <div class="card-sub">1&1 Telecommunication SE · Montabaur</div>
+            <div class="card-sub">1&amp;1 Telecommunication SE · Montabaur (16 Mio. Kunden, Open-RAN-Netz)</div>
             <div class="card-body">
                 <ul>
-                    <li>Einarbeitung in Datenbank-Grundlagen und SQL-Programmierung.</li>
-                    <li>Erstellung von Automatisierungsskripten zur Bereinigung ungenutzter Datenbank-Funktionen.</li>
-                    <li>Anpassung und Optimierung von bestehendem Code im Produktivumfeld.</li>
+                    <li>Entwicklung von <strong>Python/SQL-Automatisierungsskripten</strong> zur Datenbankbereinigung im Produktivumfeld.</li>
+                    <li>Durchführung von Bugfixing, Unit-Tests und Code-Optimierungen an bestehenden Systemen.</li>
+                    <li>Erstellung und Optimierung komplexer SQL-Datenbankabfragen sowie technischer IT-Dokumentationen.</li>
                 </ul>
             </div>
             <div class="tech-row">
                 <span class="tech-pill">SQL</span>
-                <span class="tech-pill">Datenbanken</span>
-                <span class="tech-pill">Skripting</span>
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">Automatisierung</span>
+                <span class="tech-pill">Unit-Testing</span>
+                <span class="tech-pill">Jira</span>
             </div>
         </div>
 
         <div class="timeline-card">
             <div class="card-top">
-                <span class="card-title">Werkstudent 1st-Level-Support</span>
-                <span class="date-badge">05/2023 – 10/2024</span>
+                <span class="card-title">Werkstudent – 1st &amp; 2nd Level Support</span>
+                <span class="date-badge">02/2024 – 10/2024</span>
             </div>
-            <div class="card-sub">RTI Group &amp; United Internet AG · Koblenz</div>
+            <div class="card-sub">United Internet Corporate Services GmbH · Montabaur</div>
             <div class="card-body">
                 <ul>
-                    <li>Nationaler und internationaler IT-Support (Deutsch &amp; Englisch).</li>
-                    <li>Fehlerdiagnose, Netzwerk-Patch-Arbeiten und System-Integration.</li>
+                    <li>Nationaler und internationaler IT-Support (Deutsch &amp; Englisch), Fehlerdiagnose remote und vor Ort.</li>
+                    <li>Netzwerk-Patch-Arbeiten, ITSM-Ticketbearbeitung (Jira), SLA-Einhaltung und Systemdokumentation.</li>
                 </ul>
             </div>
+            <div class="tech-row">
+                <span class="tech-pill">ITSM / Jira</span>
+                <span class="tech-pill">Netzwerk</span>
+                <span class="tech-pill">Remote-Support</span>
+            </div>
         </div>
-
-        <div class="section-title">IT-Projekte &amp; Gründung</div>
 
         <div class="timeline-card">
             <div class="card-top">
-                <span class="card-title">RAG-basiertes Wissenssystem für die Pflege</span>
-                <span class="date-badge">Aktuell</span>
+                <span class="card-title">Werkstudent – First-Level-Support</span>
+                <span class="date-badge">05/2023 – 11/2023</span>
             </div>
-            <div class="card-sub">Portfolio-Projekt · GitHub</div>
+            <div class="card-sub">RTI Group GmbH · Koblenz</div>
             <div class="card-body">
-                Entwicklung einer semantischen KI-Suchmaschine zur Verarbeitung unstrukturierter Handbücher (PDFs). Implementierung von Text-Chunking, Vektor-Embeddings und LLM-Prompting zur Generierung kontextbezogener Antworten.
+                <ul>
+                    <li>Ticketbearbeitung (Jira), Anwenderunterstützung, Inventarisierung und IT-Infrastrukturaufbau.</li>
+                </ul>
             </div>
             <div class="tech-row">
-                <span class="tech-pill">Python</span>
-                <span class="tech-pill">LangChain</span>
-                <span class="tech-pill">ChromaDB</span>
-                <span class="tech-pill">Hugging Face</span>
+                <span class="tech-pill">Jira</span>
+                <span class="tech-pill">Hardware</span>
+                <span class="tech-pill">IT-Infrastruktur</span>
             </div>
         </div>
 
-        <div class="timeline-card">
-            <div class="card-top">
-                <span class="card-title">AgeTech-Plattform „hilfefuersenioren"</span>
-                <span class="date-badge">Seit 09/2025</span>
-            </div>
-            <div class="card-sub">EXIST-Gründungsvorhaben · Universität Koblenz</div>
-            <div class="card-body">
-                Konzeption einer Voice-First-Architektur zur Vernetzung von Senioren mit ehrenamtlichen Helfern und Dienstleistern über ein intelligentes System.
-            </div>
-            <div class="tech-row">
-                <span class="tech-pill">Node.js</span>
-                <span class="tech-pill">React Native</span>
-                <span class="tech-pill">PostgreSQL</span>
-                <span class="tech-pill">Twilio Voice</span>
-            </div>
-        </div>
-
-        <div class="section-title">Ausbildung &amp; Weiterbildung</div>
+        <!-- AUSBILDUNG & WEITERBILDUNG -->
+        <div class="section-title">Ausbildung &amp; KI-Zertifizierung</div>
 
         <div class="timeline-card">
             <div class="card-top">
-                <span class="card-title">Zertifizierter Agiler Junior Softwareentwickler</span>
+                <span class="card-title">Zertifizierter Agiler Junior Softwareentwickler – KI-Schwerpunkt</span>
                 <span class="date-badge">09/2024 – 08/2025</span>
             </div>
-            <div class="card-sub">BPU GmbH · Koblenz</div>
+            <div class="card-sub">BPU GmbH · Koblenz · Intensivkurs (520+ Stunden)</div>
             <div class="card-body">
-                Intensive Qualifizierung (täglich 2 Stunden). Schwerpunkte: LLMs, Machine Learning, Python, Java, HTML/CSS und Cloud-Architektur (AWS/Azure).
+                <div class="course-grid">
+                    <div class="course-item">
+                        <div class="course-title">🤖 KI &amp; Machine Learning</div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-title">☁️ AWS Cloud Practitioner &amp; AZ-900</div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-title">⚙️ Systemarchitektur &amp; Microservices</div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-title">🔒 Cloud Security &amp; DSGVO</div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-title">💼 KI-Apps &amp; API/Lambda-Workflows</div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-title">📊 DL-Modelltraining &amp; End-to-End ML</div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="timeline-card">
             <div class="card-top">
-                <span class="card-title">B.Sc. Informatik</span>
+                <span class="card-title">B.Sc. Informatik (Nebenfach: Wirtschaftsinformatik)</span>
                 <span class="date-badge">Seit 10/2021</span>
             </div>
             <div class="card-sub">Universität Koblenz · Abschluss voraussichtlich 04/2027</div>
             <div class="card-body">
-                Schwerpunkte: Systemanalyse, Betriebssysteme, Algorithmen und Datenbanken.
+                Schwerpunkte: Algorithmen &amp; Datenstrukturen, Softwaretechnik, Betriebssysteme, Datenbanken, Enterprise Information Management, Webentwicklung, Projektmanagement.
             </div>
         </div>
-
     </div>
 </div>
 
-</body>
-<style>
-    #ki-chat-container {
-        width: 350px;
-        max-width: 100%;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        font-family: Arial, sans-serif;
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: white;
-        display: flex;
-        flex-direction: column;
-    }
-    #chat-header {
-        background-color: #0078D7;
-        color: white;
-        padding: 15px;
-        border-radius: 10px 10px 0 0;
-        font-weight: bold;
-        text-align: center;
-    }
-    #chat-box {
-        height: 300px;
-        overflow-y: auto;
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        background-color: #f9f9f9;
-    }
-    .message {
-        padding: 10px;
-        border-radius: 8px;
-        max-width: 80%;
-        line-height: 1.4;
-        font-size: 14px;
-    }
-    .bot-message {
-        background-color: #e1f5fe;
-        color: #000;
-        align-self: flex-start;
-        border: 1px solid #b3e5fc;
-    }
-    .user-message {
-        background-color: #0078D7;
-        color: white;
-        align-self: flex-end;
-    }
-    #chat-input-area {
-        display: flex;
-        padding: 10px;
-        border-top: 1px solid #ccc;
-    }
-    #user-input {
-        flex: 1;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        outline: none;
-    }
-    #send-btn {
-        background-color: #0078D7;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        margin-left: 5px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    #send-btn:hover {
-        background-color: #005bb5;
-    }
-</style>
-
-<div id="ki-chat-container">
-    <div id="chat-header">🤖 Mein KI-Lebenslauf Bot</div>
-    <div id="chat-box">
-        <div class="message bot-message">Hallo! Ich bin der KI-Assistent. Hast du Fragen zu den Skills oder dem Werdegang des Bewerbers?</div>
+<!-- CHATBOT -->
+<div id="chat-widget">
+    <div id="chat-panel">
+        <div id="chat-header">
+            <div class="chat-avatar">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9" stroke-width="3" stroke-linecap="round"/><line x1="15" y1="9" x2="15.01" y2="9" stroke-width="3" stroke-linecap="round"/></svg>
+            </div>
+            <div class="chat-header-text">
+                <div class="chat-header-title">Shahims KI-Assistent</div>
+                <div class="chat-header-status"><span class="status-dot"></span><span>Online &amp; bereit</span></div>
+            </div>
+            <button id="minimize-btn" onclick="toggleChat()" title="Minimieren">
+                <svg viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+            </button>
+        </div>
+        <div id="chat-box">
+            <div class="message bot-message">👋 Hallo! Ich bin Shahims KI-Assistent. Stell mir gerne Fragen zu seinen KI-Skills, Projekten oder Erfahrungen!</div>
+        </div>
+        <div class="quick-replies" id="quick-replies">
+            <button class="quick-btn" onclick="quickAsk('Welche KI-Kenntnisse hat er?')">🤖 KI-Skills</button>
+            <button class="quick-btn" onclick="quickAsk('Was ist das RAG-Projekt?')">💻 RAG</button>
+            <button class="quick-btn" onclick="quickAsk('Welche Cloud-Kenntnisse hat er?')">☁️ Cloud</button>
+            <button class="quick-btn" onclick="quickAsk('Erfahrung bei 1und1?')">🏢 1&amp;1</button>
+        </div>
+        <div id="chat-input-area">
+            <input type="text" id="user-input" placeholder="Frage stellen..." onkeypress="handleKeyPress(event)">
+            <button id="send-btn" onclick="sendMessage()">
+                <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+        </div>
+        <div class="chat-footer">Powered by AI · hilfefuersenioren.de</div>
     </div>
-    <div id="chat-input-area">
-        <input type="text" id="user-input" placeholder="Stelle eine Frage..." onkeypress="handleKeyPress(event)">
-        <button id="send-btn" onclick="sendMessage()">Senden</button>
-    </div>
+    <button id="chat-toggle-btn" onclick="toggleChat()">
+        <div id="unread-dot"></div>
+        <svg id="icon-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <svg id="icon-close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
 </div>
 
 <script>
-    // HIER KOMMT SPÄTER DEIN BACKEND-LINK REIN!
-    const API_URL = "https://myaicv.onrender.com/chat"; 
-
+    const API_URL = "https://myaicv.onrender.com/chat";
+    let isOpen = false;
+    function toggleChat() {
+        isOpen = !isOpen;
+        document.getElementById('chat-widget').classList.toggle('open', isOpen);
+        if (isOpen) {
+            document.getElementById('unread-dot').style.display = 'none';
+            setTimeout(() => document.getElementById('user-input').focus(), 350);
+        }
+    }
+    function quickAsk(text) {
+        document.getElementById('user-input').value = text;
+        sendMessage();
+        document.getElementById('quick-replies').style.display = 'none';
+    }
     async function sendMessage() {
-        const inputField = document.getElementById("user-input");
-        const chatBox = document.getElementById("chat-box");
-        const userText = inputField.value.trim();
-
-        if (userText === "") return;
-
-        // 1. Nachricht des Users anzeigen
-        chatBox.innerHTML += `<div class="message user-message">${userText}</div>`;
-        inputField.value = "";
-        
-        // 2. Lade-Nachricht anzeigen
-        const loadingId = "loading-" + Date.now();
-        chatBox.innerHTML += `<div id="${loadingId}" class="message bot-message">⏳ Die KI denkt nach...</div>`;
+        const input = document.getElementById('user-input');
+        const chatBox = document.getElementById('chat-box');
+        const text = input.value.trim();
+        if (!text) return;
+        const uEl = document.createElement('div');
+        uEl.className = 'message user-message';
+        uEl.textContent = text;
+        chatBox.appendChild(uEl);
+        input.value = '';
+        const tEl = document.createElement('div');
+        tEl.className = 'typing-indicator';
+        tEl.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+        chatBox.appendChild(tEl);
         chatBox.scrollTop = chatBox.scrollHeight;
-
         try {
-            // 3. Anfrage an dein Python-Backend schicken (API Call)
-            const response = await fetch(API_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ frage: userText })
-            });
-
-            const data = await response.json();
-            
-            // 4. Lade-Nachricht entfernen und echte Antwort anzeigen
-            document.getElementById(loadingId).remove();
-            chatBox.innerHTML += `<div class="message bot-message">${data.antwort}</div>`;
-            
-        } catch (error) {
-            document.getElementById(loadingId).remove();
-            chatBox.innerHTML += `<div class="message bot-message" style="color: red;">❌ Fehler: Der KI-Server ist gerade offline.</div>`;
+            const res = await fetch(API_URL, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({frage: text}) });
+            const data = await res.json();
+            tEl.remove();
+            const bEl = document.createElement('div');
+            bEl.className = 'message bot-message';
+            bEl.innerHTML = data.antwort;
+            chatBox.appendChild(bEl);
+        } catch {
+            tEl.remove();
+            const eEl = document.createElement('div');
+            eEl.className = 'message bot-message';
+            eEl.style.color = '#ef4444';
+            eEl.textContent = '❌ Server offline. Bitte später versuchen.';
+            chatBox.appendChild(eEl);
         }
-        
         chatBox.scrollTop = chatBox.scrollHeight;
     }
-
-    function handleKeyPress(event) {
-        if (event.key === "Enter") {
-            sendMessage();
-        }
-    }
+    function handleKeyPress(e) { if (e.key === 'Enter') sendMessage(); }
+    setTimeout(() => { if (!isOpen) document.getElementById('unread-dot').style.display = 'block'; }, 3000);
 </script>
+</body>
 </html>
