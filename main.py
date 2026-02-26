@@ -28,8 +28,12 @@ class ChatRequest(BaseModel):
 # Globale Variable für unsere KI-Pipeline
 rag_chain = None
 
-@app.on_event("startup")
-def startup_event():
-    global rag_chain
+@app.post("/chat")
+async def chat_endpoint(request: ChatRequest):
+    # Deine KI-Logik (rag_chain.invoke...)
+    ergebnis = rag_chain.invoke(request.frage)
+    
+    # WICHTIG: Der Schlüssel muss "antwort" sein!
+    return {"antwort": ergebnis}
     # Hier kommt dein restlicher Code (PDF laden, Embeddings, etc.)
     # ... (wie ich ihn dir oben geschickt habe)
