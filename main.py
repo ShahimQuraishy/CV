@@ -60,12 +60,10 @@ def lade_ki_im_hintergrund():
             print(system_status)
             return
 
-        
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",   # <-- neue Version
-    temperature=0,
-    google_api_key=api_key
-)
+        llm = ChatGoogleGenerativeAI(
+            model="gemini-2.5-flash",
+            temperature=0,
+            google_api_key=api_key
         )
 
         # Prompt – streng kontextbasiert
@@ -124,5 +122,5 @@ async def chat(request: ChatRequest):
 # Wichtig: Startet den Server mit dem von Render zugewiesenen Port
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.getenv("PORT", 10000))  # Nimmt den Wert der Umgebungsvariable PORT oder 10000 als Fallback
+    port = int(os.getenv("PORT", 10000))
     uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)
