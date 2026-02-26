@@ -1,16 +1,7 @@
 import os
-import threading
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from langchain_community.document_loaders import PyPDFLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import FAISS
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.runnables import RunnablePassthrough
-from langchain_core.output_parsers import StrOutputParser
 
 app = FastAPI()
 
@@ -26,12 +17,26 @@ class ChatRequest(BaseModel):
 
 # Globale Variablen
 rag_chain = None
-system_status = "Startet..."
+is_loading = False
 
-# --- DIE NEUE HINTERGRUND-FUNKTION ---
-def lade_ki_im_hintergrund():
-    global rag_chain, system_status
+def init_ai():
+    global rag_chain, is_loading
+    if rag_chain is not None or is_loading:
+        return
+    
+    is_loading = True
+    print("Starte KI-Initialisierung...")
+    
     try:
+        from langchain_community.document_loaders import PyPDFLoader
+        from langchain_text_splitters import RecursiveCharacterTextSplitter
+        from langchain_huggingface import HuggingFaceEmbeddings
+        from langchain_community.vectorstores import FAISS
+        from langchain_google_genai import ChatGoogleGenerativeAI
+        from langchain_core.prompts import ChatPromptTemplate
+        from langchain_core.runnables import RunnablePassthrough
+        from langchain_core.output_parsers import StrOutputParser
+
         all_docs = []
         for file in os.listdir("."):
             if file.endswith(".pdf"):
@@ -39,7 +44,8 @@ def lade_ki_im_hintergrund():
                 all_docs.extend(loader.load())
 
         if not all_docs:
-            system_status = "Fehler: Keine PDFs gefunden!"
+            print("Keine PDFs gefunden!")
+            is_loading = False
             return
 
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
@@ -68,27 +74,32 @@ def lade_ki_im_hintergrund():
              "question": RunnablePassthrough()}
             | prompt | llm | StrOutputParser()
         )
-        system_status = "Bereit"
-        print("✅ KI IST JETZT EINSATZBEREIT!")
+        print("✅ KI IST EINSATZBEREIT!")
     except Exception as e:
-        system_status = f"Fehler: {str(e)}"
-        print(system_status)
-
-# --- SERVER START ---
-@app.on_event("startup")
-async def startup_event():
-    # Wir starten das Laden im Hintergrund. 
-    # Dadurch blockiert der Server nicht und Render meldet sofort "Live 🎉"
-    threading.Thread(target=lade_ki_im_hintergrund).start()
+        print(f"Fehler bei KI-Init: {e}")
+    finally:
+        is_loading = False
 
 @app.get("/")
 def home():
-    return {"status": system_status}
+    return {"status": "Server ist online. KI lädt bei der ersten Anfrage."}
 
 @app.post("/chat")
 async def chat(request: ChatRequest):
-    # Falls jemand sofort fragt, während die PDFs noch im Hintergrund laden:
-    if rag_chain is None: 
-        return {"antwort": "Ich sortiere gerade noch Shahims Unterlagen. Bitte stell deine Frage in 30 Sekunden nochmal! ⏳"}
+    global rag_chain, is_loading
     
-    return {"antwort": rag_chain.invoke(request.frage)}
+    # Beim allerersten Aufruf starten wir die KI (Lazy Loading)
+    if rag_chain is None:
+        if not is_loading:
+            import threading
+            threading.Thread(target=init_ai).start()
+        
+        # Senden einer Zwischennachricht, während die KI hochfährt
+        return {"antwort": "Ich aktiviere gerade mein Wissen (das dauert beim ersten Mal ca. 30 Sekunden). Bitte stelle deine Frage gleich nochmal! ⏳"}
+    
+    # Wenn die KI bereit ist
+    try:
+        antwort = rag_chain.invoke(request.frage)
+        return {"antwort": antwort}
+    except Exception as e:
+        return {"antwort": f"Es gab ein Problem bei der Anfrage: {e}"}
