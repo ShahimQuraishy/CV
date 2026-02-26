@@ -119,7 +119,7 @@ async def chat(request: ChatRequest):
     except Exception as e:
         return {"antwort": f"Fehler bei der Anfrage: {str(e)}"}
 
-# Wichtig: Startet den Server mit dem von Render zugewiesenen Port
+# # Ganz am Ende der main.py
 if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", 10000))
