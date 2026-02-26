@@ -1,4 +1,6 @@
 import os
+import threading
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -12,7 +14,13 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    threading.Thread(target=init_ai, daemon=True).start()
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -26,15 +34,18 @@ class ChatRequest(BaseModel):
 
 rag_chain = None
 is_loading = False
+_init_lock = threading.Lock()
+
 
 def init_ai():
     global rag_chain, is_loading
-    if rag_chain is not None or is_loading:
-        return
-    
-    is_loading = True
+    with _init_lock:
+        if rag_chain is not None or is_loading:
+            return
+        is_loading = True
+
     print("Starte KI-Initialisierung mit leichtem Google-Modell...")
-    
+
     try:
         all_docs = []
         for file in os.listdir("."):
@@ -94,9 +105,9 @@ async def chat(request: ChatRequest):
     global rag_chain, is_loading
     
     if rag_chain is None:
-        if not is_loading:
-            import threading
-            threading.Thread(target=init_ai).start()
+        with _init_lock:
+            if not is_loading:
+                threading.Thread(target=init_ai, daemon=True).start()
         
         return {"antwort": "Ich überfliege gerade Shahims Lebenslauf (dauert nur wenige Sekunden). Bitte frag mich das gleich nochmal! ⏳"}
     
