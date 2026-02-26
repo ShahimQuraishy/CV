@@ -60,14 +60,7 @@ def lade_ki_im_hintergrund():
             print(system_status)
             return
 
-        # Ersetze diese Zeile (ca. Zeile 50):
-llm = ChatGoogleGenerativeAI(
-    model="gemini-1.5-flash",   # <-- alte Version
-    temperature=0,
-    google_api_key=api_key
-)
-
-# durch:
+        
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",   # <-- neue Version
     temperature=0,
