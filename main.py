@@ -119,8 +119,3 @@ async def chat(request: ChatRequest):
     except Exception as e:
         return {"antwort": f"Fehler bei der Anfrage: {str(e)}"}
 
-# # Ganz am Ende der main.py
-if __name__ == "__main__":
-    import uvicorn
-    port = int(os.getenv("PORT", 10000))
-    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)
