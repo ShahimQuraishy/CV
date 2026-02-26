@@ -495,14 +495,23 @@
         chatBox.appendChild(tEl);
         chatBox.scrollTop = chatBox.scrollHeight;
         try {
-            const res = await fetch(API_URL, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({frage: text}) });
+            const res = await fetch(API_URL, { 
+                method: 'POST', 
+                headers: {'Content-Type':'application/json'}, 
+                body: JSON.stringify({frage: text}) 
+            });
             const data = await res.json();
             tEl.remove();
+            
             const bEl = document.createElement('div');
             bEl.className = 'message bot-message';
-            bEl.innerHTML = data.antwort;
+            
+            // Falls 'antwort' undefined ist, nutzen wir eine Fehlermeldung
+            bEl.innerHTML = data.antwort || "Entschuldigung, ich konnte keine Antwort generieren.";
+            
             chatBox.appendChild(bEl);
-        } catch {
+        } catch (error) {
+            // ... (dein restlicher Fehler-Code)
             tEl.remove();
             const eEl = document.createElement('div');
             eEl.className = 'message bot-message';
