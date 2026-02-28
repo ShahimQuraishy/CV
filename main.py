@@ -3,21 +3,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from langchain_community.document_loaders import PyPDFLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import FAISS
-from langchain_google_genai import (
-    ChatGoogleGenerativeAI,
-    GoogleGenerativeAIEmbeddings,
-)
+from pypdf import PdfReader
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.runnables import RunnablePassthrough
-from langchain_core.output_parsers import StrOutputParser
-
 
 app = FastAPI()
 
-# CORS, damit dein HTML von GitHub/Render auf /chat zugreifen darf
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -25,132 +16,72 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 class ChatRequest(BaseModel):
     frage: str
 
-
-rag_chain = None
+cv_text = None
 is_loading = False
 
-
-def init_ai():
-    global rag_chain, is_loading
-    if rag_chain is not None or is_loading:
+def load_cv():
+    global cv_text, is_loading
+    if cv_text is not None or is_loading:
         return
-
     is_loading = True
-    print("Starte KI-Initialisierung mit Gemini...")
-
     try:
-        # 1) PDF laden
-        all_docs = []
-        try:
-            print("Lade lebenslauf.pdf ...")
-            loader = PyPDFLoader("lebenslauf.pdf")
-            all_docs = loader.load()
-        except Exception as e:
-            print(f"Fehler beim Laden von lebenslauf.pdf: {e}")
-            is_loading = False
-            return
-
-        if not all_docs:
-            print("lebenslauf.pdf ist leer oder konnte nicht gelesen werden.")
-            is_loading = False
-            return
-
-        # 2) Texte in Chunks teilen
-        text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000,
-            chunk_overlap=200,
-        )
-        splits = text_splitter.split_documents(all_docs)
-
-        # 3) API-Key holen
-        api_key = os.getenv("GOOGLE_API_KEY")
-        if not api_key:
-            print("Kein GOOGLE_API_KEY gesetzt!")
-            is_loading = False
-            return
-
-        # 4) Embeddings + Vektorindex
-        embeddings = GoogleGenerativeAIEmbeddings(
-            model="models/embedding-001",
-            google_api_key=api_key,
-        )
-        vectorstore = FAISS.from_documents(documents=splits, embedding=embeddings)
-
-        # 5) Gemini-LLM
-        llm = ChatGoogleGenerativeAI(
-            model="gemini-1.5-flash",
-            temperature=0,
-            google_api_key=api_key,
-        )
-
-        # 6) Prompt
-        template = """Du bist der professionelle KI-Karriere-Assistent von Shahim Quraishy.
-Antworte professionell, in der dritten Person und NUR auf Basis des Kontexts.
-Wenn eine Info fehlt, sag: "Dazu liegen mir keine Informationen vor."
-
-KONTEXT:
-{context}
-
-FRAGE: {question}
-
-ANTWORT:"""
-
-        prompt = ChatPromptTemplate.from_template(template)
-
-        # 7) RAG-Chain bauen
-        rag_chain_local = (
-            {
-                "context": vectorstore.as_retriever(search_kwargs={"k": 6})
-                | (lambda docs: "\n\n".join(d.page_content for d in docs)),
-                "question": RunnablePassthrough(),
-            }
-            | prompt
-            | llm
-            | StrOutputParser()
-        )
-
-        # Global setzen
-        global rag_chain
-        rag_chain = rag_chain_local
-        print("✅ KI IST EINSATZBEREIT!")
-
+        print("Lade lebenslauf.pdf ...")
+        reader = PdfReader("lebenslauf.pdf")
+        pages = [p.extract_text() or "" for p in reader.pages]
+        cv_text = "\n\n".join(pages)
+        print("✅ CV geladen!")
     except Exception as e:
-        print(f"Fehler bei KI-Init: {e}")
+        print(f"Fehler beim Laden des PDFs: {e}")
+        cv_text = ""
     finally:
         is_loading = False
 
-
-# Health-Check für Render
 @app.get("/")
 @app.head("/")
 def home():
     return {"status": "Server läuft blitzschnell!"}
 
-
 @app.post("/chat")
 async def chat(request: ChatRequest):
-    global rag_chain, is_loading
+    global cv_text, is_loading
 
-    # Lazy-Load: beim ersten Request starten wir init_ai in einem Thread
-    if rag_chain is None:
+    if cv_text is None:
         if not is_loading:
             import threading
-
-            threading.Thread(target=init_ai).start()
-
+            threading.Thread(target=load_cv).start()
         return {
-            "antwort": (
-                "Ich überfliege gerade Shahims Lebenslauf "
-                "(dauert nur wenige Sekunden). Bitte frag mich das gleich nochmal! ⏳"
-            )
+            "antwort": "Ich lade gerade Shahims Lebenslauf. Bitte frag mich gleich nochmal! ⏳"
         }
 
+    api_key = os.getenv("GOOGLE_API_KEY")
+    if not api_key:
+        return {"antwort": "GOOGLE_API_KEY ist nicht gesetzt."}
+
+    llm = ChatGoogleGenerativeAI(
+        model="gemini-1.5-flash",
+        temperature=0.2,
+        google_api_key=api_key,
+    )
+
+    prompt = ChatPromptTemplate.from_template(
+        """Du bist ein Karriere-Assistent für Shahim Quraishy.
+Nutze ausschließlich diese CV-Infos:
+
+{cv}
+
+Frage des Recruiters: {frage}
+
+Antwort professionell in der dritten Person und auf Deutsch."""
+    )
+
+    chain = prompt | llm
+
     try:
-        answer = rag_chain.invoke(request.frage)
-        return {"antwort": answer}
+        resp = chain.invoke({"cv": cv_text, "frage": request.frage})
+        text = resp.content if hasattr(resp, "content") else str(resp)
+        return {"antwort": text}
     except Exception as e:
         return {"antwort": f"Fehler bei der Anfrage: {e}"}
