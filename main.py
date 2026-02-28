@@ -80,7 +80,7 @@ def get_llm_with_fallback():
     if api_key:
         try:
             llm = ChatGoogleGenerativeAI(
-                model="gemini-1.5-flash",
+                model="gemini-2.5-flash",
                 temperature=0.2,
                 google_api_key=api_key,
             )
