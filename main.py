@@ -7,6 +7,7 @@ from pypdf import PdfReader
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 
+
 app = FastAPI()
 
 app.add_middleware(
@@ -16,33 +17,53 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 class ChatRequest(BaseModel):
     frage: str
 
+
 cv_text = None
 is_loading = False
+
 
 def load_cv():
     global cv_text, is_loading
     if cv_text is not None or is_loading:
         return
+
     is_loading = True
     try:
-        print("Lade lebenslauf.pdf ...")
+        print("🔄 Versuche, lebenslauf.pdf zu laden ...")
+        if not os.path.exists("lebenslauf.pdf"):
+            print("❌ lebenslauf.pdf nicht gefunden im Arbeitsverzeichnis:", os.listdir("."))
+            cv_text = ""
+            return
+
         reader = PdfReader("lebenslauf.pdf")
-        pages = [p.extract_text() or "" for p in reader.pages]
+        pages = []
+        for i, p in enumerate(reader.pages):
+            try:
+                text = p.extract_text() or ""
+                print(f"Seite {i+1}: {len(text)} Zeichen extrahiert")
+                pages.append(text)
+            except Exception as e:
+                print(f"Fehler beim Lesen von Seite {i+1}: {e}")
+
         cv_text = "\n\n".join(pages)
-        print("✅ CV geladen!")
+        print("✅ CV geladen, Länge:", len(cv_text))
+
     except Exception as e:
         print(f"Fehler beim Laden des PDFs: {e}")
         cv_text = ""
     finally:
         is_loading = False
 
+
 @app.get("/")
 @app.head("/")
 def home():
     return {"status": "Server läuft blitzschnell!"}
+
 
 @app.post("/chat")
 async def chat(request: ChatRequest):
@@ -54,6 +75,11 @@ async def chat(request: ChatRequest):
             threading.Thread(target=load_cv).start()
         return {
             "antwort": "Ich lade gerade Shahims Lebenslauf. Bitte frag mich gleich nochmal! ⏳"
+        }
+
+    if cv_text == "":
+        return {
+            "antwort": "Ich konnte den Lebenslauf nicht laden. Prüfe, ob lebenslauf.pdf im Projekt-Root liegt."
         }
 
     api_key = os.getenv("GOOGLE_API_KEY")
