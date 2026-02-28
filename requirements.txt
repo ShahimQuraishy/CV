@@ -5,3 +5,4 @@ pypdf
 langchain
 langchain-core
 langchain-google-genai
+langchain-community
