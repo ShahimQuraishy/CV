@@ -5,150 +5,446 @@
   <title>Shahim Quraishy – AI CV</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    * {
       margin: 0;
       padding: 0;
-      background: #050816;
-      color: #e5e7eb;
+      box-sizing: border-box;
     }
 
-    /* Dein CV-Layout kannst du hier lassen oder anpassen */
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #0c0c1a 0%, #1a0d2e 50%, #050816 100%);
+      color: #e5e7eb;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-    /* Chat-Icon & Fenster */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(120,119,198,0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120,219,255,0.2) 0%, transparent 50%);
+      z-index: -1;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(1deg); }
+      66% { transform: translateY(-10px) rotate(-1deg); }
+    }
+
+    /* Glassmorphism Karten */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 25px 45px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05);
+      padding: 2rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: slideInUp 1s ease-out;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 35px 65px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .hero {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      background: linear-gradient(135deg, #6366f1, #ec4899, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 10px rgba(99,102,241,0.5)); }
+      to { filter: drop-shadow(0 0 20px rgba(99,102,241,0.8)); }
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      color: #a1a1aa;
+      margin-bottom: 2rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .skill-tag {
+      background: rgba(99, 102, 241, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      text-align: center;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-tag:hover {
+      background: rgba(99, 102, 241, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(99,102,241,0.3);
+    }
+
+    .skill-tag::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .skill-tag:hover::before {
+      left: 100%;
+    }
+
+    /* Chatbot verbessert */
     #chatbot-icon {
       position: fixed;
       bottom: 24px;
       right: 24px;
-      width: 56px;
-      height: 56px;
-      background: #6366f1;
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
       color: #fff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
+      font-size: 28px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 12px 40px rgba(99,102,241,0.4);
       z-index: 9999;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: pulse 2s infinite;
+    }
+
+    #chatbot-icon:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 20px 50px rgba(99,102,241,0.6);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 12px 40px rgba(99,102,241,0.4); }
+      50% { box-shadow: 0 12px 40px rgba(99,102,241,0.7); }
+      100% { box-shadow: 0 12px 40px rgba(99,102,241,0.4); }
     }
 
     #chatbot-container {
       position: fixed;
-      bottom: 90px;
+      bottom: 100px;
       right: 24px;
-      width: 360px;
+      width: 380px;
       max-width: 95vw;
-      height: 480px;
-      background: #0f172a;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      height: 500px;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border-radius: 24px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
       display: flex;
       flex-direction: column;
       overflow: hidden;
       z-index: 9999;
+      border: 1px solid rgba(255,255,255,0.1);
+      transform: scale(0.8) translateY(20px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    #chatbot-container.hidden {
-      display: none;
+    #chatbot-container.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
     }
 
     #chatbot-header {
-      background: #6366f1;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
       color: white;
-      padding: 10px 14px;
+      padding: 16px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      font-weight: 600;
     }
 
     #chatbot-body {
       flex: 1;
-      padding: 10px 14px;
+      padding: 20px;
       overflow-y: auto;
-      background: #020617;
+      background: rgba(2, 6, 23, 0.8);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(99,102,241,0.5) transparent;
+    }
+
+    #chatbot-body::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #chatbot-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    #chatbot-body::-webkit-scrollbar-thumb {
+      background: rgba(99,102,241,0.5);
+      border-radius: 3px;
     }
 
     #input-container {
       display: flex;
-      padding: 8px;
-      border-top: 1px solid #1f2937;
-      background: #020617;
+      padding: 16px 20px;
+      border-top: 1px solid rgba(31,41,55,0.8);
+      background: rgba(2,6,23,0.95);
+      gap: 12px;
     }
 
     #user-input {
       flex: 1;
-      padding: 8px;
-      border-radius: 8px;
-      border: 1px solid #374151;
-      background: #020617;
+      padding: 12px 20px;
+      border-radius: 25px;
+      border: 1px solid rgba(55,65,81,0.8);
+      background: rgba(31,41,55,0.8);
       color: #e5e7eb;
-      margin-right: 6px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    #user-input:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
+      background: rgba(31,41,55,1);
     }
 
     #send-btn {
-      padding: 8px 14px;
-      border-radius: 8px;
+      padding: 12px 20px;
+      border-radius: 25px;
       border: none;
-      background: #6366f1;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
       color: white;
       cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #send-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(99,102,241,0.4);
     }
 
     .message {
-      margin-bottom: 8px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      max-width: 80%;
-      font-size: 14px;
-      line-height: 1.4;
+      margin-bottom: 16px;
+      padding: 14px 18px;
+      border-radius: 20px;
+      max-width: 85%;
+      font-size: 15px;
+      line-height: 1.5;
       white-space: pre-wrap;
+      animation: messageSlide 0.3s ease-out;
+      position: relative;
+    }
+
+    @keyframes messageSlide {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .user-message {
-      background: #4f46e5;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
       color: white;
       margin-left: auto;
+      border-bottom-right-radius: 8px;
     }
 
     .bot-message {
-      background: #1f2937;
+      background: rgba(31,41,55,0.8);
       color: #e5e7eb;
       margin-right: auto;
+      border-bottom-left-radius: 8px;
+    }
+
+    .typing-indicator {
+      display: none;
+      background: rgba(31,41,55,0.8);
+      padding: 14px 18px;
+      border-radius: 20px;
+      max-width: 85%;
+      margin-right: auto;
+      border-bottom-left-radius: 8px;
+    }
+
+    .typing-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .typing-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #6366f1;
+      animation: typing 1.4s infinite;
+    }
+
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-10px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+      
+      #chatbot-container {
+        width: 95vw;
+        height: 70vh;
+        right: 5vw;
+        bottom: 80px;
+      }
+    }
+
+    /* Demo CV Inhalt */
+    .section-title {
+      font-size: 1.8rem;
+      color: #f8fafc;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(135deg, #6366f1, #ec4899);
     }
   </style>
 </head>
 <body>
-
-  <!-- Dein bestehender CV-Inhalt hier (gekürzt) -->
   <main>
-    <h1>Shahim Quraishy</h1>
-    <p>AI Engineer · LLM-Integration · Cloud-Architektur</p>
-    <!-- … dein restliches CV-HTML … -->
+    <div class="hero">
+      <h1>Shahim Quraishy</h1>
+      <p class="subtitle">AI Engineer · LLM-Integration · Cloud-Architektur</p>
+    </div>
+
+    <div class="glass-card">
+      <h2 class="section-title">Über mich</h2>
+      <p>Informatik-Student an der Universität Koblenz mit Fokus auf AI, Automatisierung und digitale Dienstleistungen für Senioren. Gründer von "hilfefuessenoren" – telefonischer Concierge-Service.</p>
+    </div>
+
+    <div class="glass-card">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-tag">AI/ML Engineering</div>
+        <div class="skill-tag">LLM Integration</div>
+        <div class="skill-tag">Cloud Architecture</div>
+        <div class="skill-tag">Java Development</div>
+        <div class="skill-tag">Web Development</div>
+        <div class="skill-tag">Automation</div>
+      </div>
+    </div>
+
+    <div class="glass-card">
+      <h2 class="section-title">Projekte</h2>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 12px;">AI-CV Chatbot – Interaktiver Assistent für Portfolio</li>
+        <li style="margin-bottom: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 12px;">Hilfefuessenoren – Senioren-Concierge Service</li>
+        <li style="padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 12px;">Automatisierungsplattformen (Make.com, Zapier)</li>
+      </ul>
+    </div>
+
+    <div class="glass-card" style="grid-column: 1 / -1;">
+      <h2 class="section-title">Kontakt</h2>
+      <p>Email: shahim@example.com | LinkedIn: /in/shahimq | GitHub: /shahimq</p>
+    </div>
   </main>
 
   <!-- Chat-Button -->
   <div id="chatbot-icon">💬</div>
 
   <!-- Chat-Fenster -->
-  <div id="chatbot-container" class="hidden">
+  <div id="chatbot-container">
     <div id="chatbot-header">
-      <span>AI‑Assistent zu Shahims CV</span>
-      <button id="close-chat" style="background:none;border:none;color:white;font-size:18px;cursor:pointer;">×</button>
+      <span>🤖 AI-Assistent zu Shahims CV</span>
+      <button id="close-chat" style="background:none;border:none;color:white;font-size:24px;cursor:pointer;font-weight:bold;">×</button>
     </div>
     <div id="chatbot-body">
       <div class="message bot-message">
-        Frag mich alles zu Shahims Lebenslauf, Projekten und Skills.
+        Hallo! Ich bin Shahims AI-Assistent. Frag mich zu Skills, Projekten oder Erfahrungen! 🚀
       </div>
     </div>
     <div id="input-container">
-      <input
-        type="text"
-        id="user-input"
-        placeholder="Frag etwas zu Projekten, Skills, Erfahrung..."
-      />
-      <button id="send-btn">Senden</button>
+      <input type="text" id="user-input" placeholder="z.B. 'Welche AI-Projekte hast du?'" />
+      <button id="send-btn">➤</button>
     </div>
   </div>
 
@@ -160,52 +456,84 @@
     const userInput = document.getElementById("user-input");
     const chatbotBody = document.getElementById("chatbot-body");
 
+    // Toggle Chat
     chatbotIcon.addEventListener("click", () => {
-      chatbotContainer.classList.toggle("hidden");
+      chatbotContainer.classList.toggle("open");
     });
 
     closeChat.addEventListener("click", () => {
-      chatbotContainer.classList.add("hidden");
+      chatbotContainer.classList.remove("open");
     });
 
-    sendBtn.addEventListener("click", sendMessage);
-    userInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") sendMessage();
-    });
-
-    function addMessage(text, cls) {
+    // Nachricht hinzufügen
+    function addMessage(text, isUser = false) {
       const div = document.createElement("div");
-      div.className = "message " + cls;
+      div.className = `message ${isUser ? "user-message" : "bot-message"}`;
       div.textContent = text;
       chatbotBody.appendChild(div);
       chatbotBody.scrollTop = chatbotBody.scrollHeight;
       return div;
     }
 
+    // Typing Indicator
+    function showTyping() {
+      const typing = document.createElement("div");
+      typing.className = "typing-indicator";
+      typing.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+      chatbotBody.appendChild(typing);
+      chatbotBody.scrollTop = chatbotBody.scrollHeight;
+      return typing;
+    }
+
+    // Simulierte AI-Antworten (ersetze durch echtes Backend)
+    const responses = {
+      "skills": "Shahims Top-Skills: AI/ML Engineering, LLM-Integration (GPT, Grok), Cloud-Architektur (AWS, Heroku), Java, Web-Dev (HTML/CSS/JS), Automatisierung (Make.com). Besonders stark in AI-Anwendungen für Dienstleistungen![web:1]",
+      "projekte": "Wichtige Projekte: 1. HilfeFuessenOren – AI-gestützter Concierge für Senioren. 2. Dieser interaktive AI-CV Chatbot. 3. Automatisierungs-Workflows für KMU in Rheinland-Pfalz.[web:7]",
+      "erfahrung": "Erfahrung: Informatik-Studium Uni Koblenz, System-Development bei 1&1, Gründer von HilfeFuessenOren (Fahrdienste/Lieferungen für Senioren), mehrere AI-Projekte.[web:15]",
+      "default": "Interessante Frage! Shahim ist AI-Engineer & Gründer. Frag nach 'skills', 'projekte' oder 'erfahrung' für Details. Oder etwas Spezielles? 😊"
+    };
+
     async function sendMessage() {
-      const text = userInput.value.trim();
+      const text = userInput.value.trim().toLowerCase();
       if (!text) return;
-      addMessage(text, "user-message");
+
+      addMessage(userInput.value);
       userInput.value = "";
 
-      const typing = addMessage("Den CV analysiere ich gerade…", "bot-message");
+      const typing = showTyping();
 
-      try {
-        const res = await fetch("https://myaicv.onrender.com/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ frage: text }),
-        });
-
-        const data = await res.json();
+      // Simulierte Delay & Backend-Call
+      setTimeout(() => {
         typing.remove();
-        addMessage(data.antwort || "Keine Antwort erhalten.", "bot-message");
-      } catch (err) {
-        typing.remove();
-        addMessage("Fehler beim Backend‑Aufruf.", "bot-message");
-        console.error(err);
-      }
+        let answer = responses.default;
+        if (text.includes("skills") || text.includes("fähigkeiten")) answer = responses.skills;
+        else if (text.includes("projekt") || text.includes("cv")) answer = responses.projekte;
+        else if (text.includes("erfahrung") || text.includes("job")) answer = responses.erfahrung;
+        
+        addMessage(answer);
+      }, 1200 + Math.random() * 800);
     }
+
+    sendBtn.addEventListener("click", sendMessage);
+    userInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+
+    // Enter-Taste für Demo-Nachricht
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        addMessage("Willkommen! Probiere: 'Zeig Skills' oder 'Erzähl von Projekten'", false);
+      }, 1000);
+    });
+
+    // Skills Hover-Interaktion
+    document.querySelectorAll('.skill-tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        const skill = tag.textContent;
+        addMessage(`Klick auf ${skill} – Mehr Details im Chatbot!`, true);
+        setTimeout(() => addMessage(`Zu ${skill}: Shahim hat praktische Projekte in diesem Bereich, z.B. ...`), 500);
+      });
+    });
   </script>
 </body>
 </html>
