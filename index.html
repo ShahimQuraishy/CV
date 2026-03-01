@@ -1,539 +1,954 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>Shahim Quraishy – AI CV</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shahim Quraishy – Angehender AI Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #0d1b36;
+      --navy-l:      #162e5c;
+      --accent:      #3b82f6;
+      --accent-2:    #7c3aed;
+      --accent-glow: rgba(59,130,246,0.15);
+      --green:       #10b981;
+      --green-l:     rgba(16,185,129,0.12);
+      --bg:          #eef2f7;
+      --bg-card:     #ffffff;
+      --text:        #1e293b;
+      --text-s:      #64748b;
+      --text-m:      #94a3b8;
+      --border:      #e2e8f0;
+      --grad:        linear-gradient(145deg,#0d1b36 0%,#162e5c 55%,#1a3a7a 100%);
+      --grad-a:      linear-gradient(135deg,#3b82f6,#7c3aed);
+      --sw:          308px;
     }
 
     body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: linear-gradient(135deg, #0c0c1a 0%, #1a0d2e 50%, #050816 100%);
-      color: #e5e7eb;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg,#dce6f0 0%,#eaf0f8 60%,#d8e4f0 100%);
       min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
+      padding: 36px 16px;
+      color: var(--text);
     }
 
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(120,119,198,0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(120,219,255,0.2) 0%, transparent 50%);
-      z-index: -1;
-      animation: float 20s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      33% { transform: translateY(-20px) rotate(1deg); }
-      66% { transform: translateY(-10px) rotate(-1deg); }
-    }
-
-    /* Glassmorphism Karten */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 25px 45px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05);
-      padding: 2rem;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      animation: slideInUp 1s ease-out;
-    }
-
-    .glass-card:hover {
-      transform: translateY(-12px) scale(1.02);
-      box-shadow: 0 35px 65px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1);
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    @keyframes slideInUp {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: start;
-    }
-
-    .hero {
-      grid-column: 1 / -1;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      background: linear-gradient(135deg, #6366f1, #ec4899, #f59e0b);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 0.5rem;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 10px rgba(99,102,241,0.5)); }
-      to { filter: drop-shadow(0 0 20px rgba(99,102,241,0.8)); }
-    }
-
-    .subtitle {
-      font-size: 1.5rem;
-      color: #a1a1aa;
-      margin-bottom: 2rem;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .skill-tag {
-      background: rgba(99, 102, 241, 0.2);
-      backdrop-filter: blur(10px);
-      padding: 0.75rem 1.5rem;
-      border-radius: 50px;
-      text-align: center;
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      transition: all 0.3s ease;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .skill-tag:hover {
-      background: rgba(99, 102, 241, 0.4);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(99,102,241,0.3);
-    }
-
-    .skill-tag::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.5s;
-    }
-
-    .skill-tag:hover::before {
-      left: 100%;
-    }
-
-    /* Chatbot verbessert */
-    #chatbot-icon {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 64px;
-      height: 64px;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      color: #fff;
-      border-radius: 50%;
+    /* ────────── CONTAINER ────────── */
+    .resume {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      cursor: pointer;
-      box-shadow: 0 12px 40px rgba(99,102,241,0.4);
-      z-index: 9999;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      animation: pulse 2s infinite;
+      max-width: 1060px;
+      margin: 0 auto;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow:
+        0 30px 80px rgba(13,27,54,.22),
+        0 8px 24px rgba(13,27,54,.10),
+        0 0 0 1px rgba(255,255,255,.6);
     }
 
-    #chatbot-icon:hover {
-      transform: scale(1.1) rotate(5deg);
-      box-shadow: 0 20px 50px rgba(99,102,241,0.6);
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 12px 40px rgba(99,102,241,0.4); }
-      50% { box-shadow: 0 12px 40px rgba(99,102,241,0.7); }
-      100% { box-shadow: 0 12px 40px rgba(99,102,241,0.4); }
-    }
-
-    #chatbot-container {
-      position: fixed;
-      bottom: 100px;
-      right: 24px;
-      width: 380px;
-      max-width: 95vw;
-      height: 500px;
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
-      border-radius: 24px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    /* ══════════════ SIDEBAR ══════════════ */
+    .sidebar {
+      width: var(--sw);
+      min-width: var(--sw);
+      background: var(--grad);
+      color: #fff;
+      padding: 42px 26px;
       display: flex;
       flex-direction: column;
+      position: relative;
       overflow: hidden;
-      z-index: 9999;
-      border: 1px solid rgba(255,255,255,0.1);
-      transform: scale(0.8) translateY(20px);
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    #chatbot-container.open {
-      transform: scale(1) translateY(0);
-      opacity: 1;
+    .sidebar::before {
+      content:'';
+      position:absolute; top:-90px; right:-90px;
+      width:280px; height:280px; border-radius:50%;
+      background: radial-gradient(circle,rgba(59,130,246,.25) 0%,transparent 70%);
+    }
+    .sidebar::after {
+      content:'';
+      position:absolute; bottom:-70px; left:-70px;
+      width:220px; height:220px; border-radius:50%;
+      background: radial-gradient(circle,rgba(124,58,237,.2) 0%,transparent 70%);
     }
 
-    #chatbot-header {
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      color: white;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-weight: 600;
+    /* Profilbild */
+    .profile-wrap { text-align:center; margin-bottom:30px; position:relative; z-index:1; }
+
+    .avatar-ring {
+      display:inline-block; padding:3px; border-radius:50%;
+      background: var(--grad-a);
+      box-shadow: 0 0 0 4px rgba(59,130,246,.25), 0 12px 36px rgba(0,0,0,.3);
     }
 
-    #chatbot-body {
-      flex: 1;
-      padding: 20px;
-      overflow-y: auto;
-      background: rgba(2, 6, 23, 0.8);
-      scrollbar-width: thin;
-      scrollbar-color: rgba(99,102,241,0.5) transparent;
+    .profile-pic {
+      width:126px; height:126px; border-radius:50%;
+      object-fit:cover; display:block;
+      border:3px solid rgba(13,27,54,.8);
     }
 
-    #chatbot-body::-webkit-scrollbar {
-      width: 6px;
+    .name-block { margin-top:14px; }
+    .name-block h1 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.42rem; font-weight:700;
+      letter-spacing:-.3px; line-height:1.2; color:#fff;
     }
 
-    #chatbot-body::-webkit-scrollbar-track {
-      background: transparent;
+    .role-pill {
+      display:inline-block; margin-top:8px;
+      background: var(--grad-a);
+      font-size:.7rem; font-weight:700;
+      letter-spacing:.9px; text-transform:uppercase;
+      padding:4px 14px; border-radius:20px; color:#fff;
+      box-shadow: 0 4px 14px rgba(59,130,246,.4);
     }
 
-    #chatbot-body::-webkit-scrollbar-thumb {
-      background: rgba(99,102,241,0.5);
-      border-radius: 3px;
+    /* Sidebar Sektionen */
+    .s-sec { margin-top:24px; position:relative; z-index:1; }
+
+    .s-sec h2 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:.63rem; text-transform:uppercase;
+      letter-spacing:2.5px; color:var(--accent);
+      margin-bottom:11px;
+      display:flex; align-items:center; gap:8px;
+    }
+    .s-sec h2::after {
+      content:''; flex:1; height:1px;
+      background:rgba(59,130,246,.3);
     }
 
-    #input-container {
-      display: flex;
-      padding: 16px 20px;
-      border-top: 1px solid rgba(31,41,55,0.8);
-      background: rgba(2,6,23,0.95);
-      gap: 12px;
+    /* Kontakt */
+    .contact-list { display:flex; flex-direction:column; gap:7px; }
+
+    .c-card {
+      display:flex; align-items:center; gap:11px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:10px; padding:9px 11px;
+      transition:background .2s,transform .15s;
+      cursor:default;
+    }
+    .c-card:hover {
+      background:rgba(59,130,246,.2);
+      border-color:rgba(59,130,246,.4);
+      transform:translateX(4px);
     }
 
-    #user-input {
-      flex: 1;
-      padding: 12px 20px;
-      border-radius: 25px;
-      border: 1px solid rgba(55,65,81,0.8);
-      background: rgba(31,41,55,0.8);
-      color: #e5e7eb;
-      font-size: 14px;
-      transition: all 0.3s ease;
+    .c-icon {
+      width:30px; height:30px; border-radius:8px;
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .c-icon svg { width:14px;height:14px;stroke:#fff;stroke-width:2;fill:none; }
+    .ci-loc  { background:linear-gradient(135deg,#f97316,#ea580c); }
+    .ci-tel  { background:linear-gradient(135deg,#22c55e,#16a34a); }
+    .ci-mail { background:linear-gradient(135deg,#3b82f6,#2563eb); }
+    .ci-li   { background:linear-gradient(135deg,#0ea5e9,#0284c7); }
+    .ci-gh   { background:linear-gradient(135deg,#7c3aed,#6d28d9); }
+
+    .c-txt { display:flex; flex-direction:column; }
+    .c-lbl {
+      font-size:.6rem; font-weight:600; text-transform:uppercase;
+      letter-spacing:.8px; color:rgba(255,255,255,.4); line-height:1; margin-bottom:1px;
+    }
+    .c-val { font-size:.77rem; font-weight:500; color:rgba(255,255,255,.92); line-height:1.3; }
+
+    /* Skill Tags */
+    .skill-group { margin-bottom:13px; }
+    .sg-lbl {
+      font-size:.65rem; font-weight:600; text-transform:uppercase;
+      letter-spacing:1px; color:rgba(255,255,255,.45); margin-bottom:6px;
+    }
+    .tag-wrap { display:flex; flex-wrap:wrap; gap:5px; }
+    .s-tag {
+      font-size:.71rem; font-weight:500;
+      padding:3px 9px; border-radius:5px;
+      background:rgba(255,255,255,.09);
+      color:rgba(255,255,255,.88);
+      border:1px solid rgba(255,255,255,.11);
+      transition:background .2s;
+    }
+    .s-tag:hover { background:rgba(59,130,246,.3); }
+    .s-tag.hl {
+      background:rgba(59,130,246,.22);
+      border-color:rgba(59,130,246,.45);
+      color:#a5c8ff;
     }
 
-    #user-input:focus {
-      outline: none;
-      border-color: #6366f1;
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
-      background: rgba(31,41,55,1);
+    /* Sprachen */
+    .lang-item { margin-bottom:11px; }
+    .lang-hd {
+      display:flex; justify-content:space-between;
+      font-size:.8rem; margin-bottom:5px;
+      color:rgba(255,255,255,.9);
+    }
+    .lang-lvl { font-size:.7rem; color:rgba(255,255,255,.45); }
+    .lang-bg { height:5px; border-radius:4px; background:rgba(255,255,255,.11); }
+    .lang-fill { height:100%; border-radius:4px; background: var(--grad-a); }
+
+    /* ══════════════ MAIN ══════════════ */
+    .main {
+      flex:1; background:var(--bg);
+      padding:46px 42px;
     }
 
-    #send-btn {
-      padding: 12px 20px;
-      border-radius: 25px;
-      border: none;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      color: white;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* Hero */
+    .hero {
+      padding-bottom:24px;
+      border-bottom:2px solid var(--border);
+      margin-bottom:30px;
+    }
+    .hero h1 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:2.75rem; font-weight:700;
+      color:var(--navy); letter-spacing:-1.5px;
+      line-height:1; margin-bottom:5px;
+    }
+    .hero .role {
+      font-size:.97rem; font-weight:600; margin-bottom:12px;
+      background: var(--grad-a);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .hero .bio {
+      font-size:.88rem; line-height:1.72;
+      color:var(--text-s); max-width:540px;
+    }
+    .chips {
+      display:flex; flex-wrap:wrap; gap:9px; margin-top:16px;
+    }
+    .chip {
+      display:flex; align-items:center; gap:6px;
+      background:var(--bg-card);
+      border:1px solid var(--border);
+      border-radius:10px; padding:6px 13px;
+      font-size:.79rem; font-weight:600; color:var(--navy);
+      box-shadow:0 1px 4px rgba(0,0,0,.05);
+      transition:box-shadow .2s,transform .2s;
+    }
+    .chip:hover { box-shadow:0 4px 16px rgba(59,130,246,.15); transform:translateY(-2px); }
+
+    /* Section Titles */
+    .sec-title {
+      display:flex; align-items:center; gap:10px;
+      font-family:'Space Grotesk',sans-serif;
+      font-size:.68rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:2.5px;
+      color:var(--text-m);
+      margin:32px 0 18px;
+    }
+    .sec-title::before {
+      content:''; width:4px; height:18px;
+      border-radius:4px; background: var(--grad-a);
+    }
+    .sec-title::after {
+      content:''; flex:1; height:1px; background:var(--border);
     }
 
-    #send-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 25px rgba(99,102,241,0.4);
+    /* Cards */
+    .card {
+      background:var(--bg-card);
+      border-radius:14px; padding:19px 22px;
+      margin-bottom:13px;
+      border:1px solid var(--border);
+      position:relative;
+      transition:box-shadow .25s,transform .25s;
+    }
+    .card:hover {
+      box-shadow:0 10px 30px rgba(13,27,54,.11);
+      transform:translateY(-3px);
+    }
+    .card::before {
+      content:''; position:absolute;
+      left:0; top:0; bottom:0; width:4px;
+      border-radius:14px 0 0 14px;
+      background: var(--grad-a);
+    }
+    .card.g::before { background:linear-gradient(180deg,var(--green),#059669); }
+
+    .card-top {
+      display:flex; justify-content:space-between;
+      align-items:flex-start; gap:12px; margin-bottom:2px;
+    }
+    .card-title {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:.96rem; font-weight:700; color:var(--navy);
+    }
+    .badge {
+      font-size:.7rem; font-weight:600;
+      padding:3px 10px; border-radius:20px;
+      white-space:nowrap; flex-shrink:0;
+      color:var(--accent); background:var(--accent-glow);
+    }
+    .badge.g { color:var(--green); background:var(--green-l); }
+
+    .card-sub {
+      font-size:.78rem; color:var(--text-m);
+      font-style:italic; margin-bottom:9px;
+    }
+    .card-body {
+      font-size:.85rem; line-height:1.65; color:var(--text-s);
+    }
+    .card-body ul { padding-left:15px; margin-top:4px; }
+    .card-body li { margin-bottom:3px; }
+    .card-body li strong { color:var(--navy); }
+
+    .pills { display:flex; flex-wrap:wrap; gap:5px; margin-top:9px; }
+    .pill {
+      font-size:.69rem; font-weight:600;
+      padding:3px 9px; border-radius:6px;
+      background:linear-gradient(90deg,rgba(59,130,246,.09),rgba(124,58,237,.09));
+      color:var(--accent);
+      border:1px solid rgba(59,130,246,.2);
+    }
+    .pill.g { background:var(--green-l); color:var(--green); border-color:rgba(16,185,129,.25); }
+
+    .course-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:7px; margin-top:9px;
+    }
+    .course {
+      background:#f8fafc; border:1px solid var(--border);
+      border-radius:8px; padding:8px 12px;
+      font-size:.79rem; font-weight:600; color:var(--navy);
     }
 
-    .message {
-      margin-bottom: 16px;
-      padding: 14px 18px;
-      border-radius: 20px;
-      max-width: 85%;
-      font-size: 15px;
-      line-height: 1.5;
-      white-space: pre-wrap;
-      animation: messageSlide 0.3s ease-out;
-      position: relative;
+    /* ══════════════ CHATBOT ══════════════ */
+    #cw {
+      position:fixed; bottom:24px; right:24px;
+      z-index:9999; font-family:'Inter',sans-serif;
     }
 
-    @keyframes messageSlide {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* Toggle Button */
+    #ctb {
+      width:58px; height:58px; border-radius:50%;
+      background: var(--grad-a);
+      border:none; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 8px 32px rgba(59,130,246,.55);
+      transition:transform .3s,box-shadow .3s;
+      margin-left:auto; position:relative;
+      animation: cwPulse 2.8s ease-in-out infinite;
     }
-
-    .user-message {
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      color: white;
-      margin-left: auto;
-      border-bottom-right-radius: 8px;
+    @keyframes cwPulse {
+      0%,100% { box-shadow:0 8px 32px rgba(59,130,246,.55); }
+      50%      { box-shadow:0 8px 40px rgba(59,130,246,.85),0 0 30px rgba(124,58,237,.35); }
     }
-
-    .bot-message {
-      background: rgba(31,41,55,0.8);
-      color: #e5e7eb;
-      margin-right: auto;
-      border-bottom-left-radius: 8px;
+    #ctb:hover { transform:scale(1.1) rotate(8deg); }
+    #ctb svg {
+      width:24px; height:24px; stroke:#fff;
+      stroke-width:2; fill:none;
+      transition:opacity .2s,transform .2s; position:absolute;
     }
+    #ic-chat { opacity:1; transform:scale(1); }
+    #ic-x    { opacity:0; transform:scale(.7); }
+    #cw.open #ic-chat { opacity:0; transform:scale(.7); }
+    #cw.open #ic-x    { opacity:1; transform:scale(1); }
 
-    .typing-indicator {
-      display: none;
-      background: rgba(31,41,55,0.8);
-      padding: 14px 18px;
-      border-radius: 20px;
-      max-width: 85%;
-      margin-right: auto;
-      border-bottom-left-radius: 8px;
+    #udot {
+      position:absolute; top:4px; right:4px;
+      width:11px; height:11px; border-radius:50%;
+      background:#ef4444; border:2px solid #fff;
+      display:none;
+      animation:pdot 2s infinite;
     }
+    @keyframes pdot { 0%,100%{transform:scale(1)} 50%{transform:scale(1.35)} }
 
-    .typing-dots {
-      display: flex;
-      gap: 4px;
+    /* Panel */
+    #cp {
+      width:360px; border-radius:22px;
+      overflow:hidden;
+      box-shadow:0 28px 70px rgba(13,27,54,.25);
+      margin-bottom:14px;
+      transform-origin:bottom right;
+      transform:scale(.85) translateY(22px);
+      opacity:0; pointer-events:none;
+      transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .25s ease;
+      background:#fff;
+      border:1px solid var(--border);
     }
+    #cw.open #cp { transform:scale(1) translateY(0); opacity:1; pointer-events:all; }
 
-    .typing-dots span {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #6366f1;
-      animation: typing 1.4s infinite;
+    /* Chat Header */
+    .ch-hd {
+      background: var(--grad);
+      padding:15px 17px;
+      display:flex; align-items:center; gap:11px;
     }
-
-    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes typing {
-      0%, 60%, 100% { transform: translateY(0); }
-      30% { transform: translateY(-10px); }
+    .ch-av {
+      width:40px; height:40px; border-radius:11px;
+      background: var(--grad-a);
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+      box-shadow:0 4px 12px rgba(59,130,246,.4);
     }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      main {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-      }
-      
-      #chatbot-container {
-        width: 95vw;
-        height: 70vh;
-        right: 5vw;
-        bottom: 80px;
-      }
+    .ch-av svg { width:20px;height:20px;stroke:#fff;stroke-width:2;fill:none; }
+    .ch-info { flex:1; }
+    .ch-name {
+      font-family:'Space Grotesk',sans-serif;
+      font-weight:700; font-size:.91rem; color:#fff; margin-bottom:2px;
     }
-
-    /* Demo CV Inhalt */
-    .section-title {
-      font-size: 1.8rem;
-      color: #f8fafc;
-      margin-bottom: 1rem;
-      position: relative;
+    .ch-status {
+      font-size:.68rem; color:rgba(255,255,255,.6);
+      display:flex; align-items:center; gap:5px;
     }
+    .sdot { width:6px;height:6px;border-radius:50%;background:#22c55e; animation:ps 2.5s infinite; }
+    @keyframes ps { 0%,100%{opacity:1} 50%{opacity:.35} }
+    #min-btn {
+      width:28px;height:28px;border-radius:8px;
+      background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15);
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      transition:background .2s;
+    }
+    #min-btn:hover { background:rgba(255,255,255,.22); }
+    #min-btn svg { width:13px;height:13px;stroke:#fff;stroke-width:2.5;fill:none; }
 
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background: linear-gradient(135deg, #6366f1, #ec4899);
+    /* Chat Messages */
+    #cbox {
+      height:280px; overflow-y:auto;
+      padding:15px; display:flex; flex-direction:column; gap:9px;
+      background:#f8fafc; scroll-behavior:smooth;
+    }
+    #cbox::-webkit-scrollbar { width:4px; }
+    #cbox::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:4px; }
+
+    .msg {
+      padding:9px 13px; border-radius:16px;
+      max-width:84%; line-height:1.5; font-size:.82rem;
+      animation:mi .25s ease;
+    }
+    @keyframes mi { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+    .bot { background:#fff; color:var(--text); align-self:flex-start;
+           border:1px solid var(--border); border-radius:4px 16px 16px 16px;
+           box-shadow:0 1px 4px rgba(0,0,0,.05); }
+    .usr { background:var(--grad-a); color:#fff; align-self:flex-end;
+           border-radius:16px 4px 16px 16px; }
+    .typing-wrap { display:flex;gap:5px;padding:10px 13px;
+                   background:#fff; border:1px solid var(--border);
+                   border-radius:4px 16px 16px 16px; align-self:flex-start; align-items:center; }
+    .td { width:6px;height:6px;border-radius:50%;background:#94a3b8; animation:tb 1.2s infinite; }
+    .td:nth-child(2){animation-delay:.2s} .td:nth-child(3){animation-delay:.4s}
+    @keyframes tb { 0%,80%,100%{transform:none;opacity:.5} 40%{transform:translateY(-5px);opacity:1} }
+
+    /* Quick Replies – immer sichtbar */
+    #qr {
+      padding:8px 13px; background:#f0f4f9;
+      border-top:1px solid var(--border);
+      display:flex; flex-wrap:wrap; gap:5px;
+    }
+    .qb {
+      font-size:.71rem; font-weight:500;
+      padding:4px 11px; border-radius:20px;
+      border:1px solid rgba(59,130,246,.35);
+      background:rgba(59,130,246,.07); color:var(--accent);
+      cursor:pointer; transition:background .15s,transform .1s;
+    }
+    .qb:hover { background:rgba(59,130,246,.18); transform:translateY(-1px); }
+
+    /* Einladungs-Banner */
+    #invite-banner {
+      display:none;
+      margin:8px 13px;
+      background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(59,130,246,.12));
+      border:1px solid rgba(16,185,129,.35);
+      border-radius:12px; padding:12px 14px;
+      font-size:.81rem; color:var(--navy); line-height:1.5;
+    }
+    #invite-banner strong { color:var(--green); }
+    .inv-btns { display:flex; gap:7px; margin-top:9px; }
+    .inv-yes {
+      flex:1; padding:7px; border-radius:9px; border:none; cursor:pointer;
+      background:linear-gradient(135deg,var(--green),#059669);
+      color:#fff; font-weight:700; font-size:.78rem;
+      transition:transform .2s,box-shadow .2s;
+    }
+    .inv-yes:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(16,185,129,.4); }
+    .inv-no {
+      padding:7px 14px; border-radius:9px; cursor:pointer;
+      background:transparent; border:1px solid var(--border);
+      color:var(--text-s); font-size:.78rem;
+      transition:background .15s;
+    }
+    .inv-no:hover { background:var(--border); }
+
+    /* Input */
+    #cia {
+      display:flex; padding:10px 12px;
+      border-top:1px solid var(--border);
+      background:#fff; gap:7px; align-items:center;
+    }
+    #ui {
+      flex:1; padding:9px 13px;
+      border:1.5px solid var(--border); border-radius:11px;
+      outline:none; font-size:.82rem;
+      font-family:'Inter',sans-serif;
+      background:#f8fafc; transition:border-color .2s;
+    }
+    #ui:focus { border-color:var(--accent); background:#fff; }
+    #sb {
+      width:38px;height:38px;border-radius:11px;
+      background: var(--grad-a);
+      border:none; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 2px 8px rgba(59,130,246,.3);
+      transition:transform .15s;
+    }
+    #sb:hover { transform:scale(1.09); }
+    #sb svg { width:15px;height:15px;stroke:#fff;stroke-width:2.5;fill:none; }
+    .cf { text-align:center;padding:6px;background:#fff;
+          font-size:.63rem;color:var(--text-m);border-top:1px solid var(--border); }
+
+    /* ── Responsive ── */
+    @media(max-width:820px) {
+      .resume { flex-direction:column; }
+      .sidebar { width:100%; min-width:unset; }
+      .main { padding:30px 22px; }
+      .hero h1 { font-size:2.1rem; }
+      .course-grid { grid-template-columns:1fr; }
+      #cp { width:320px; }
+    }
+    @media print {
+      body { background:#fff; padding:0; }
+      #cw { display:none; }
+      .resume { box-shadow:none; }
     }
   </style>
 </head>
 <body>
-  <main>
+<div class="resume">
+
+  <!-- ════════ SIDEBAR ════════ -->
+  <aside class="sidebar">
+    <div class="profile-wrap">
+      <div class="avatar-ring">
+        <img src="profilbild.jpg" alt="Shahim Quraishy" class="profile-pic"
+             onerror="this.src='https://ui-avatars.com/api/?name=SQ&background=162e5c&color=3b82f6&size=130&bold=true&font-size=0.4'"/>
+      </div>
+      <div class="name-block">
+        <h1>Shahim<br/>Quraishy</h1>
+        <span class="role-pill">Angehender AI Engineer</span>
+      </div>
+    </div>
+
+    <!-- Kontakt -->
+    <div class="s-sec">
+      <h2>Kontakt</h2>
+      <div class="contact-list">
+        <div class="c-card">
+          <div class="c-icon ci-loc"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+          <div class="c-txt"><span class="c-lbl">Adresse</span><span class="c-val">Hillscheiderstr. 9, 56179 Vallendar</span></div>
+        </div>
+        <div class="c-card">
+          <div class="c-icon ci-tel"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.66A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg></div>
+          <div class="c-txt"><span class="c-lbl">Telefon</span><span class="c-val">+49 1525 8414 768</span></div>
+        </div>
+        <div class="c-card">
+          <div class="c-icon ci-mail"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg></div>
+          <div class="c-txt"><span class="c-lbl">E-Mail</span><span class="c-val">quraishy@gmail.com</span></div>
+        </div>
+        <div class="c-card">
+          <div class="c-icon ci-li"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <div class="c-txt"><span class="c-lbl">LinkedIn</span><span class="c-val">shahim-quraishy</span></div>
+        </div>
+        <div class="c-card">
+          <div class="c-icon ci-gh"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div>
+          <div class="c-txt"><span class="c-lbl">GitHub</span><span class="c-val">github.com/ShahimQuraishy</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Skills (keine Bars) -->
+    <div class="s-sec">
+      <h2>Core Skills</h2>
+      <div class="skill-group">
+        <div class="sg-lbl">KI &amp; Machine Learning</div>
+        <div class="tag-wrap">
+          <span class="s-tag hl">LLMs / GPT-4</span>
+          <span class="s-tag hl">RAG-Systeme</span>
+          <span class="s-tag hl">Prompt Engineering</span>
+          <span class="s-tag">Deep Learning</span>
+          <span class="s-tag">Vektor-Embeddings</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-lbl">Programmierung</div>
+        <div class="tag-wrap">
+          <span class="s-tag hl">Python</span>
+          <span class="s-tag hl">Java · OOP</span>
+          <span class="s-tag">JavaScript</span>
+          <span class="s-tag">SQL</span>
+          <span class="s-tag">HTML · CSS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-lbl">Cloud &amp; DevOps</div>
+        <div class="tag-wrap">
+          <span class="s-tag hl">AWS (EC2, S3, Lambda)</span>
+          <span class="s-tag">Azure AZ-900</span>
+          <span class="s-tag">Docker</span>
+          <span class="s-tag">CI/CD</span>
+          <span class="s-tag">GitHub</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-lbl">Datenbanken &amp; APIs</div>
+        <div class="tag-wrap">
+          <span class="s-tag">PostgreSQL</span>
+          <span class="s-tag">ChromaDB</span>
+          <span class="s-tag">REST</span>
+          <span class="s-tag">GraphQL</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sprachen (Bars – nur DE/EN/FR) -->
+    <div class="s-sec">
+      <h2>Sprachen</h2>
+      <div class="lang-item">
+        <div class="lang-hd"><span>Deutsch</span><span class="lang-lvl">C1–C2</span></div>
+        <div class="lang-bg"><div class="lang-fill" style="width:95%"></div></div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-hd"><span>Englisch</span><span class="lang-lvl">B2</span></div>
+        <div class="lang-bg"><div class="lang-fill" style="width:72%"></div></div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-hd"><span>Französisch</span><span class="lang-lvl">A2–B1</span></div>
+        <div class="lang-bg"><div class="lang-fill" style="width:40%"></div></div>
+      </div>
+    </div>
+
+    <!-- Methodik -->
+    <div class="s-sec">
+      <h2>Methodik</h2>
+      <div class="tag-wrap">
+        <span class="s-tag">Scrum</span>
+        <span class="s-tag">Kanban</span>
+        <span class="s-tag">Systemanalyse</span>
+        <span class="s-tag">Unit-Testing</span>
+        <span class="s-tag">Microservices</span>
+        <span class="s-tag">DSGVO</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ════════ MAIN ════════ -->
+  <main class="main">
     <div class="hero">
-      <h1>Shahim Quraishy</h1>
-      <p class="subtitle">AI Engineer · LLM-Integration · Cloud-Architektur</p>
-    </div>
-
-    <div class="glass-card">
-      <h2 class="section-title">Über mich</h2>
-      <p>Informatik-Student an der Universität Koblenz mit Fokus auf AI, Automatisierung und digitale Dienstleistungen für Senioren. Gründer von "hilfefuessenoren" – telefonischer Concierge-Service.</p>
-    </div>
-
-    <div class="glass-card">
-      <h2 class="section-title">Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-tag">AI/ML Engineering</div>
-        <div class="skill-tag">LLM Integration</div>
-        <div class="skill-tag">Cloud Architecture</div>
-        <div class="skill-tag">Java Development</div>
-        <div class="skill-tag">Web Development</div>
-        <div class="skill-tag">Automation</div>
+      <h1>Shahim<br/>Quraishy</h1>
+      <div class="role">Angehender AI Engineer &nbsp;·&nbsp; LLM-Integration &nbsp;·&nbsp; Cloud-Architektur</div>
+      <p class="bio">
+        Ich baue produktionsreife KI-Systeme — von RAG-Pipelines über LLM-Integrationen bis zu
+        skalierbaren Cloud-Lösungen. Informatikstudent (Uni Koblenz) mit zertifizierter KI-Ausbildung
+        und Produktivcode-Erfahrung bei 1&amp;1 Telecommunication SE.
+      </p>
+      <div class="chips">
+        <span class="chip">🤖 LLM &amp; RAG</span>
+        <span class="chip">☁️ AWS &amp; Azure</span>
+        <span class="chip">🐍 Python · Java · SQL</span>
+        <span class="chip">⚡ Produktivcode bei 1&amp;1</span>
       </div>
     </div>
 
-    <div class="glass-card">
-      <h2 class="section-title">Projekte</h2>
-      <ul style="list-style: none; padding: 0;">
-        <li style="margin-bottom: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 12px;">AI-CV Chatbot – Interaktiver Assistent für Portfolio</li>
-        <li style="margin-bottom: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 12px;">Hilfefuessenoren – Senioren-Concierge Service</li>
-        <li style="padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 12px;">Automatisierungsplattformen (Make.com, Zapier)</li>
-      </ul>
+    <!-- KI-Projekte -->
+    <div class="sec-title">KI-Projekte</div>
+
+    <div class="card g">
+      <div class="card-top">
+        <span class="card-title">RAG-Wissenssystem für die Pflegebranche</span>
+        <span class="badge g">✅ Aktuell · GitHub</span>
+      </div>
+      <div class="card-sub">Eigenentwicklung · Python · LangChain · ChromaDB</div>
+      <div class="card-body">
+        <ul>
+          <li><strong>Problem:</strong> Unstrukturierte PDF-Handbücher — kein intelligenter Zugriff auf Inhalte.</li>
+          <li><strong>Lösung:</strong> End-to-End RAG-Pipeline mit Text-Chunking, Vektor-Embeddings und LLM-Prompting für kontextgenaue Antworten.</li>
+          <li><strong>Status:</strong> Vollständig lauffähig — echter Code auf GitHub, kein Demo.</li>
+        </ul>
+      </div>
+      <div class="pills">
+        <span class="pill g">Python</span><span class="pill g">LangChain</span>
+        <span class="pill g">ChromaDB</span><span class="pill g">Hugging Face</span><span class="pill g">RAG</span>
+      </div>
     </div>
 
-    <div class="glass-card" style="grid-column: 1 / -1;">
-      <h2 class="section-title">Kontakt</h2>
-      <p>Email: shahim@example.com | LinkedIn: /in/shahimq | GitHub: /shahimq</p>
+    <div class="card g">
+      <div class="card-top">
+        <span class="card-title">Voice-KI-Plattform „hilfefuersenioren"</span>
+        <span class="badge g">🚀 Seit 09/2025</span>
+      </div>
+      <div class="card-sub">EXIST-Gründungsvorhaben · Universität Koblenz</div>
+      <div class="card-body">
+        <ul>
+          <li><strong>Konzept:</strong> Voice-First-Architektur vernetzt Senioren per Telefon mit Dienstleistern — vollautomatisch über KI-Routing.</li>
+          <li><strong>Stack:</strong> Node.js-Backend, React-Native-App, PostgreSQL, Twilio Voice API.</li>
+          <li><strong>Besonderheit:</strong> Vollständig als Solo-Entwickler — von Architektur bis Deployment.</li>
+        </ul>
+      </div>
+      <div class="pills">
+        <span class="pill g">Node.js</span><span class="pill g">React Native</span>
+        <span class="pill g">PostgreSQL</span><span class="pill g">Twilio Voice</span><span class="pill g">KI-Routing</span>
+      </div>
     </div>
+
+    <!-- Berufserfahrung -->
+    <div class="sec-title">Berufserfahrung</div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-title">Werkstudent – Development Business Systems</span>
+        <span class="badge">11/2024 – 04/2025</span>
+      </div>
+      <div class="card-sub">1&amp;1 Telecommunication SE · Montabaur</div>
+      <div class="card-body">
+        <ul>
+          <li>Automatisierungsskripte (Python/SQL) zur Datenbankbereinigung im Produktivumfeld.</li>
+          <li>Bugfixing, Unit-Tests und Code-Optimierungen an laufenden Systemen.</li>
+          <li>Erstellung und Optimierung komplexer SQL-Abfragen sowie technischer Dokumentationen.</li>
+        </ul>
+      </div>
+      <div class="pills">
+        <span class="pill">SQL</span><span class="pill">Python</span>
+        <span class="pill">Automatisierung</span><span class="pill">Unit-Testing</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-title">Werkstudent – 1st &amp; 2nd Level Support</span>
+        <span class="badge">02/2024 – 10/2024</span>
+      </div>
+      <div class="card-sub">United Internet Corporate Services GmbH · Montabaur</div>
+      <div class="card-body">Internationaler IT-Support (DE/EN), Fehlerdiagnose remote und vor Ort, ITSM-Ticketing (Jira), Netzwerk-Patch-Arbeiten.</div>
+      <div class="pills"><span class="pill">Jira</span><span class="pill">Netzwerk</span><span class="pill">ITSM</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-title">Werkstudent – First-Level-Support</span>
+        <span class="badge">05/2023 – 11/2023</span>
+      </div>
+      <div class="card-sub">RTI Group GmbH · Koblenz</div>
+      <div class="card-body">Ticketbearbeitung, Anwenderunterstützung, Hardware-Inventarisierung und IT-Infrastrukturaufbau.</div>
+      <div class="pills"><span class="pill">Jira</span><span class="pill">IT-Infrastruktur</span></div>
+    </div>
+
+    <!-- Ausbildung -->
+    <div class="sec-title">Ausbildung &amp; Zertifizierung</div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-title">Zertifizierter Agiler Junior Softwareentwickler – KI-Fokus</span>
+        <span class="badge">09/2024 – 08/2025</span>
+      </div>
+      <div class="card-sub">BPU GmbH · Koblenz</div>
+      <div class="card-body">
+        <div class="course-grid">
+          <div class="course">🤖 KI &amp; Machine Learning</div>
+          <div class="course">☁️ AWS CLF-C02 &amp; Azure AZ-900</div>
+          <div class="course">⚙️ Systemarchitektur &amp; Microservices</div>
+          <div class="course">🔒 Cloud Security &amp; DSGVO</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-title">B.Sc. Informatik (Nebenfach: Wirtschaftsinformatik)</span>
+        <span class="badge">Seit 10/2021</span>
+      </div>
+      <div class="card-sub">Universität Koblenz · Abschluss voraussichtlich 04/2027</div>
+      <div class="card-body">Algorithmen &amp; Datenstrukturen · Softwaretechnik · Datenbanken · Betriebssysteme · Webentwicklung · Projektmanagement</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-title">Abitur – Allgemeine Hochschulreife</span>
+        <span class="badge">08/2020 – 07/2021</span>
+      </div>
+      <div class="card-sub">Julius Wegeler Schule · Koblenz</div>
+    </div>
+
   </main>
+</div>
 
-  <!-- Chat-Button -->
-  <div id="chatbot-icon">💬</div>
-
-  <!-- Chat-Fenster -->
-  <div id="chatbot-container">
-    <div id="chatbot-header">
-      <span>🤖 AI-Assistent zu Shahims CV</span>
-      <button id="close-chat" style="background:none;border:none;color:white;font-size:24px;cursor:pointer;font-weight:bold;">×</button>
+<!-- ════════════════ CHATBOT ════════════════ -->
+<div id="cw">
+  <div id="cp">
+    <!-- Header -->
+    <div class="ch-hd">
+      <div class="ch-av">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9" stroke-width="3" stroke-linecap="round"/><line x1="15" y1="9" x2="15.01" y2="9" stroke-width="3" stroke-linecap="round"/></svg>
+      </div>
+      <div class="ch-info">
+        <div class="ch-name">Shahims KI-Assistent</div>
+        <div class="ch-status"><span class="sdot"></span><span>Online &amp; bereit</span></div>
+      </div>
+      <button id="min-btn" onclick="toggleChat()">
+        <svg viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+      </button>
     </div>
-    <div id="chatbot-body">
-      <div class="message bot-message">
-        Hallo! Ich bin Shahims AI-Assistent. Frag mich zu Skills, Projekten oder Erfahrungen! 🚀
+
+    <!-- Messages -->
+    <div id="cbox">
+      <div class="msg bot">👋 Hallo! Ich beantworte gerne Fragen zu Shahims Skills, Projekten und Erfahrungen!</div>
+    </div>
+
+    <!-- Einladungs-Banner (versteckt bis >5 Anfragen) -->
+    <div id="invite-banner">
+      🎉 <strong>Interesse geweckt?</strong> Soll ich Shahim direkt eine <strong>Einladung zum Vorstellungsgespräch</strong> schicken?
+      <div class="inv-btns">
+        <button class="inv-yes" onclick="sendInvite()">✅ Ja, Einladung senden!</button>
+        <button class="inv-no" onclick="dismissInvite()">Vielleicht später</button>
       </div>
     </div>
-    <div id="input-container">
-      <input type="text" id="user-input" placeholder="z.B. 'Welche AI-Projekte hast du?'" />
-      <button id="send-btn">➤</button>
+
+    <!-- Quick Replies – IMMER sichtbar -->
+    <div id="qr"></div>
+
+    <!-- Input -->
+    <div id="cia">
+      <input type="text" id="ui" placeholder="Frage stellen..." onkeypress="if(event.key==='Enter')send()"/>
+      <button id="sb" onclick="send()">
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
     </div>
+    <div class="cf">Powered by Shahim Quraishy · AI Engineer</div>
   </div>
 
-  <script>
-    const chatbotIcon = document.getElementById("chatbot-icon");
-    const chatbotContainer = document.getElementById("chatbot-container");
-    const closeChat = document.getElementById("close-chat");
-    const sendBtn = document.getElementById("send-btn");
-    const userInput = document.getElementById("user-input");
-    const chatbotBody = document.getElementById("chatbot-body");
+  <button id="ctb" onclick="toggleChat()">
+    <div id="udot"></div>
+    <svg id="ic-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    <svg id="ic-x"    viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+</div>
 
-    // Toggle Chat
-    chatbotIcon.addEventListener("click", () => {
-      chatbotContainer.classList.toggle("open");
+<script>
+const API = 'https://myaicv.onrender.com/chat';
+let isOpen = false;
+let msgCount = 0;
+let inviteSent = false;
+
+// ── Alle verfügbaren Vorschläge ──
+const ALL_QR = [
+  { label:'🤖 KI-Skills',       q:'Welche KI-Kenntnisse hat Shahim?' },
+  { label:'☁️ AWS',             q:'Was sind Shahims AWS-Kenntnisse?' },
+  { label:'🚀 RAG-Projekt',     q:'Erzähl mir vom RAG-Wissenssystem.' },
+  { label:'🎙️ Voice-KI',        q:'Was ist die Voice-KI-Plattform hilfefuersenioren?' },
+  { label:'💼 1&1 Erfahrung',   q:'Was hat Shahim bei 1&1 gemacht?' },
+  { label:'🎓 Ausbildung',      q:'Welche Ausbildung hat Shahim?' },
+  { label:'🐍 Python',          q:'Wie gut ist Shahim in Python?' },
+  { label:'⚙️ DevOps',          q:'Was sind Shahims DevOps-Skills?' },
+  { label:'📅 Verfügbarkeit',   q:'Wann ist Shahim verfügbar?' },
+  { label:'🌍 Sprachen',        q:'Welche Sprachen spricht Shahim?' },
+  { label:'🏆 Zertifikate',     q:'Welche Zertifikate hat Shahim?' },
+  { label:'💡 Stärken',         q:'Was sind Shahims größte Stärken?' },
+];
+let qrIndex = 0;
+
+function renderQR() {
+  const box = document.getElementById('qr');
+  box.innerHTML = '';
+  // Zeige immer 4 rotierende Vorschläge
+  for (let i = 0; i < 4; i++) {
+    const item = ALL_QR[(qrIndex + i) % ALL_QR.length];
+    const b = document.createElement('button');
+    b.className = 'qb';
+    b.textContent = item.label;
+    b.onclick = () => { quickAsk(item.q); };
+    box.appendChild(b);
+  }
+}
+
+function quickAsk(text) {
+  document.getElementById('ui').value = text;
+  send();
+  qrIndex = (qrIndex + 4) % ALL_QR.length; // rotiere nach jeder Nutzung
+}
+
+function toggleChat() {
+  isOpen = !isOpen;
+  document.getElementById('cw').classList.toggle('open', isOpen);
+  if (isOpen) {
+    document.getElementById('udot').style.display = 'none';
+    renderQR();
+    setTimeout(() => document.getElementById('ui').focus(), 350);
+  }
+}
+
+function addMsg(text, isUser) {
+  const box = document.getElementById('cbox');
+  const d = document.createElement('div');
+  d.className = 'msg ' + (isUser ? 'usr' : 'bot');
+  d.innerHTML = text;
+  box.appendChild(d);
+  box.scrollTop = box.scrollHeight;
+  return d;
+}
+
+async function send() {
+  const inp = document.getElementById('ui');
+  const text = inp.value.trim();
+  if (!text) return;
+
+  addMsg(text, true);
+  inp.value = '';
+  msgCount++;
+
+  // Typing Indicator
+  const box = document.getElementById('cbox');
+  const tw = document.createElement('div');
+  tw.className = 'typing-wrap';
+  tw.innerHTML = '<div class="td"></div><div class="td"></div><div class="td"></div>';
+  box.appendChild(tw);
+  box.scrollTop = box.scrollHeight;
+
+  try {
+    const res = await fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ frage: text })
     });
+    const data = await res.json();
+    tw.remove();
+    addMsg(data.antwort, false);
+  } catch {
+    tw.remove();
+    addMsg('⚠️ Server kurz offline – bitte nochmal versuchen.', false);
+  }
 
-    closeChat.addEventListener("click", () => {
-      chatbotContainer.classList.remove("open");
-    });
+  // Rotiere Vorschläge nach jeder Nachricht
+  qrIndex = (qrIndex + 4) % ALL_QR.length;
+  renderQR();
 
-    // Nachricht hinzufügen
-    function addMessage(text, isUser = false) {
-      const div = document.createElement("div");
-      div.className = `message ${isUser ? "user-message" : "bot-message"}`;
-      div.textContent = text;
-      chatbotBody.appendChild(div);
-      chatbotBody.scrollTop = chatbotBody.scrollHeight;
-      return div;
-    }
+  // Nach 5+ Anfragen: Einladungsbanner einblenden
+  if (msgCount >= 5 && !inviteSent) {
+    setTimeout(() => {
+      document.getElementById('invite-banner').style.display = 'block';
+      document.getElementById('cbox').scrollTop = 9999;
+    }, 600);
+  }
+}
 
-    // Typing Indicator
-    function showTyping() {
-      const typing = document.createElement("div");
-      typing.className = "typing-indicator";
-      typing.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-      chatbotBody.appendChild(typing);
-      chatbotBody.scrollTop = chatbotBody.scrollHeight;
-      return typing;
-    }
+function sendInvite() {
+  inviteSent = true;
+  document.getElementById('invite-banner').style.display = 'none';
+  addMsg('🎉 Super! Shahim wird sich umgehend bei Ihnen melden. Danke für Ihr Interesse! 📧 quraishy@gmail.com | 📱 +49 1525 8414 768', false);
+  document.getElementById('cbox').scrollTop = 9999;
+}
 
-    // Simulierte AI-Antworten (ersetze durch echtes Backend)
-    const responses = {
-      "skills": "Shahims Top-Skills: AI/ML Engineering, LLM-Integration (GPT, Grok), Cloud-Architektur (AWS, Heroku), Java, Web-Dev (HTML/CSS/JS), Automatisierung (Make.com). Besonders stark in AI-Anwendungen für Dienstleistungen![web:1]",
-      "projekte": "Wichtige Projekte: 1. HilfeFuessenOren – AI-gestützter Concierge für Senioren. 2. Dieser interaktive AI-CV Chatbot. 3. Automatisierungs-Workflows für KMU in Rheinland-Pfalz.[web:7]",
-      "erfahrung": "Erfahrung: Informatik-Studium Uni Koblenz, System-Development bei 1&1, Gründer von HilfeFuessenOren (Fahrdienste/Lieferungen für Senioren), mehrere AI-Projekte.[web:15]",
-      "default": "Interessante Frage! Shahim ist AI-Engineer & Gründer. Frag nach 'skills', 'projekte' oder 'erfahrung' für Details. Oder etwas Spezielles? 😊"
-    };
+function dismissInvite() {
+  document.getElementById('invite-banner').style.display = 'none';
+  addMsg('Kein Problem! Falls Sie weitere Fragen haben, bin ich jederzeit da. 😊', false);
+}
 
-    async function sendMessage() {
-      const text = userInput.value.trim().toLowerCase();
-      if (!text) return;
-
-      addMessage(userInput.value);
-      userInput.value = "";
-
-      const typing = showTyping();
-
-      // Simulierte Delay & Backend-Call
-      setTimeout(() => {
-        typing.remove();
-        let answer = responses.default;
-        if (text.includes("skills") || text.includes("fähigkeiten")) answer = responses.skills;
-        else if (text.includes("projekt") || text.includes("cv")) answer = responses.projekte;
-        else if (text.includes("erfahrung") || text.includes("job")) answer = responses.erfahrung;
-        
-        addMessage(answer);
-      }, 1200 + Math.random() * 800);
-    }
-
-    sendBtn.addEventListener("click", sendMessage);
-    userInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") sendMessage();
-    });
-
-    // Enter-Taste für Demo-Nachricht
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        addMessage("Willkommen! Probiere: 'Zeig Skills' oder 'Erzähl von Projekten'", false);
-      }, 1000);
-    });
-
-    // Skills Hover-Interaktion
-    document.querySelectorAll('.skill-tag').forEach(tag => {
-      tag.addEventListener('click', () => {
-        const skill = tag.textContent;
-        addMessage(`Klick auf ${skill} – Mehr Details im Chatbot!`, true);
-        setTimeout(() => addMessage(`Zu ${skill}: Shahim hat praktische Projekte in diesem Bereich, z.B. ...`), 500);
-      });
-    });
-  </script>
+// Unread-Dot nach 3 Sekunden
+setTimeout(() => {
+  if (!isOpen) document.getElementById('udot').style.display = 'block';
+}, 3000);
+</script>
 </body>
 </html>
