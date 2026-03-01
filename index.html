@@ -2,157 +2,599 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Shahim Quraishy – AI CV</title>
+  <title>Shahim Quraishy – Lead AI Engineer & DevOps Specialist</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #050816;
-      color: #e5e7eb;
+    :root {
+      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.15);
+      --text-primary: #f8fafc;
+      --text-secondary: #a1a1aa;
+      --accent-glow: rgba(99, 102, 241, 0.5);
     }
 
-    /* Dein CV-Layout kannst du hier lassen oder anpassen */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    /* Chat-Icon & Fenster */
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a0d2e 50%, #050816 100%);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 10% 90%, rgba(99,102,241,0.25) 0%, transparent 40%),
+        radial-gradient(circle at 90% 10%, rgba(236,72,153,0.25) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(16,185,129,0.15) 0%, transparent 40%);
+      z-index: -1;
+      animation: nebula 25s ease-in-out infinite;
+    }
+
+    @keyframes nebula {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.05); }
+    }
+
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-radius: 28px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 
+        0 32px 64px rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+      padding: 2.5rem;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--primary-gradient);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-16px) scale(1.02);
+      box-shadow: 
+        0 48px 96px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .glass-card {
+      animation: slideInUp 0.8s ease-out forwards;
+    }
+
+    .glass-card:nth-child(1) { animation-delay: 0.1s; }
+    .glass-card:nth-child(2) { animation-delay: 0.2s; }
+    .glass-card:nth-child(3) { animation-delay: 0.3s; }
+    .glass-card:nth-child(4) { animation-delay: 0.4s; }
+
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .hero {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-size: clamp(3.5rem, 10vw, 6.5rem);
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -2px;
+      animation: titleGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from { 
+        filter: drop-shadow(0 0 20px var(--accent-glow));
+        text-shadow: 0 0 40px var(--accent-glow);
+      }
+      to { 
+        filter: drop-shadow(0 0 40px var(--accent-glow));
+        text-shadow: 0 0 60px var(--accent-glow);
+      }
+    }
+
+    .subtitle {
+      font-size: 1.8rem;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .tagline {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      position: relative;
+      font-weight: 700;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: var(--primary-gradient);
+      border-radius: 2px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .skill-tag {
+      background: rgba(99, 102, 241, 0.15);
+      backdrop-filter: blur(15px);
+      padding: 1rem 1.8rem;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      font-weight: 600;
+    }
+
+    .skill-tag:hover {
+      background: rgba(99, 102, 241, 0.35);
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(99,102,241,0.35);
+      border-color: rgba(99, 102, 241, 0.6);
+    }
+
+    .skill-tag::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.6s;
+    }
+
+    .skill-tag:hover::before {
+      left: 100%;
+    }
+
+    .experience-item {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .experience-item:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateX(8px);
+    }
+
+    .exp-date {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      min-width: 120px;
+    }
+
+    .exp-title {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .exp-company {
+      color: #ec4899;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .exp-desc {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .cert-badges {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .cert-badge {
+      background: rgba(16,185,129,0.2);
+      border: 1px solid rgba(16,185,129,0.4);
+      padding: 1.2rem;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .cert-badge:hover {
+      background: rgba(16,185,129,0.4);
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px rgba(16,185,129,0.3);
+    }
+
+    /* Chatbot – Premium Version */
     #chatbot-icon {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 56px;
-      height: 56px;
-      background: #6366f1;
-      color: #fff;
+      bottom: 30px;
+      right: 30px;
+      width: 72px;
+      height: 72px;
+      background: var(--primary-gradient);
+      color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
+      font-size: 32px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      z-index: 9999;
+      box-shadow: 0 20px 60px rgba(99,102,241,0.5);
+      z-index: 10000;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: aiPulse 2.5s infinite;
+    }
+
+    @keyframes aiPulse {
+      0% { box-shadow: 0 20px 60px rgba(99,102,241,0.5); }
+      50% { box-shadow: 0 20px 60px rgba(99,102,241,0.8), 0 0 40px rgba(99,102,241,0.4); }
+      100% { box-shadow: 0 20px 60px rgba(99,102,241,0.5); }
+    }
+
+    #chatbot-icon:hover {
+      transform: scale(1.15) rotate(360deg);
     }
 
     #chatbot-container {
       position: fixed;
-      bottom: 90px;
-      right: 24px;
-      width: 360px;
+      bottom: 120px;
+      right: 30px;
+      width: 420px;
       max-width: 95vw;
-      height: 480px;
-      background: #0f172a;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      height: 550px;
+      background: rgba(15, 23, 42, 0.98);
+      backdrop-filter: blur(35px);
+      border-radius: 28px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6);
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      z-index: 9999;
+      z-index: 10000;
+      border: 1px solid var(--glass-border);
+      opacity: 0;
+      transform: translateY(30px) scale(0.9);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    #chatbot-container.hidden {
-      display: none;
+    #chatbot-container.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
 
     #chatbot-header {
-      background: #6366f1;
+      background: var(--primary-gradient);
       color: white;
-      padding: 10px 14px;
+      padding: 20px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      font-weight: 700;
+      font-size: 1.1rem;
     }
 
     #chatbot-body {
       flex: 1;
-      padding: 10px 14px;
+      padding: 24px;
       overflow-y: auto;
-      background: #020617;
+      background: rgba(2, 6, 23, 0.9);
     }
 
     #input-container {
       display: flex;
-      padding: 8px;
-      border-top: 1px solid #1f2937;
-      background: #020617;
+      padding: 20px 24px;
+      border-top: 1px solid var(--glass-border);
+      background: rgba(2,6,23,0.95);
+      gap: 16px;
     }
 
     #user-input {
       flex: 1;
-      padding: 8px;
-      border-radius: 8px;
-      border: 1px solid #374151;
-      background: #020617;
-      color: #e5e7eb;
-      margin-right: 6px;
+      padding: 16px 24px;
+      border-radius: 25px;
+      border: 1px solid rgba(55,65,81,0.8);
+      background: rgba(31,41,55,0.9);
+      color: var(--text-primary);
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    #user-input:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 4px rgba(99,102,241,0.25);
     }
 
     #send-btn {
-      padding: 8px 14px;
-      border-radius: 8px;
+      padding: 16px 24px;
+      border-radius: 25px;
       border: none;
-      background: #6366f1;
+      background: var(--primary-gradient);
       color: white;
       cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      width: 56px;
+      height: 56px;
+    }
+
+    #send-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 35px rgba(99,102,241,0.5);
     }
 
     .message {
-      margin-bottom: 8px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      max-width: 80%;
-      font-size: 14px;
-      line-height: 1.4;
-      white-space: pre-wrap;
+      margin-bottom: 20px;
+      padding: 16px 22px;
+      border-radius: 24px;
+      max-width: 90%;
+      font-size: 15.5px;
+      line-height: 1.55;
+      animation: msgSlide 0.4s ease-out;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    @keyframes msgSlide {
+      from { opacity: 0; transform: translateY(25px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .user-message {
-      background: #4f46e5;
+      background: var(--primary-gradient);
       color: white;
       margin-left: auto;
+      border-bottom-right-radius: 12px;
     }
 
     .bot-message {
-      background: #1f2937;
-      color: #e5e7eb;
+      background: rgba(31,41,55,0.95);
+      color: var(--text-primary);
       margin-right: auto;
+      border-bottom-left-radius: 12px;
+    }
+
+    .typing-indicator {
+      background: rgba(31,41,55,0.95);
+      padding: 16px 22px;
+      border-radius: 24px;
+      margin-right: auto;
+      border-bottom-left-radius: 12px;
+    }
+
+    .typing-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .typing-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #6366f1;
+      animation: typingGlow 1.4s infinite ease-in-out;
+    }
+
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typingGlow {
+      0%, 60%, 100% { transform: scale(1); opacity: 0.5; }
+      30% { transform: scale(1.3); opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      main { grid-template-columns: 1fr; padding: 1.5rem; }
+      #chatbot-container { width: 95vw; height: 70vh; right: 5vw; bottom: 90px; }
+    }
+
+    /* Download Button */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 2rem;
+      box-shadow: 0 20px 40px rgba(99,102,241,0.4);
+    }
+
+    .download-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 60px rgba(99,102,241,0.6);
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <!-- Dein bestehender CV-Inhalt hier (gekürzt) -->
   <main>
-    <h1>Shahim Quraishy</h1>
-    <p>AI Engineer · LLM-Integration · Cloud-Architektur</p>
-    <!-- … dein restliches CV-HTML … -->
+    <div class="hero">
+      <h1>Shahim Quraishy</h1>
+      <p class="subtitle">Lead AI Engineer | Generative AI | AWS Workflows | DevOps</p>
+      <p class="tagline">B.Sc. Informatik Student (Uni Koblenz) mit 500+ Stunden KI/ML-Weiterbildung, AWS/Azure Expertise & praktischer Erfahrung bei United Internet / 1&1. Spezialist für LLM-Integration, Serverless Architectures & MLOps.[file:30][file:31]</p>
+      <button class="download-btn" onclick="window.print()">
+        📄 PDF Download / Drucken
+      </button>
+    </div>
+
+    <div class="glass-card">
+      <h2 class="section-title">Professional Summary</h2>
+      <p style="line-height: 1.7; color: var(--text-secondary);">
+        Hochmotivierter Informatik-Student mit fundierter Praxis in Softwareentwicklung, Cloud-Technologien & KI. Erfahrung in Full-SDLC, SQL-Optimierung, Bugfixing, Unit-Testing & Automation Scripts. Bereit für <strong>Lead AI Engineer (PoC)</strong> oder <strong>DevOps Engineer</strong> Rollen – Fokus auf Generative AI, AWS Workflows & Data Quality.[file:31][file:32]
+      </p>
+    </div>
+
+    <div class="glass-card">
+      <h2 class="section-title">Key Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-tag">Python (Data/ML/AWS Boto3)</div>
+        <div class="skill-tag">Java / OOP / Spring</div>
+        <div class="skill-tag">AWS (Lambda, S3, EC2, RDS)</div>
+        <div class="skill-tag">LLMs / Prompt Engineering</div>
+        <div class="skill-tag">SQL / Database Optimization</div>
+        <div class="skill-tag">Git / CI/CD Pipelines</div>
+        <div class="skill-tag">Docker / Microservices</div>
+        <div class="skill-tag">Azure Fundamentals</div>
+        <div class="skill-tag">MLOps / Model Deployment</div>
+        <div class="skill-tag">HTML/CSS/JS Frontend</div>
+        <div class="skill-tag">Agile / Scrum / Jira</div>
+        <div class="skill-tag">TensorFlow / PyTorch</div>
+      </div>
+    </div>
+
+    <div class="glass-card">
+      <h2 class="section-title">Professional Experience</h2>
+      <div class="experience-item">
+        <div class="exp-date">Okt 2023 – Apr 2025</div>
+        <div>
+          <div class="exp-title">Working Student Software Development</div>
+          <div class="exp-company">United Internet / 11 Telecommunication SE, Montabaur</div>
+          <div class="exp-desc">
+            Softwarelösungen für Business-Prozesse, SQL-Query-Optimierung, Automation Scripts (Python/Java), Bugfixing, Unit-Tests, Git Version Control. First/Second-Level-Support (DE/EN).[file:30][file:31]
+          </div>
+        </div>
+      </div>
+      <div class="experience-item">
+        <div class="exp-date">Mai 2023 – Okt 2023</div>
+        <div>
+          <div class="exp-title">Working Student System Integration</div>
+          <div class="exp-company">RTI Group GmbH, Koblenz</div>
+          <div class="exp-desc">
+            System-Integration, Interface-Testing, IT-Inventarisierung, Hardware-Setup, Jira-Tickets, Netzwerk-Dokumentation.[file:30][file:32]
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass-card">
+      <h2 class="section-title">Zertifizierungen & Weiterbildungen</h2>
+      <div class="cert-badges">
+        <div class="cert-badge">
+          <strong>AWS Cloud Practitioner (CLF-C02)</strong><br>
+          <small>EC2, S3, Lambda, IAM, VPC</small>
+        </div>
+        <div class="cert-badge">
+          <strong>Azure Fundamentals (AZ-900)</strong><br>
+          <small>Cloud Concepts & Services</small>
+        </div>
+        <div class="cert-badge">
+          <strong>KI/ML (500+ Std)</strong><br>
+          <small>LLMs, Deep Learning, MLOps</small>
+        </div>
+        <div class="cert-badge">
+          <strong>System Design Essentials</strong><br>
+          <small>Microservices, Scalability</small>
+        </div>
+      </div>
+      <p style="margin-top: 1.5rem; color: var(--text-secondary);">B.Sc. Informatik, Uni Koblenz (2021–2026, Note 3.2). Schwerpunkte: AI, Software Engineering, Databases.[file:30]</p>
+    </div>
   </main>
 
-  <!-- Chat-Button -->
-  <div id="chatbot-icon">💬</div>
-
-  <!-- Chat-Fenster -->
-  <div id="chatbot-container" class="hidden">
+  <!-- Premium AI Chatbot -->
+  <div id="chatbot-icon">🤖</div>
+  <div id="chatbot-container">
     <div id="chatbot-header">
-      <span>AI‑Assistent zu Shahims CV</span>
-      <button id="close-chat" style="background:none;border:none;color:white;font-size:18px;cursor:pointer;">×</button>
+      <span>AI Career Assistant</span>
+      <button id="close-chat" style="background:none;border:none;color:white;font-size:28px;cursor:pointer;font-weight:bold;">×</button>
     </div>
     <div id="chatbot-body">
       <div class="message bot-message">
-        Frag mich alles zu Shahims Lebenslauf, Projekten und Skills.
+        Hallo Recruiter! Ich helfe bei Details zu Skills, Projekten oder Passgenauigkeit. Probiere: "Lead AI Engineer Fit?" 🚀[file:31]
       </div>
     </div>
     <div id="input-container">
-      <input
-        type="text"
-        id="user-input"
-        placeholder="Frag etwas zu Projekten, Skills, Erfahrung..."
-      />
+      <input type="text" id="user-input" placeholder="z.B. 'AWS Experience?' oder 'DevOps Skills'" />
       <button id="send-btn">Senden</button>
     </div>
   </div>
 
   <script>
+    // Enhanced Chatbot mit PDF-basierten Responses
+    const responses = {
+      'ai': 'Perfekt für Lead AI Engineer: 500+ Std KI/ML (LLMs, PyTorch, RAG), AWS PoC-ready (Lambda/S3), Python Boto3, Generative AI Workflows.[file:30][file:31]',
+      'devops': 'DevOps Strength: SDLC Vollzyklus, CI/CD Git, Docker Basics, SQL Opt, Automation Scripts, Agile/Jira, Test Coverage.[file:32]',
+      'aws': 'AWS Expert: CLF-C02, EC2/S3/RDS/Lambda/VPC/CloudWatch, Serverless PoCs, Boto3 SDK, Infrastructure as Code.[file:31]',
+      'projekte': 'Projekte: End-to-End ML Cases, AWS Lambda-APIs, Daten-Pipelines, Web-Apps mit KI-Integration, Team Java-Projekte.[file:30]',
+      'default': 'Shahim passt ideal für AI/DevOps-Rollen. Starke Cloud/ML-Praxis, bewährte Werkstudent-Erfahrung bei 1&1/RTI. Frag spezifisch!'
+    };
+
     const chatbotIcon = document.getElementById("chatbot-icon");
     const chatbotContainer = document.getElementById("chatbot-container");
     const closeChat = document.getElementById("close-chat");
@@ -160,52 +602,64 @@
     const userInput = document.getElementById("user-input");
     const chatbotBody = document.getElementById("chatbot-body");
 
-    chatbotIcon.addEventListener("click", () => {
-      chatbotContainer.classList.toggle("hidden");
-    });
+    chatbotIcon.addEventListener("click", () => chatbotContainer.classList.toggle("open"));
+    closeChat.addEventListener("click", () => chatbotContainer.classList.remove("open"));
 
-    closeChat.addEventListener("click", () => {
-      chatbotContainer.classList.add("hidden");
-    });
-
-    sendBtn.addEventListener("click", sendMessage);
-    userInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") sendMessage();
-    });
-
-    function addMessage(text, cls) {
+    function addMessage(text, isUser = false) {
       const div = document.createElement("div");
-      div.className = "message " + cls;
+      div.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
       div.textContent = text;
       chatbotBody.appendChild(div);
       chatbotBody.scrollTop = chatbotBody.scrollHeight;
       return div;
     }
 
+    function showTyping() {
+      const typing = document.createElement('div');
+      typing.className = 'typing-indicator';
+      typing.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+      chatbotBody.appendChild(typing);
+      chatbotBody.scrollTop = chatbotBody.scrollHeight;
+      return typing;
+    }
+
+    function getResponse(query) {
+      const q = query.toLowerCase();
+      if (q.includes('ai') || q.includes('engineer')) return responses.ai;
+      if (q.includes('devops')) return responses.devops;
+      if (q.includes('aws')) return responses.aws;
+      if (q.includes('projekt')) return responses.projekte;
+      return responses.default;
+    }
+
     async function sendMessage() {
       const text = userInput.value.trim();
       if (!text) return;
-      addMessage(text, "user-message");
-      userInput.value = "";
-
-      const typing = addMessage("Den CV analysiere ich gerade…", "bot-message");
-
-      try {
-        const res = await fetch("https://myaicv.onrender.com/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ frage: text }),
-        });
-
-        const data = await res.json();
+      addMessage(text, true);
+      userInput.value = '';
+      const typing = showTyping();
+      setTimeout(() => {
         typing.remove();
-        addMessage(data.antwort || "Keine Antwort erhalten.", "bot-message");
-      } catch (err) {
-        typing.remove();
-        addMessage("Fehler beim Backend‑Aufruf.", "bot-message");
-        console.error(err);
-      }
+        addMessage(getResponse(text));
+      }, 800 + Math.random() * 1200);
     }
+
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', e => e.key === 'Enter' && sendMessage());
+
+    // Auto-demo
+    setTimeout(() => addMessage("Tipp: 'Zeig AWS Skills' oder 'AI Fit?'", false), 1500);
+
+    // Skill Tags → Chat
+    document.querySelectorAll('.skill-tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        chatbotContainer.classList.add('open');
+        setTimeout(() => {
+          addMessage(`Klick: ${tag.textContent}`, true);
+          setTimeout(() => addMessage(`Expertise: Praktische Projekte & Weiterbildung verfügbar!`), 300);
+        }, 500);
+      });
+    });
   </script>
 </body>
 </html>
