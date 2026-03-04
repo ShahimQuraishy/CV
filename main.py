@@ -95,19 +95,20 @@ async def chat(request: ChatRequest):
     if cv_text == "":
         return {"antwort": "❌ Lebenslauf konnte nicht geladen werden. Prüfe ob lebenslauf.pdf im Root liegt."}
 
-    # Groq LLM
+       # Groq LLM
     groq_key = os.getenv("GROQ_API_KEY")
     if not groq_key:
-        return {"antwort": "❌ GROQ_API_KEY fehlt. Bitte in Render Environment Variables setzen."}
+        return {"antwort": "❌ GROQ_API_KEY fehlt."}
 
     try:
         llm = ChatGroq(
             groq_api_key=groq_key,
-            model="llama-3.1-70b-versatile",
+            model="llama-3.3-70b-versatile",  # ← NUR DAS ÄNDERN
             temperature=0.2,
         )
     except Exception as e:
-        return {"antwort": f"❌ Groq konnte nicht initialisiert werden: {e}"}
+        return {"antwort": f"❌ Groq Fehler: {e}"}
+
 
     # Prompt
     prompt = ChatPromptTemplate.from_template(
