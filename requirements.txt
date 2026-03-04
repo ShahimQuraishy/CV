@@ -1,8 +1,6 @@
 fastapi
 uvicorn
-pydantic
 pypdf
-langchain
+langchain-groq
 langchain-core
-langchain-google-genai
-langchain-community
+pydantic
