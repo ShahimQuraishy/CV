@@ -532,6 +532,38 @@
       body{background:#fff;} #cw{display:none;}
       .page{padding:0;} .header-banner{border-radius:0;} .body-grid{box-shadow:none;border-radius:0;}
     }
+
+    /* ── Language Toggle ───────────────────────────────────────────── */
+    .lang-switch {
+      display: flex;
+      gap: 4px;
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      z-index: 10;
+    }
+    .lang-btn {
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.7);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+    .lang-btn:hover:not(.active) {
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -539,6 +571,10 @@
 
   <!-- HEADER -->
   <div class="header-banner">
+    <div class="lang-switch">
+      <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
     <div class="hb-photo">
       <div class="hb-ring">
         <img src="profilbild.jpg" alt="Shahim Quraishy"
@@ -549,7 +585,7 @@
       <div class="hb-info-top">
         <div class="hb-title-wrap">
           <h1>Shahim Quraishy</h1>
-          <div class="hb-role">
+          <div class="hb-role" data-i18n-html="hb-role">
             <span class="dot"></span>
             Angehender AI Engineer · Fokus: RAG, LLM, AWS · Uni Koblenz
           </div>
@@ -557,23 +593,23 @@
         <div class="hb-actions">
           <a class="btn-pdf" href="Shahim_Quraishy_CV.pdf" target="_blank" rel="noreferrer">
             <span class="icon">📄</span>
-            <span>PDF herunterladen</span>
+            <span data-i18n="btn-pdf">PDF herunterladen</span>
           </a>
-          <div class="hb-meta">
+          <div class="hb-meta" data-i18n="hb-meta">
             Führerschein Klasse B vorhanden
           </div>
         </div>
       </div>
 
-      <p class="hb-bio">
+      <p class="hb-bio" data-i18n="hb-bio">
         Als Informatikstudent an der Uni Koblenz begeistere ich mich für Künstliche Intelligenz und Softwareentwicklung. In eigenen Projekten und Nebenjobs konnte ich bereits wertvolle erste Praxiserfahrungen mit RAG-Systemen, LLMs und Cloud-Technologien (AWS) sammeln. Ich bringe ein solides technisches Fundament mit, bin hochmotiviert, mich in neue Themen einzuarbeiten, und freue mich darauf, in einem erfahrenen Team weiter zu lernen und tatkräftig zu unterstützen.
       </p>
-      <div class="hb-availability">
+      <div class="hb-availability" data-i18n-html="hb-availability">
         Verfügbar: <strong>ab sofort</strong> als Werkstudent (AI/Cloud) ·
         <strong>Vollzeit ab 2027</strong> · Remote &amp; Rhein-Main / RLP möglich
       </div>
       <div class="hb-chips">
-        <span class="hb-chip">🎯 Zielrolle: Werkstudent / Junior AI Engineer</span>
+        <span class="hb-chip" data-i18n="chip-target">🎯 Zielrolle: Werkstudent / Junior AI Engineer</span>
         <span class="hb-chip">🤖 LLM &amp; RAG</span>
         <span class="hb-chip">☁️ AWS &amp; Azure</span>
         <span class="hb-chip">💼 1&amp;1 · United Internet</span>
@@ -589,14 +625,14 @@
     <aside class="sidebar">
 
       <div class="sb-section">
-        <h3>Kontakt</h3>
+        <h3 data-i18n="sb-contact">Kontakt</h3>
         <div class="contact-item">
           <div class="ci-dot" style="background:linear-gradient(135deg,#f97316,#ea580c)">📍</div>
-          <div class="ci-txt"><span class="ci-lbl">Adresse</span><span class="ci-val">Hillscheiderstr. 9, 56179 Vallendar</span></div>
+          <div class="ci-txt"><span class="ci-lbl" data-i18n="lbl-address">Adresse</span><span class="ci-val">Hillscheiderstr. 9, 56179 Vallendar</span></div>
         </div>
         <div class="contact-item">
           <div class="ci-dot" style="background:linear-gradient(135deg,#22c55e,#16a34a)">📱</div>
-          <div class="ci-txt"><span class="ci-lbl">Telefon</span><span class="ci-val">+49 1525 8414 768</span></div>
+          <div class="ci-txt"><span class="ci-lbl" data-i18n="lbl-phone">Telefon</span><span class="ci-val">+49 1525 8414 768</span></div>
         </div>
         <div class="contact-item">
           <div class="ci-dot" style="background:linear-gradient(135deg,#3b82f6,#2563eb)">✉️</div>
@@ -615,17 +651,17 @@
       <div class="sb-section">
         <h3>Core Skills</h3>
         <div class="skill-block">
-          <div class="skill-cat">KI &amp; Machine Learning</div>
+          <div class="skill-cat" data-i18n="cat-ai">KI &amp; Machine Learning</div>
           <div class="tags">
             <span class="tag hi">LLMs / GPT-4</span>
-            <span class="tag hi">RAG-Systeme</span>
+            <span class="tag hi" data-i18n="tag-rag">RAG-Systeme</span>
             <span class="tag hi">Prompt Engineering</span>
             <span class="tag">Deep Learning</span>
             <span class="tag">Embeddings</span>
           </div>
         </div>
         <div class="skill-block">
-          <div class="skill-cat">Programmierung</div>
+          <div class="skill-cat" data-i18n="cat-programming">Programmierung</div>
           <div class="tags">
             <span class="tag hi">Python</span>
             <span class="tag hi">Java · OOP</span>
@@ -646,7 +682,7 @@
           </div>
         </div>
         <div class="skill-block">
-          <div class="skill-cat">Datenbanken &amp; Web</div>
+          <div class="skill-cat" data-i18n="cat-databases">Datenbanken &amp; Web</div>
           <div class="tags">
             <span class="tag">PostgreSQL</span>
             <span class="tag">ChromaDB</span>
@@ -658,23 +694,23 @@
       </div>
 
       <div class="sb-section">
-        <h3>Sprachen</h3>
+        <h3 data-i18n="sb-languages">Sprachen</h3>
         <div class="lang-row">
-          <div class="lang-top"><span>Deutsch</span><span class="lang-lvl">C1–C2 · Fließend</span></div>
+          <div class="lang-top"><span data-i18n="lang-de-name">Deutsch</span><span class="lang-lvl" data-i18n="lang-de-lvl">C1–C2 · Fließend</span></div>
           <div class="bar-bg"><div class="bar-fill" style="width:95%"></div></div>
         </div>
         <div class="lang-row">
-          <div class="lang-top"><span>Englisch</span><span class="lang-lvl">B2 · Gut</span></div>
+          <div class="lang-top"><span data-i18n="lang-en-name">Englisch</span><span class="lang-lvl" data-i18n="lang-en-lvl">B2 · Gut</span></div>
           <div class="bar-bg"><div class="bar-fill" style="width:72%"></div></div>
         </div>
         <div class="lang-row">
-          <div class="lang-top"><span>Französisch</span><span class="lang-lvl">A2–B1 · Grundkenntnisse</span></div>
+          <div class="lang-top"><span data-i18n="lang-fr-name">Französisch</span><span class="lang-lvl" data-i18n="lang-fr-lvl">A2–B1 · Grundkenntnisse</span></div>
           <div class="bar-bg"><div class="bar-fill" style="width:40%"></div></div>
         </div>
       </div>
 
       <div class="sb-section">
-        <h3>Zertifizierungen</h3>
+        <h3 data-i18n="sb-certs">Zertifizierungen</h3>
         <div class="cert-badge">
           <div class="cert-icon" style="background:rgba(37,99,235,.12);font-size:1.3rem;">☁️</div>
           <div class="cert-txt">
@@ -692,18 +728,18 @@
         <div class="cert-badge">
           <div class="cert-icon" style="background:rgba(5,150,105,.1);font-size:1.3rem;">🤖</div>
           <div class="cert-txt">
-            <div class="ct-name">KI &amp; Agile Development</div>
+            <div class="ct-name" data-i18n="cert-ai-name">KI &amp; Agile Development</div>
             <div class="ct-sub">BPU GmbH · 09/2024–08/2025</div>
           </div>
         </div>
       </div>
 
       <div class="sb-section">
-        <h3>Methodik</h3>
+        <h3 data-i18n="sb-methodology">Methodik</h3>
         <div class="tags">
           <span class="tag">Scrum</span>
           <span class="tag">Kanban</span>
-          <span class="tag">Systemanalyse</span>
+          <span class="tag" data-i18n="tag-sysanalysis">Systemanalyse</span>
           <span class="tag">Unit-Testing</span>
           <span class="tag">Microservices</span>
           <span class="tag">DSGVO</span>
@@ -718,16 +754,16 @@
       <!-- KI-Projekte -->
       <div class="sec-hd">
         <div class="sec-hd-icon" style="background:rgba(5,150,105,.1)">🚀</div>
-        <h2>KI-Projekte</h2>
+        <h2 data-i18n="sec-projects">KI-Projekte</h2>
       </div>
 
       <div class="tl-card teal">
         <div class="tl-top">
-          <span class="tl-title">RAG-Wissenssystem für die Pflegebranche</span>
+          <span class="tl-title" data-i18n="rag-title">RAG-Wissenssystem für die Pflegebranche</span>
           <span class="tl-badge teal">✅ Live · GitHub</span>
         </div>
-        <div class="tl-sub">Eigenentwicklung · Python · LangChain · ChromaDB</div>
-        <div class="tl-body">
+        <div class="tl-sub" data-i18n="rag-sub">Eigenentwicklung · Python · LangChain · ChromaDB</div>
+        <div class="tl-body" data-i18n-html="rag-body">
           <ul>
             <li><strong>Problem:</strong> Unstrukturierte PDF-Handbücher — kein intelligenter Zugriff auf Inhalte.</li>
             <li><strong>Lösung:</strong> RAG-Pipeline mit Text-Chunking, Vektor-Embeddings und LLM-Prompting für kontextnahe Antworten.</li>
@@ -743,11 +779,11 @@
 
       <div class="tl-card green">
         <div class="tl-top">
-          <span class="tl-title">Voice-KI-Plattform „hilfefuersenioren"</span>
-          <span class="tl-badge green">🎓 EXIST · Seit 09/2025</span>
+          <span class="tl-title" data-i18n="voice-title">Voice-KI-Plattform „hilfefuersenioren"</span>
+          <span class="tl-badge green" data-i18n="voice-badge">🎓 EXIST · Seit 09/2025</span>
         </div>
-        <div class="tl-sub">EXIST-Gründungsvorhaben · Universität Koblenz</div>
-        <div class="tl-body">
+        <div class="tl-sub" data-i18n="voice-sub">EXIST-Gründungsvorhaben · Universität Koblenz</div>
+        <div class="tl-body" data-i18n-html="voice-body">
           <ul>
             <li><strong>Konzept:</strong> Voice-First-Architektur vernetzt Senioren per Telefon mit Dienstleistern — vollautomatisch über KI-Routing.</li>
             <li><strong>Stack:</strong> Node.js-Backend, React-Native-App, PostgreSQL, Twilio Voice API.</li>
@@ -757,24 +793,24 @@
         </div>
         <div class="pill-row">
           <span class="pill green">Node.js</span><span class="pill green">React Native</span>
-          <span class="pill green">PostgreSQL</span><span class="pill green">Twilio Voice</span><span class="pill green">KI-Routing</span>
+          <span class="pill green">PostgreSQL</span><span class="pill green">Twilio Voice</span><span class="pill green" data-i18n="pill-ki-routing">KI-Routing</span>
         </div>
       </div>
 
       <!-- Berufserfahrung -->
       <div class="sec-hd">
         <div class="sec-hd-icon" style="background:rgba(37,99,235,.1)">💼</div>
-        <h2>Berufserfahrung</h2>
+        <h2 data-i18n="sec-experience">Berufserfahrung</h2>
       </div>
 
       <!-- Green Office -->
       <div class="tl-card green">
         <div class="tl-top">
-          <span class="tl-title">Studentische Hilfskraft – Green Office</span>
-          <span class="tl-badge green">seit 02/2026</span>
+          <span class="tl-title" data-i18n="go-title">Studentische Hilfskraft – Green Office</span>
+          <span class="tl-badge green" data-i18n="go-badge">seit 02/2026</span>
         </div>
-        <div class="tl-sub">Nachhaltigkeit &amp; Digitalisierung · Universität Koblenz</div>
-        <div class="tl-body">
+        <div class="tl-sub" data-i18n="go-sub">Nachhaltigkeit &amp; Digitalisierung · Universität Koblenz</div>
+        <div class="tl-body" data-i18n-html="go-body">
           <ul>
             <li>Unterstützung der digitalen Kommunikation und Pflege von Inhalten rund um Nachhaltigkeitsprojekte der Universität.</li>
             <li>Mitarbeit bei der Planung und Dokumentation von Events und Aktionen des Green Office.</li>
@@ -782,20 +818,20 @@
           </ul>
         </div>
         <div class="pill-row">
-          <span class="pill green">Nachhaltigkeit</span>
-          <span class="pill green">Kommunikation</span>
-          <span class="pill green">Organisation</span>
+          <span class="pill green" data-i18n="pill-nachhaltigkeit">Nachhaltigkeit</span>
+          <span class="pill green" data-i18n="pill-kommunikation">Kommunikation</span>
+          <span class="pill green" data-i18n="pill-organisation">Organisation</span>
         </div>
       </div>
 
       <!-- Web-Hiwi -->
       <div class="tl-card blue">
         <div class="tl-top">
-          <span class="tl-title">Studentische Hilfskraft – Web-Hiwi</span>
-          <span class="tl-badge blue">seit 04/2026</span>
+          <span class="tl-title" data-i18n="web-title">Studentische Hilfskraft – Web-Hiwi</span>
+          <span class="tl-badge blue" data-i18n="web-badge">seit 04/2026</span>
         </div>
-        <div class="tl-sub">Institut für Wirtschafts- und Verwaltungsinformatik · Universität Koblenz</div>
-        <div class="tl-body">
+        <div class="tl-sub" data-i18n="web-sub">Institut für Wirtschafts- und Verwaltungsinformatik · Universität Koblenz</div>
+        <div class="tl-body" data-i18n-html="web-body">
           <ul>
             <li>Pflege des Web-Auftritts des Instituts im Content Management System der Universität.</li>
             <li>Unterstützung der Forschungsgruppen bei Verwaltung und Gestaltung ihrer Web-Seiten.</li>
@@ -812,11 +848,11 @@
 
       <div class="tl-card blue">
         <div class="tl-top">
-          <span class="tl-title">Werkstudent – Development Business Systems</span>
+          <span class="tl-title" data-i18n="dev-title">Werkstudent – Development Business Systems</span>
           <span class="tl-badge blue">11/2024 – 04/2025</span>
         </div>
-        <div class="tl-sub">1&amp;1 Telecommunication SE · Montabaur</div>
-        <div class="tl-body">
+        <div class="tl-sub" data-i18n="dev-sub">1&amp;1 Telecommunication SE · Montabaur</div>
+        <div class="tl-body" data-i18n-html="dev-body">
           <ul>
             <li>Automatisierungsskripte (Python/SQL) zur Datenbankbereinigung im Produktivumfeld.</li>
             <li>Bugfixing, Unit-Tests und Code-Optimierungen an laufenden Systemen.</li>
@@ -826,19 +862,19 @@
         <div class="pill-row">
           <span class="pill blue">SQL</span>
           <span class="pill blue">Python</span>
-          <span class="pill blue">Automatisierung</span>
+          <span class="pill blue" data-i18n="pill-automatisierung">Automatisierung</span>
           <span class="pill blue">Unit-Testing</span>
         </div>
       </div>
 
       <div class="tl-card blue">
         <div class="tl-top">
-          <span class="tl-title">Werkstudent – 1st &amp; 2nd Level Support</span>
+          <span class="tl-title" data-i18n="sup-title">Werkstudent – 1st &amp; 2nd Level Support</span>
           <span class="tl-badge blue">02/2024 – 10/2024</span>
         </div>
-        <div class="tl-sub">United Internet Corporate Services GmbH · Montabaur</div>
+        <div class="tl-sub" data-i18n="sup-sub">United Internet Corporate Services GmbH · Montabaur</div>
         <div class="tl-body">
-          Internationaler IT-Support (DE/EN), Fehlerdiagnose remote und vor Ort, ITSM-Ticketing (Jira), Netzwerk-Patch-Arbeiten.
+          <span data-i18n="sup-body">Internationaler IT-Support (DE/EN), Fehlerdiagnose remote und vor Ort, ITSM-Ticketing (Jira), Netzwerk-Patch-Arbeiten.</span>
         </div>
         <div class="pill-row">
           <span class="pill blue">Jira</span>
@@ -849,58 +885,58 @@
 
       <div class="tl-card blue">
         <div class="tl-top">
-          <span class="tl-title">Werkstudent – First-Level-Support</span>
+          <span class="tl-title" data-i18n="rti-title">Werkstudent – First-Level-Support</span>
           <span class="tl-badge blue">05/2023 – 11/2023</span>
         </div>
-        <div class="tl-sub">RTI Group GmbH · Koblenz</div>
+        <div class="tl-sub" data-i18n="rti-sub">RTI Group GmbH · Koblenz</div>
         <div class="tl-body">
-          Ticketbearbeitung, Anwenderunterstützung, Hardware-Inventarisierung und IT-Infrastrukturaufbau.
+          <span data-i18n="rti-body">Ticketbearbeitung, Anwenderunterstützung, Hardware-Inventarisierung und IT-Infrastrukturaufbau.</span>
         </div>
         <div class="pill-row">
           <span class="pill blue">Jira</span>
-          <span class="pill blue">IT-Infrastruktur</span>
+          <span class="pill blue" data-i18n="pill-it-infra">IT-Infrastruktur</span>
         </div>
       </div>
 
       <!-- Ausbildung -->
       <div class="sec-hd">
         <div class="sec-hd-icon" style="background:rgba(109,40,217,.1)">🎓</div>
-        <h2>Ausbildung &amp; Zertifizierung</h2>
+        <h2 data-i18n="sec-education">Ausbildung &amp; Zertifizierung</h2>
       </div>
 
       <div class="tl-card blue">
         <div class="tl-top">
-          <span class="tl-title">Zertifizierter Agiler Junior Softwareentwickler – KI-Fokus</span>
+          <span class="tl-title" data-i18n="edu-bpu-title">Zertifizierter Agiler Junior Softwareentwickler – KI-Fokus</span>
           <span class="tl-badge blue">09/2024 – 08/2025</span>
         </div>
-        <div class="tl-sub">BPU GmbH · Koblenz</div>
+        <div class="tl-sub" data-i18n="edu-bpu-sub">BPU GmbH · Koblenz</div>
         <div class="tl-body">
           <div class="cg">
-            <div class="cg-item">🤖 KI &amp; Machine Learning</div>
-            <div class="cg-item">☁️ AWS CLF-C02 &amp; Azure AZ-900</div>
-            <div class="cg-item">⚙️ Systemarchitektur &amp; Microservices</div>
-            <div class="cg-item">🔒 Cloud Security &amp; DSGVO</div>
+            <div class="cg-item" data-i18n="cg-item-1">🤖 KI &amp; Machine Learning</div>
+            <div class="cg-item" data-i18n="cg-item-2">☁️ AWS CLF-C02 &amp; Azure AZ-900</div>
+            <div class="cg-item" data-i18n="cg-item-3">⚙️ Systemarchitektur &amp; Microservices</div>
+            <div class="cg-item" data-i18n="cg-item-4">🔒 Cloud Security &amp; DSGVO</div>
           </div>
         </div>
       </div>
 
       <div class="tl-card blue">
         <div class="tl-top">
-          <span class="tl-title">B.Sc. Informatik (Nebenfach: Wirtschaftsinformatik)</span>
+          <span class="tl-title" data-i18n="bsc-title">B.Sc. Informatik (Nebenfach: Wirtschaftsinformatik)</span>
           <span class="tl-badge blue">Seit 10/2021</span>
         </div>
-        <div class="tl-sub">Universität Koblenz · Abschluss voraussichtlich 04/2027</div>
+        <div class="tl-sub" data-i18n="bsc-sub">Universität Koblenz · Abschluss voraussichtlich 04/2027</div>
         <div class="tl-body">
-          Algorithmen &amp; Datenstrukturen · Softwaretechnik · Datenbanken · Betriebssysteme · Webentwicklung · Projektmanagement
+          <span data-i18n="bsc-body">Algorithmen &amp; Datenstrukturen · Softwaretechnik · Datenbanken · Betriebssysteme · Webentwicklung · Projektmanagement</span>
         </div>
       </div>
 
       <div class="tl-card blue">
         <div class="tl-top">
-          <span class="tl-title">Abitur – Allgemeine Hochschulreife</span>
+          <span class="tl-title" data-i18n="abitur-title">Abitur – Allgemeine Hochschulreife</span>
           <span class="tl-badge blue">08/2020 – 07/2021</span>
         </div>
-        <div class="tl-sub">Julius Wegeler Schule · Koblenz</div>
+        <div class="tl-sub" data-i18n="abitur-sub">Julius Wegeler Schule · Koblenz</div>
       </div>
 
     </main>
@@ -915,8 +951,8 @@
         <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9" stroke-width="3" stroke-linecap="round"/><line x1="15" y1="9" x2="15.01" y2="9" stroke-width="3" stroke-linecap="round"/></svg>
       </div>
       <div class="c-info">
-        <div class="c-name">Shahims KI-Assistent</div>
-        <div class="c-stat"><span class="sdot"></span><span>Online &amp; bereit</span></div>
+        <div class="c-name" data-i18n="chat-name">Shahims KI-Assistent</div>
+        <div class="c-stat" data-i18n-html="chat-status"><span class="sdot"></span><span>Online &amp; bereit</span></div>
       </div>
       <button id="minb" onclick="toggleChat()">
         <svg viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
@@ -924,18 +960,17 @@
     </div>
 
     <div id="cbox">
-      <div class="msg bot">👋 Hallo! Fragen zu Shahims Skills, Projekten, Uni-Jobs oder Verfügbarkeit? Ich helfe gerne!</div>
-      <div class="msg bot">
+      <div class="msg bot" data-i18n-html="chat-welcome-1">👋 Hallo! Fragen zu Shahims Skills, Projekten, Uni-Jobs oder Verfügbarkeit? Ich helfe gerne!</div>
+      <div class="msg bot" data-i18n-html="chat-welcome-2">
         Kurzprofil: Angehender AI Engineer (RAG/LLM, AWS), Werkstudent bei 1&amp;1 &amp; Uni Koblenz (Green Office &amp; Web-Hiwi).
       </div>
     </div>
 
     <div id="inv-banner">
-      🎉 <strong>Interesse geweckt?</strong> Möchten Sie mit Shahim einen
-      <strong>30‑minütigen Kennenlern-Call</strong> vereinbaren?
+      <span data-i18n-html="chat-invite">🎉 <strong>Interesse geweckt?</strong> Möchten Sie mit Shahim einen <strong>30‑minütigen Kennenlern-Call</strong> vereinbaren?</span>
       <div class="inv-row">
-        <button class="inv-yes" onclick="sendInvite()">✅ Ja, Kennenlern-Call anfragen</button>
-        <button class="inv-no" onclick="dismissInvite()">Vielleicht später</button>
+        <button class="inv-yes" onclick="sendInvite()" data-i18n="chat-invite-yes">✅ Ja, Kennenlern-Call anfragen</button>
+        <button class="inv-no" onclick="dismissInvite()" data-i18n="chat-invite-no">Vielleicht später</button>
       </div>
     </div>
 
@@ -959,22 +994,226 @@
 
 <script>
   const API='https://myaicv.onrender.com/chat';
-  let isOpen=false, msgCount=0, inviteSent=false, qrIdx=0;
+  let isOpen=false, msgCount=0, inviteSent=false, qrIdx=0, currentLang='de';
 
-  const QR=[
-    {l:'🤖 KI-Skills',      q:'Welche KI-Kenntnisse hat Shahim?'},
-    {l:'☁️ AWS',            q:'Was sind Shahims AWS-Kenntnisse?'},
-    {l:'🚀 RAG-Projekt',    q:'Erzähl mir vom RAG-Wissenssystem.'},
-    {l:'🎙️ Voice-KI',       q:'Was ist die Voice-KI-Plattform hilfefuersenioren?'},
-    {l:'💼 1&1 Erfahrung',  q:'Was hat Shahim bei 1&1 gemacht?'},
-    {l:'🎓 Ausbildung',     q:'Welche Ausbildung hat Shahim?'},
-    {l:'🐍 Python',         q:'Wie gut ist Shahim in Python?'},
-    {l:'⚙️ DevOps',         q:'Was sind Shahims DevOps-Skills?'},
-    {l:'📅 Verfügbarkeit',  q:'Wann ist Shahim verfügbar?'},
-    {l:'🏆 Zertifikate',    q:'Welche Zertifikate hat Shahim?'},
-    {l:'💡 Stärken',        q:'Was sind Shahims größte Stärken?'},
-    {l:'🌍 Uni-Jobs',       q:'Was macht Shahim im Green Office und als Web-Hiwi?'},
+  const TRANSLATIONS={
+    de:{
+      'page-title':       'Shahim Quraishy – Angehender AI Engineer',
+      'hb-role':          '<span class="dot"></span>Angehender AI Engineer · Fokus: RAG, LLM, AWS · Uni Koblenz',
+      'btn-pdf':          'PDF herunterladen',
+      'hb-meta':          'Führerschein Klasse B vorhanden',
+      'hb-bio':           'Als Informatikstudent an der Uni Koblenz begeistere ich mich für Künstliche Intelligenz und Softwareentwicklung. In eigenen Projekten und Nebenjobs konnte ich bereits wertvolle erste Praxiserfahrungen mit RAG-Systemen, LLMs und Cloud-Technologien (AWS) sammeln. Ich bringe ein solides technisches Fundament mit, bin hochmotiviert, mich in neue Themen einzuarbeiten, und freue mich darauf, in einem erfahrenen Team weiter zu lernen und tatkräftig zu unterstützen.',
+      'hb-availability':  'Verfügbar: <strong>ab sofort</strong> als Werkstudent (AI/Cloud) · <strong>Vollzeit ab 2027</strong> · Remote &amp; Rhein-Main / RLP möglich',
+      'chip-target':      '🎯 Zielrolle: Werkstudent / Junior AI Engineer',
+      'sb-contact':       'Kontakt',
+      'lbl-address':      'Adresse',
+      'lbl-phone':        'Telefon',
+      'cat-ai':           'KI & Machine Learning',
+      'tag-rag':          'RAG-Systeme',
+      'cat-programming':  'Programmierung',
+      'cat-databases':    'Datenbanken & Web',
+      'sb-languages':     'Sprachen',
+      'lang-de-name':     'Deutsch',
+      'lang-de-lvl':      'C1–C2 · Fließend',
+      'lang-en-name':     'Englisch',
+      'lang-en-lvl':      'B2 · Gut',
+      'lang-fr-name':     'Französisch',
+      'lang-fr-lvl':      'A2–B1 · Grundkenntnisse',
+      'sb-certs':         'Zertifizierungen',
+      'cert-ai-name':     'KI & Agile Development',
+      'sb-methodology':   'Methodik',
+      'tag-sysanalysis':  'Systemanalyse',
+      'sec-projects':     'KI-Projekte',
+      'rag-title':        'RAG-Wissenssystem für die Pflegebranche',
+      'rag-sub':          'Eigenentwicklung · Python · LangChain · ChromaDB',
+      'rag-body':         '<ul><li><strong>Problem:</strong> Unstrukturierte PDF-Handbücher — kein intelligenter Zugriff auf Inhalte.</li><li><strong>Lösung:</strong> RAG-Pipeline mit Text-Chunking, Vektor-Embeddings und LLM-Prompting für kontextnahe Antworten.</li><li><strong>Status:</strong> Funktionsfähiger Prototyp auf GitHub.</li><li><strong>Was ich hier gelernt habe:</strong> In diesem Projekt habe ich mich intensiv damit beschäftigt, wie man unstrukturierte PDFs für ein KI-System nutzbar macht. Meine größte Lernkurve lag darin, eine funktionierende Chunking-Strategie zu entwickeln und erste praktische Erfahrungen mit LangChain und Vektordatenbanken (ChromaDB) zu sammeln.</li></ul>',
+      'voice-title':      'Voice-KI-Plattform „hilfefuersenioren"',
+      'voice-badge':      '🎓 EXIST · Seit 09/2025',
+      'voice-sub':        'EXIST-Gründungsvorhaben · Universität Koblenz',
+      'voice-body':       '<ul><li><strong>Konzept:</strong> Voice-First-Architektur vernetzt Senioren per Telefon mit Dienstleistern — vollautomatisch über KI-Routing.</li><li><strong>Stack:</strong> Node.js-Backend, React-Native-App, PostgreSQL, Twilio Voice API.</li><li><strong>Besonderheit:</strong> Solo-Entwicklerprojekt — von der ersten Idee bis zum Prototyp.</li><li><strong>Was ich hier gelernt habe:</strong> Bei diesem Konzept war es für mich eine spannende Herausforderung zu verstehen, wie verschiedene Technologien ineinandergreifen. Ich habe mich als Solo-Entwickler in die Anbindung der Twilio Voice API an ein Node.js-Backend eingearbeitet, um zu testen, wie echtzeitnahes KI-Routing in der Praxis funktionieren kann.</li></ul>',
+      'pill-ki-routing':  'KI-Routing',
+      'sec-experience':   'Berufserfahrung',
+      'go-title':         'Studentische Hilfskraft – Green Office',
+      'go-badge':         'seit 02/2026',
+      'go-sub':           'Nachhaltigkeit & Digitalisierung · Universität Koblenz',
+      'go-body':          '<ul><li>Unterstützung der digitalen Kommunikation und Pflege von Inhalten rund um Nachhaltigkeitsprojekte der Universität.</li><li>Mitarbeit bei der Planung und Dokumentation von Events und Aktionen des Green Office.</li><li>Eigenverantwortliche, strukturierte Arbeit in einem interdisziplinären Hochschulumfeld.</li></ul>',
+      'pill-nachhaltigkeit': 'Nachhaltigkeit',
+      'pill-kommunikation':  'Kommunikation',
+      'pill-organisation':   'Organisation',
+      'web-title':        'Studentische Hilfskraft – Web-Hiwi',
+      'web-badge':        'seit 04/2026',
+      'web-sub':          'Institut für Wirtschafts- und Verwaltungsinformatik · Universität Koblenz',
+      'web-body':         '<ul><li>Pflege des Web-Auftritts des Instituts im Content Management System der Universität.</li><li>Unterstützung der Forschungsgruppen bei Verwaltung und Gestaltung ihrer Web-Seiten.</li><li>Selbstständiges Aktualisieren von Inhalten und redaktionelle Tätigkeiten (Berichte zu Aktivitäten &amp; Events).</li></ul>',
+      'dev-title':        'Werkstudent – Development Business Systems',
+      'dev-sub':          '1&1 Telecommunication SE · Montabaur',
+      'dev-body':         '<ul><li>Automatisierungsskripte (Python/SQL) zur Datenbankbereinigung im Produktivumfeld.</li><li>Bugfixing, Unit-Tests und Code-Optimierungen an laufenden Systemen.</li><li>Erstellung und Optimierung komplexer SQL-Abfragen sowie technischer Dokumentationen.</li></ul>',
+      'pill-automatisierung': 'Automatisierung',
+      'sup-title':        'Werkstudent – 1st & 2nd Level Support',
+      'sup-sub':          'United Internet Corporate Services GmbH · Montabaur',
+      'sup-body':         'Internationaler IT-Support (DE/EN), Fehlerdiagnose remote und vor Ort, ITSM-Ticketing (Jira), Netzwerk-Patch-Arbeiten.',
+      'rti-title':        'Werkstudent – First-Level-Support',
+      'rti-sub':          'RTI Group GmbH · Koblenz',
+      'rti-body':         'Ticketbearbeitung, Anwenderunterstützung, Hardware-Inventarisierung und IT-Infrastrukturaufbau.',
+      'pill-it-infra':    'IT-Infrastruktur',
+      'sec-education':    'Ausbildung & Zertifizierung',
+      'edu-bpu-title':    'Zertifizierter Agiler Junior Softwareentwickler – KI-Fokus',
+      'edu-bpu-sub':      'BPU GmbH · Koblenz',
+      'cg-item-1':        '🤖 KI & Machine Learning',
+      'cg-item-2':        '☁️ AWS CLF-C02 & Azure AZ-900',
+      'cg-item-3':        '⚙️ Systemarchitektur & Microservices',
+      'cg-item-4':        '🔒 Cloud Security & DSGVO',
+      'bsc-title':        'B.Sc. Informatik (Nebenfach: Wirtschaftsinformatik)',
+      'bsc-sub':          'Universität Koblenz · Abschluss voraussichtlich 04/2027',
+      'bsc-body':         'Algorithmen & Datenstrukturen · Softwaretechnik · Datenbanken · Betriebssysteme · Webentwicklung · Projektmanagement',
+      'abitur-title':     'Abitur – Allgemeine Hochschulreife',
+      'abitur-sub':       'Julius Wegeler Schule · Koblenz',
+      'chat-name':        'Shahims KI-Assistent',
+      'chat-status':      '<span class="sdot"></span><span>Online &amp; bereit</span>',
+      'chat-welcome-1':   '👋 Hallo! Fragen zu Shahims Skills, Projekten, Uni-Jobs oder Verfügbarkeit? Ich helfe gerne!',
+      'chat-welcome-2':   'Kurzprofil: Angehender AI Engineer (RAG/LLM, AWS), Werkstudent bei 1&amp;1 &amp; Uni Koblenz (Green Office &amp; Web-Hiwi).',
+      'chat-placeholder': 'Frage stellen…',
+      'chat-invite':      '🎉 <strong>Interesse geweckt?</strong> Möchten Sie mit Shahim einen <strong>30‑minütigen Kennenlern-Call</strong> vereinbaren?',
+      'chat-invite-yes':  '✅ Ja, Kennenlern-Call anfragen',
+      'chat-invite-no':   'Vielleicht später',
+      'chat-confirm':     '🎉 Shahim freut sich! Bitte, rufen Sie ihn an oder hinterlassen Sie ihm eine E-Mail.<br>📧 quraishyshahim@icloud.com &nbsp;|&nbsp; 📱 +49 1525 8414 768',
+      'chat-dismiss':     'Kein Problem! Ich beantworte weitere Fragen jederzeit gerne. 😊',
+      'chat-error':       '⚠️ Server kurz offline – bitte nochmal versuchen.',
+    },
+    en:{
+      'page-title':       'Shahim Quraishy – Aspiring AI Engineer',
+      'hb-role':          '<span class="dot"></span>Aspiring AI Engineer · Focus: RAG, LLM, AWS · Uni Koblenz',
+      'btn-pdf':          'Download PDF',
+      'hb-meta':          'Driver’s License Class B',
+      'hb-bio':           'As a Computer Science student at the University of Koblenz, I am passionate about Artificial Intelligence and software development. Through personal projects and part-time jobs, I have already gained valuable practical experience with RAG systems, LLMs and cloud technologies (AWS). I bring a solid technical foundation, am highly motivated to learn new topics, and look forward to continuing to grow and contribute actively in an experienced team.',
+      'hb-availability':  'Available: <strong>immediately</strong> as working student (AI/Cloud) · <strong>Full-time from 2027</strong> · Remote &amp; Rhein-Main / RLP possible',
+      'chip-target':      '🎯 Target Role: Working Student / Junior AI Engineer',
+      'sb-contact':       'Contact',
+      'lbl-address':      'Address',
+      'lbl-phone':        'Phone',
+      'cat-ai':           'AI & Machine Learning',
+      'tag-rag':          'RAG Systems',
+      'cat-programming':  'Programming',
+      'cat-databases':    'Databases & Web',
+      'sb-languages':     'Languages',
+      'lang-de-name':     'German',
+      'lang-de-lvl':      'C1–C2 · Fluent',
+      'lang-en-name':     'English',
+      'lang-en-lvl':      'B2 · Good',
+      'lang-fr-name':     'French',
+      'lang-fr-lvl':      'A2–B1 · Basic',
+      'sb-certs':         'Certifications',
+      'cert-ai-name':     'AI & Agile Development',
+      'sb-methodology':   'Methodology',
+      'tag-sysanalysis':  'Systems Analysis',
+      'sec-projects':     'AI Projects',
+      'rag-title':        'RAG Knowledge System for the Care Sector',
+      'rag-sub':          'Personal Project · Python · LangChain · ChromaDB',
+      'rag-body':         '<ul><li><strong>Problem:</strong> Unstructured PDF manuals — no intelligent access to content.</li><li><strong>Solution:</strong> RAG pipeline with text chunking, vector embeddings and LLM prompting for context-aware answers.</li><li><strong>Status:</strong> Working prototype on GitHub.</li><li><strong>What I learned:</strong> In this project I deeply explored how to make unstructured PDFs usable for an AI system. My biggest learning curve was developing a working chunking strategy and gaining first hands-on experience with LangChain and vector databases (ChromaDB).</li></ul>',
+      'voice-title':      'Voice AI Platform “hilfefuersenioren”',
+      'voice-badge':      '🎓 EXIST · Since 09/2025',
+      'voice-sub':        'EXIST Startup Project · University of Koblenz',
+      'voice-body':       '<ul><li><strong>Concept:</strong> Voice-first architecture connects seniors via phone with service providers — fully automated via AI routing.</li><li><strong>Stack:</strong> Node.js backend, React Native app, PostgreSQL, Twilio Voice API.</li><li><strong>Highlight:</strong> Solo developer project — from the first idea to a working prototype.</li><li><strong>What I learned:</strong> For this concept, it was an exciting challenge to understand how different technologies fit together. As a solo developer, I explored connecting the Twilio Voice API to a Node.js backend to test how near-real-time AI routing can work in practice.</li></ul>',
+      'pill-ki-routing':  'AI Routing',
+      'sec-experience':   'Professional Experience',
+      'go-title':         'Student Assistant – Green Office',
+      'go-badge':         'since 02/2026',
+      'go-sub':           'Sustainability & Digitalization · University of Koblenz',
+      'go-body':          '<ul><li>Supporting digital communication and maintaining content related to sustainability projects at the university.</li><li>Contributing to the planning and documentation of Green Office events and campaigns.</li><li>Independent, structured work in an interdisciplinary university environment.</li></ul>',
+      'pill-nachhaltigkeit': 'Sustainability',
+      'pill-kommunikation':  'Communication',
+      'pill-organisation':   'Organisation',
+      'web-title':        'Student Assistant – Web-Hiwi',
+      'web-badge':        'since 04/2026',
+      'web-sub':          'Institute for Business and Administrative Informatics · University of Koblenz',
+      'web-body':         '<ul><li>Maintaining the institute\'s web presence in the university\'s Content Management System.</li><li>Supporting research groups in managing and designing their web pages.</li><li>Independently updating content and editorial tasks (reports on activities &amp; events).</li></ul>',
+      'dev-title':        'Working Student – Development Business Systems',
+      'dev-sub':          '1&1 Telecommunication SE · Montabaur',
+      'dev-body':         '<ul><li>Automation scripts (Python/SQL) for database maintenance in production environments.</li><li>Bug fixing, unit testing and code optimization on live systems.</li><li>Creation and optimization of complex SQL queries and technical documentation.</li></ul>',
+      'pill-automatisierung': 'Automation',
+      'sup-title':        'Working Student – 1st & 2nd Level Support',
+      'sup-sub':          'United Internet Corporate Services GmbH · Montabaur',
+      'sup-body':         'International IT support (DE/EN), remote and on-site troubleshooting, ITSM ticketing (Jira), network patching.',
+      'rti-title':        'Working Student – First-Level Support',
+      'rti-sub':          'RTI Group GmbH · Koblenz',
+      'rti-body':         'Ticket processing, user support, hardware inventory and IT infrastructure setup.',
+      'pill-it-infra':    'IT Infrastructure',
+      'sec-education':    'Education & Certifications',
+      'edu-bpu-title':    'Certified Agile Junior Software Developer – AI Focus',
+      'edu-bpu-sub':      'BPU GmbH · Koblenz',
+      'cg-item-1':        '🤖 AI & Machine Learning',
+      'cg-item-2':        '☁️ AWS CLF-C02 & Azure AZ-900',
+      'cg-item-3':        '⚙️ System Architecture & Microservices',
+      'cg-item-4':        '🔒 Cloud Security & GDPR',
+      'bsc-title':        'B.Sc. Computer Science (Minor: Business Informatics)',
+      'bsc-sub':          'University of Koblenz · Expected graduation 04/2027',
+      'bsc-body':         'Algorithms & Data Structures · Software Engineering · Databases · Operating Systems · Web Development · Project Management',
+      'abitur-title':     'Abitur – German University Entrance Qualification',
+      'abitur-sub':       'Julius Wegeler Schule · Koblenz',
+      'chat-name':        'Shahim’s AI Assistant',
+      'chat-status':      '<span class="sdot"></span><span>Online &amp; ready</span>',
+      'chat-welcome-1':   '👋 Hello! Questions about Shahim\'s skills, projects, university jobs or availability? Happy to help!',
+      'chat-welcome-2':   'Quick profile: Aspiring AI Engineer (RAG/LLM, AWS), working student at 1&amp;1 &amp; Uni Koblenz (Green Office &amp; Web-Hiwi).',
+      'chat-placeholder': 'Ask a question…',
+      'chat-invite':      '🎉 <strong>Interested?</strong> Would you like to schedule a <strong>30-minute intro call</strong> with Shahim?',
+      'chat-invite-yes':  '✅ Yes, request an intro call',
+      'chat-invite-no':   'Maybe later',
+      'chat-confirm':     'Shahim is excited! Please call him or send an email.<br>📧 quraishyshahim@icloud.com &nbsp;|&nbsp; 📱 +49 1525 8414 768',
+      'chat-dismiss':     'No problem! Happy to answer more questions any time. 😊',
+      'chat-error':       '⚠️ Server briefly offline – please try again.',
+    }
+  };
+
+  const QR_DE=[
+    {l:'🤖 KI-Skills',     q:'Welche KI-Kenntnisse hat Shahim?'},
+    {l:'☁️ AWS',         q:'Was sind Shahims AWS-Kenntnisse?'},
+    {l:'🚀 RAG-Projekt',   q:'Erzähl mir vom RAG-Wissenssystem.'},
+    {l:'🎤 Voice-KI',      q:'Was ist die Voice-KI-Plattform hilfefuersenioren?'},
+    {l:'💼 1&1 Erfahrung', q:'Was hat Shahim bei 1&1 gemacht?'},
+    {l:'🎓 Ausbildung',    q:'Welche Ausbildung hat Shahim?'},
+    {l:'🐍 Python',        q:'Wie gut ist Shahim in Python?'},
+    {l:'⚙️ DevOps',      q:'Was sind Shahims DevOps-Skills?'},
+    {l:'📅 Verfügbarkeit', q:'Wann ist Shahim verfügbar?'},
+    {l:'🏆 Zertifikate',   q:'Welche Zertifikate hat Shahim?'},
+    {l:'💡 Stärken',  q:'Was sind Shahims größte Stärken?'},
+    {l:'🌍 Uni-Jobs',      q:'Was macht Shahim im Green Office und als Web-Hiwi?'},
   ];
+
+  const QR_EN=[
+    {l:'🤖 AI Skills',     q:'What AI skills does Shahim have?'},
+    {l:'☁️ AWS',         q:'What are Shahims AWS skills?'},
+    {l:'🚀 RAG Project',   q:'Tell me about the RAG knowledge system.'},
+    {l:'🎤 Voice AI',      q:'What is the hilfefuersenioren Voice AI platform?'},
+    {l:'💼 1&1 Experience',q:'What did Shahim do at 1&1?'},
+    {l:'🎓 Education',     q:'What is Shahims educational background?'},
+    {l:'🐍 Python',        q:'How good is Shahim at Python?'},
+    {l:'⚙️ DevOps',      q:'What are Shahims DevOps skills?'},
+    {l:'📅 Availability',  q:'When is Shahim available?'},
+    {l:'🏆 Certificates',  q:'What certifications does Shahim have?'},
+    {l:'💡 Strengths',     q:'What are Shahims greatest strengths?'},
+    {l:'🌍 Uni Jobs',      q:'What does Shahim do at Green Office and as Web-Hiwi?'},
+  ];
+
+  let QR=QR_DE;
+
+  function setLang(lang){
+    currentLang=lang;
+    QR=lang==='en'?QR_EN:QR_DE;
+    document.documentElement.lang=lang;
+    document.title=TRANSLATIONS[lang]['page-title'];
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key=el.getAttribute('data-i18n');
+      if(TRANSLATIONS[lang][key]!==undefined) el.textContent=TRANSLATIONS[lang][key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+      const key=el.getAttribute('data-i18n-html');
+      if(TRANSLATIONS[lang][key]!==undefined) el.innerHTML=TRANSLATIONS[lang][key];
+    });
+    const ui=document.getElementById('ui');
+    if(ui) ui.placeholder=TRANSLATIONS[lang]['chat-placeholder'];
+    document.getElementById('btn-de').classList.toggle('active',lang==='de');
+    document.getElementById('btn-en').classList.toggle('active',lang==='en');
+    if(isOpen) renderQR();
+  }
 
   function renderQR(){
     const box=document.getElementById('qr');
@@ -1028,7 +1267,7 @@
       addMsg(d.antwort,false);
     }catch{
       tw.remove();
-      addMsg('⚠️ Server kurz offline – bitte nochmal versuchen.',false);
+      addMsg(TRANSLATIONS[currentLang]['chat-error'],false);
     }
 
     qrIdx=(qrIdx+4)%QR.length;
@@ -1045,12 +1284,12 @@
   function sendInvite(){
     inviteSent=true;
     document.getElementById('inv-banner').style.display='none';
-    addMsg('🎉 Shahim freut sich! Bitte, rufen Sie ihn an oder hinterlassen Sie ihm eine E-Mail.<br>📧 quraishyshahim@icloud.com &nbsp;|&nbsp; 📱 +49 1525 8414 768',false);
+    addMsg(TRANSLATIONS[currentLang]['chat-confirm'],false);
   }
 
   function dismissInvite(){
     document.getElementById('inv-banner').style.display='none';
-    addMsg('Kein Problem! Ich beantworte weitere Fragen jederzeit gerne. 😊',false);
+    addMsg(TRANSLATIONS[currentLang]['chat-dismiss'],false);
   }
 
   setTimeout(()=>{ if(!isOpen) document.getElementById('udot').style.display='block'; },3000);
