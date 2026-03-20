@@ -1,7 +1,8 @@
 import os
 import time
 import threading
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from pypdf import PdfReader
@@ -58,6 +59,26 @@ def load_cv():
 @app.get("/")
 def home():
     return {"status": "Server läuft mit Mistral AI 🌪️"}
+
+ALLOWED_PDF_FILES = {
+    "lebenslauf.pdf": "Shahim_Quraishy_CV.pdf",
+    "CMG CV.pdf": "Shahim_Quraishy_CV_EN.pdf",
+}
+
+@app.get("/download/{filename:path}")
+def download_pdf(filename: str):
+    safe_name = os.path.basename(filename)
+    if safe_name not in ALLOWED_PDF_FILES:
+        raise HTTPException(status_code=404, detail="File not found")
+    file_path = os.path.join(os.path.dirname(__file__), safe_name)
+    if not os.path.isfile(file_path):
+        raise HTTPException(status_code=404, detail="File not found")
+    download_name = ALLOWED_PDF_FILES[safe_name]
+    return FileResponse(
+        path=file_path,
+        media_type="application/pdf",
+        filename=download_name,
+    )
 
 @app.post("/chat")
 def chat(payload: ChatRequest, req: Request):
