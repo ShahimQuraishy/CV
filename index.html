@@ -1,1099 +1,1519 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shahim Quraishy – Angehender AI Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talkhan Superfood • Natural Energy Snack | Plastic-Free & Eco-Friendly</title>
+  <meta name="description" content="100% natural mulberry energy snacks for young people who want real taste, zero plastic, and eco-friendly vibes. Ships worldwide." />
+  <!-- ── FONTS ── -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<!-- ── PAYPAL SDK ── -->
+<script src="https://www.paypal.com/sdk/js?client-id=AWYV7bT80cpDVv28JorART6IEIFThdqvFEjotxur8rwxcbVWRCPQ0FM8vIzKjOH-CJRkGJENxAwKh7j2&currency=EUR&locale=de_DE"></script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root[data-theme="dark"] { --bg: #0e0e0e; --bg2: #141414; --text: #F5F0E8; --text2: #b0a898; --card: #1a1a1a; --border: #2a2a2a; --accent: #C9941A; --accent2: #f0b432; }
+    :root[data-theme="light"] { --bg: #FAF7F2; --bg2: #F0EBE1; --text: #1A1208; --text2: #5a4e3c; --card: #ffffff; --border: #e0d8cc; --accent: #C9941A; --accent2: #e08010; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Inter", sans-serif; background: var(--bg); color: var(--text); font-size: 18px; line-height: 1.6; overflow-x: hidden; }
+    h1,h2,h3 { font-family: "Montserrat", sans-serif; font-weight: 900; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; border-radius: 16px; }
 
-    :root {
-      --bg:       #f7f8fc;
-      --white:    #ffffff;
-      --navy:     #0b1c3e;
-      --navy2:    #142550;
-      --blue:     #2563eb;
-      --blue2:    #6d28d9;
-      --teal:     #0d9488;
-      --green:    #059669;
-      --text:     #1e293b;
-      --text2:    #475569;
-      --muted:    #94a3b8;
-      --border:   #e2e8f0;
-      --grad:     linear-gradient(135deg,#0b1c3e 0%,#142550 50%,#1e3a8a 100%);
-      --grad-a:   linear-gradient(135deg,#2563eb,#6d28d9);
-      --grad-t:   linear-gradient(135deg,#0d9488,#2563eb);
-      --sw: 290px;
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 5%; background: rgba(14,14,14,0.95); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(201,148,26,0.15);
+      transition: box-shadow 0.3s;
     }
+    nav.scrolled { box-shadow: 0 4px 30px rgba(201,148,26,0.12); }
+    .nav-logo { font-size: 1.35rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); font-weight: 900; }
+    .nav-right { display: flex; gap: 1.5rem; align-items: center; }
+    .theme-toggle { background: none; border: 1px solid var(--border); color: var(--text); padding: 0.4rem 1rem; border-radius: 999px; cursor: pointer; transition: border-color 0.2s; }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .cart-icon { position: relative; font-size: 1.6rem; cursor: pointer; background: none; border: none; color: var(--text); transition: transform 0.2s; }
+    .cart-icon:hover { transform: scale(1.15); }
+    .cart-count { position: absolute; top: -6px; right: -8px; background: #C9941A; color: #0e0e0e; font-size: 0.75rem; font-weight: 900; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg);
-      min-height: 100vh;
-      color: var(--text);
-    }
-
-    .page {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-
-    /* HEADER BANNER */
-    .header-banner {
-      background: var(--grad);
-      border-radius: 24px 24px 0 0;
-      padding: 40px 48px 24px;
-      display: flex;
-      align-items: center;
-      gap: 36px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .header-banner::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(circle at 80% 20%, rgba(37,99,235,.35) 0%, transparent 50%),
-        radial-gradient(circle at 20% 80%, rgba(109,40,217,.3) 0%, transparent 50%);
-    }
-
-    .header-banner::after {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 40px 40px;
-      opacity: .7;
-    }
-
-    .hb-photo { position: relative; z-index: 2; flex-shrink: 0; }
-    .hb-ring {
-      width: 132px; height: 132px;
-      border-radius: 50%; padding: 3px;
-      background: var(--grad-a);
-      box-shadow: 0 0 0 6px rgba(37,99,235,.25), 0 20px 50px rgba(0,0,0,.4);
-    }
-    .hb-ring img {
-      width: 100%; height: 100%;
-      border-radius: 50%; object-fit: cover;
-      border: 3px solid var(--navy);
-      display: block;
-    }
-
-    .hb-info { position: relative; z-index: 2; flex: 1; }
-    .hb-info-top {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .hb-title-wrap { flex: 1; }
-
-    .hb-info h1 {
-      font-size: 3rem; font-weight: 900;
-      letter-spacing: -1.5px; line-height: 1;
-      color: #fff; margin-bottom: 8px;
-    }
-
-    .hb-role {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.2);
-      backdrop-filter: blur(10px);
-      padding: 6px 16px; border-radius: 50px;
-      font-size: .88rem; font-weight: 600;
-      color: rgba(255,255,255,.95);
-      margin-bottom: 10px;
-    }
-    .hb-role .dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: #4ade80;
-      box-shadow: 0 0 8px #4ade80;
-      animation: blink 2s infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
-
-    .hb-bio {
-      font-size: .95rem; line-height: 1.75;
-      color: rgba(255,255,255,.8);
-      max-width: 620px; margin-bottom: 10px;
-    }
-
-    .hb-availability {
-      font-size: .8rem;
-      color: rgba(248,250,252,0.9);
-      margin-bottom: 12px;
-    }
-    .hb-availability strong { color: #e5e7eb; }
-
-    .hb-chips {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      margin-bottom: 6px;
-    }
-    .hb-chip {
-      display: flex; align-items: center; gap: 6px;
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.18);
-      padding: 5px 14px; border-radius: 50px;
-      font-size: .8rem; font-weight: 600;
-      color: rgba(255,255,255,.9);
-      transition: background .2s;
-    }
-    .hb-chip:hover { background: rgba(255,255,255,.2); }
-
-    .hb-actions {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 8px;
-      margin-top: 4px;
-    }
-
-    .btn-pdf {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.6);
-      background: rgba(15,23,42,.35);
-      color: #f9fafb;
-      font-size: .8rem;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      backdrop-filter: blur(8px);
-      transition: background .2s, transform .15s, box-shadow .2s;
-    }
-    .btn-pdf:hover {
-      background: rgba(15,23,42,.65);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(15,23,42,.6);
-    }
-    .btn-pdf span.icon {
-      font-size: .9rem;
-    }
-    .hb-meta {
-      font-size: .75rem;
-      color: rgba(226,232,240,.9);
-      text-align: right;
-    }
-
-    /* BODY GRID */
-    .body-grid {
-      display: grid;
-      grid-template-columns: var(--sw) 1fr;
-      background: var(--white);
-      border-radius: 0 0 24px 24px;
-      overflow: hidden;
-      box-shadow: 0 30px 80px rgba(11,28,62,.18);
-    }
-
-    /* SIDEBAR */
-    .sidebar {
-      background: #f1f5fb;
-      border-right: 1px solid var(--border);
-      padding: 32px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-    }
-
-    .sb-section h3 {
-      font-size: .65rem; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 2.5px;
-      color: var(--blue); margin-bottom: 14px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .sb-section h3::after {
-      content: ''; flex: 1; height: 1.5px;
-      background: linear-gradient(90deg, rgba(37,99,235,.3), transparent);
-    }
-
-    .contact-item {
-      display: flex; align-items: center; gap: 11px;
-      padding: 9px 11px; border-radius: 10px;
-      transition: background .2s, transform .15s;
-      cursor: default; margin-bottom: 6px;
-    }
-    .contact-item:hover {
-      background: rgba(37,99,235,.07);
-      transform: translateX(4px);
-    }
-    .ci-dot {
-      width: 32px; height: 32px; border-radius: 9px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-size: 1rem;
-    }
-    .ci-txt { display: flex; flex-direction: column; }
-    .ci-lbl { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); }
-    .ci-val { font-size: .78rem; font-weight: 500; color: var(--text); line-height: 1.3; }
-
-    .skill-block { margin-bottom: 14px; }
-    .skill-cat {
-      font-size: .62rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 1px;
-      color: var(--muted); margin-bottom: 7px;
-    }
-    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
-    .tag {
-      font-size: .72rem; font-weight: 500;
-      padding: 4px 10px; border-radius: 6px;
-      background: #fff;
-      border: 1px solid var(--border);
-      color: var(--text2);
-      transition: all .2s;
-    }
-    .tag:hover {
-      background: var(--blue); color: #fff;
-      border-color: var(--blue);
-      transform: translateY(-1px);
-    }
-    .tag.hi {
-      background: rgba(37,99,235,.08);
-      border-color: rgba(37,99,235,.25);
-      color: var(--blue); font-weight: 600;
-    }
-    .tag.hi:hover { background: var(--blue); color: #fff; }
-
-    .lang-row { margin-bottom: 12px; }
-    .lang-top {
-      display: flex; justify-content: space-between;
-      font-size: .82rem; font-weight: 500; margin-bottom: 6px;
-      color: var(--text);
-    }
-    .lang-lvl { font-size: .72rem; color: var(--muted); font-weight: 400; }
-    .bar-bg { height: 6px; border-radius: 99px; background: var(--border); overflow: hidden; }
-    .bar-fill {
-      height: 100%; border-radius: 99px;
-      background: var(--grad-a); position: relative;
-    }
-    .bar-fill::after {
-      content: ''; position: absolute;
-      right: 0; top: 0; bottom: 0;
-      width: 10px; background: rgba(255,255,255,.6);
-      border-radius: 99px; filter: blur(3px);
-    }
-
-    .cert-badge {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 12px; border-radius: 10px;
-      background: #fff; border: 1px solid var(--border);
-      margin-bottom: 7px; transition: all .2s;
-    }
-    .cert-badge:hover {
-      border-color: rgba(37,99,235,.4);
-      box-shadow: 0 4px 14px rgba(37,99,235,.1);
-      transform: translateX(3px);
-    }
-    .cert-icon {
-      width: 34px; height: 34px; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; flex-shrink: 0;
-    }
-    .cert-txt .ct-name { font-size: .82rem; font-weight: 700; color: var(--navy); }
-    .cert-txt .ct-sub  { font-size: .72rem; color: var(--muted); }
-
-    /* MAIN */
-    .main {
-      padding: 36px 40px 32px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .sec-hd {
-      display: flex; align-items: center; gap: 10px;
-      margin: 26px 0 16px;
-    }
-    .sec-hd:first-child { margin-top: 0; }
-    .sec-hd-icon {
-      width: 34px; height: 34px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0;
-    }
-    .sec-hd h2 {
-      font-size: .7rem; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 2.5px;
-      color: var(--muted); flex: 1;
-    }
-    .sec-hd::after {
-      content: ''; flex: 1; height: 1px; background: var(--border);
-    }
-
-    .tl-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 18px 20px;
-      margin-bottom: 16px;
-      position: relative;
-      transition: all .25s ease;
-      overflow: hidden;
-    }
-    .tl-card::before {
-      content: '';
-      position: absolute; left: 0; top: 0; bottom: 0;
-      width: 4px; border-radius: 16px 0 0 16px;
-    }
-    .tl-card.blue::before  { background: var(--grad-a); }
-    .tl-card.teal::before  { background: var(--grad-t); }
-    .tl-card.green::before { background: linear-gradient(180deg,#059669,#0d9488); }
-    .tl-card:hover {
-      border-color: rgba(37,99,235,.25);
-      box-shadow: 0 12px 36px rgba(11,28,62,.1);
-      transform: translateY(-3px) translateX(2px);
-    }
-
-    .tl-top {
-      display: flex; justify-content: space-between;
-      align-items: flex-start; gap: 12px; margin-bottom: 3px;
-    }
-    .tl-title { font-size: 1rem; font-weight: 800; color: var(--navy); }
-    .tl-badge {
-      font-size: .7rem; font-weight: 700;
-      padding: 3px 10px; border-radius: 20px;
-      white-space: nowrap; flex-shrink: 0;
-    }
-    .tl-badge.blue  { color: var(--blue);  background: rgba(37,99,235,.1); }
-    .tl-badge.green { color: var(--green); background: rgba(5,150,105,.1); }
-    .tl-badge.teal  { color: var(--teal);  background: rgba(13,148,136,.1); }
-
-    .tl-sub {
-      font-size: .8rem; color: var(--muted);
-      font-style: italic; margin-bottom: 10px;
-    }
-    .tl-body {
-      font-size: .86rem; line-height: 1.65; color: var(--text2);
-    }
-    .tl-body ul { padding-left: 16px; margin-top: 5px; }
-    .tl-body li { margin-bottom: 4px; }
-    .tl-body li strong { color: var(--navy); font-weight: 700; }
-
-    .pill-row {
-      display: flex; flex-wrap: wrap; gap: 5px;
-      margin-top: 10px;
-    }
-    .pill {
-      font-size: .69rem; font-weight: 600;
-      padding: 3px 9px; border-radius: 6px;
-      font-family: 'JetBrains Mono', monospace;
-      transition: all .2s;
-    }
-    .pill.blue  { background: rgba(37,99,235,.08);  color: var(--blue);  border: 1px solid rgba(37,99,235,.2); }
-    .pill.green { background: rgba(5,150,105,.08);  color: var(--green); border: 1px solid rgba(5,150,105,.2); }
-    .pill.teal  { background: rgba(13,148,136,.08); color: var(--teal);  border: 1px solid rgba(13,148,136,.2); }
-    .pill:hover { transform: translateY(-2px); filter: brightness(1.05); }
-
-    .cg { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 10px; }
-    .cg-item {
-      background: #f8fafc; border: 1px solid var(--border);
-      border-radius: 9px; padding: 9px 12px;
-      font-size: .8rem; font-weight: 600; color: var(--navy);
-      transition: background .2s;
-    }
-    .cg-item:hover { background: rgba(37,99,235,.06); }
-
-    /* CHATBOT */
-    #cw {
-      position: fixed; bottom: 26px; right: 26px;
-      z-index: 9999; font-family: 'Outfit', sans-serif;
-    }
-    #ctb {
-      width: 60px; height: 60px; border-radius: 50%;
-      background: var(--grad-a);
-      border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 10px 36px rgba(37,99,235,.55);
-      transition: transform .3s, box-shadow .3s;
-      margin-left: auto; position: relative;
-      animation: cpulse 3s ease-in-out infinite;
-    }
-    @keyframes cpulse {
-      0%,100%{ box-shadow: 0 10px 36px rgba(37,99,235,.55); }
-      50%    { box-shadow: 0 10px 44px rgba(37,99,235,.85), 0 0 28px rgba(109,40,217,.4); }
-    }
-    #ctb:hover { transform: scale(1.12) rotate(8deg); }
-    #ctb svg { width:24px;height:24px;stroke:#fff;stroke-width:2;fill:none;position:absolute;transition:opacity .2s,transform .2s; }
-    #ic-c { opacity:1;transform:scale(1); }
-    #ic-x { opacity:0;transform:scale(.7); }
-    #cw.open #ic-c { opacity:0;transform:scale(.7); }
-    #cw.open #ic-x { opacity:1;transform:scale(1); }
-
-    #udot {
-      position:absolute;top:4px;right:4px;
-      width:11px;height:11px;border-radius:50%;
-      background:#ef4444;border:2px solid #fff;display:none;
-      animation:pd 2s infinite;
-    }
-    @keyframes pd{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}
-
-    #cp {
-      width: 370px; border-radius: 22px; overflow: hidden;
-      box-shadow: 0 30px 80px rgba(11,28,62,.25), 0 0 0 1px rgba(255,255,255,.5);
-      margin-bottom: 14px;
-      transform-origin: bottom right;
-      transform: scale(.85) translateY(24px); opacity: 0; pointer-events: none;
-      transition: transform .4s cubic-bezier(.34,1.56,.64,1), opacity .28s ease;
-      background: #fff;
-    }
-    #cw.open #cp { transform: scale(1) translateY(0); opacity:1; pointer-events:all; }
-
-    .c-hd {
-      background: var(--grad);
-      padding: 16px 18px;
-      display: flex; align-items: center; gap: 12px;
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+      gap: 4rem; padding: 9rem 5% 4rem;
+      background: radial-gradient(ellipse at 70% 50%, rgba(30,58,15,0.6) 0%, transparent 70%),
+                  radial-gradient(ellipse at 20% 80%, rgba(201,148,26,0.08) 0%, transparent 60%),
+                  var(--bg);
       position: relative; overflow: hidden;
     }
-    .c-hd::before {
-      content:'';position:absolute;inset:0;
-      background: radial-gradient(circle at 80% 0%, rgba(37,99,235,.4) 0%, transparent 60%);
+    #hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(201,148,26,0.02) 80px, rgba(201,148,26,0.02) 81px),
+                  repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(201,148,26,0.02) 80px, rgba(201,148,26,0.02) 81px);
     }
-    .c-av {
-      width: 42px; height: 42px; border-radius: 12px;
-      background: var(--grad-a);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; position: relative; z-index: 1;
-      box-shadow: 0 4px 14px rgba(37,99,235,.4);
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(201,148,26,0.1); color: var(--accent); padding: 0.5rem 1.2rem; border-radius: 999px; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; border: 1px solid rgba(201,148,26,0.25); }
+    #hero h1 { font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.05; letter-spacing: -2px; }
+    .hero-highlight { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 1.35rem; color: var(--text2); margin: 1rem 0 1.5rem; }
+    .hero-desc { max-width: 520px; color: var(--text2); font-size: 1.1rem; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0e0e0e; padding: 1rem 2.2rem; border-radius: 999px; font-weight: 700; font-size: 1.05rem; box-shadow: 0 8px 30px rgba(201,148,26,0.4); transition: all 0.25s; display: inline-block; border: none; cursor: pointer; }
+    .btn-primary:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 16px 48px rgba(201,148,26,0.6); }
+    .btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--accent); padding: 0.95rem 2rem; border-radius: 999px; font-weight: 700; font-size: 1.05rem; transition: all 0.25s; display: inline-block; cursor: pointer; }
+    .btn-outline:hover { background: var(--accent); color: #0e0e0e; transform: translateY(-4px); }
+    .hero-stats { display: flex; gap: 3rem; margin-top: 3.5rem; }
+    .stat-num { font-size: 2rem; color: var(--accent); font-weight: 900; }
+    .hero-img-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
+    .hero-img-wrap::after {
+      content: ''; position: absolute; width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,148,26,0.18) 0%, transparent 70%);
+      animation: pulse-glow 3s ease-in-out infinite;
     }
-    .c-av svg{width:20px;height:20px;stroke:#fff;stroke-width:2;fill:none;}
-    .c-info { flex:1; position: relative; z-index: 1; }
-    .c-name { font-weight:700;font-size:.92rem;color:#fff;margin-bottom:2px; }
-    .c-stat { font-size:.68rem;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:5px; }
-    .sdot   { width:6px;height:6px;border-radius:50%;background:#4ade80;animation:bs 2.5s infinite; }
-    @keyframes bs{0%,100%{opacity:1}50%{opacity:.3}}
-    #minb {
-      width:28px;height:28px;border-radius:8px;
-      background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);
-      cursor:pointer;display:flex;align-items:center;justify-content:center;
-      transition:background .2s;position:relative;z-index:1;
-    }
-    #minb:hover{background:rgba(255,255,255,.25);}
-    #minb svg{width:13px;height:13px;stroke:#fff;stroke-width:2.5;fill:none;}
+    @keyframes pulse-glow { 0%,100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.15); opacity: 1; } }
 
-    #cbox {
-      height:285px;overflow-y:auto;padding:14px;
-      display:flex;flex-direction:column;gap:9px;
-      background:#f8fafc;scroll-behavior:smooth;
-    }
-    #cbox::-webkit-scrollbar{width:4px;}
-    #cbox::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px;}
+    /* ── TRUST BAR ── */
+    .trust-bar { background: linear-gradient(90deg, #1E3A0F, #2a5018, #1E3A0F); color: #7ab84e; padding: 0.8rem; text-align: center; font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; overflow: hidden; }
+    .trust-bar-inner { display: inline-flex; gap: 3rem; white-space: nowrap; animation: marquee 20s linear infinite; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    .msg{padding:10px 14px;border-radius:16px;max-width:86%;line-height:1.5;font-size:.83rem;animation:mi .28s ease;}
-    @keyframes mi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-    .bot{background:#fff;color:var(--text);align-self:flex-start;border:1px solid var(--border);border-radius:5px 16px 16px 16px;box-shadow:0 2px 6px rgba(0,0,0,.06);}
-    .usr{background:var(--grad-a);color:#fff;align-self:flex-end;border-radius:16px 5px 16px 16px;}
-    .tw{display:flex;gap:5px;padding:10px 14px;background:#fff;border:1px solid var(--border);border-radius:5px 16px 16px 16px;align-self:flex-start;align-items:center;}
-    .td{width:6px;height:6px;border-radius:50%;background:#94a3b8;animation:tb 1.2s infinite;}
-    .td:nth-child(2){animation-delay:.2s}.td:nth-child(3){animation-delay:.4s}
-    @keyframes tb{0%,80%,100%{transform:none;opacity:.5}40%{transform:translateY(-5px);opacity:1}}
+    /* ── FEATURES ── */
+    #features { padding: 5rem 5%; background: var(--bg2); }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+    .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; text-align: center; transition: all 0.3s; cursor: default; }
+    .feature-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 12px 40px rgba(201,148,26,0.15); }
+    .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .feature-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+    .feature-card p { font-size: 0.9rem; color: var(--text2); }
 
-    #qr{padding:9px 13px;background:#f1f5fb;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:5px;}
-    .qb{font-size:.71rem;font-weight:500;padding:4px 11px;border-radius:20px;border:1px solid rgba(37,99,235,.35);background:rgba(37,99,235,.07);color:var(--blue);cursor:pointer;transition:all .15s;}
-    .qb:hover{background:rgba(37,99,235,.18);transform:translateY(-1px);}
+    /* ── SECTIONS ── */
+    section { padding: 7rem 5%; }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-title { font-size: clamp(2.2rem, 5vw, 3.2rem); margin-top: 1rem; }
 
-    #inv-banner{
-      display:none;margin:8px 12px;
-      background:linear-gradient(135deg,rgba(5,150,105,.1),rgba(37,99,235,.1));
-      border:1.5px solid rgba(5,150,105,.3);
-      border-radius:12px;padding:12px 14px;
-      font-size:.81rem;color:var(--navy);line-height:1.55;
-    }
-    #inv-banner strong{color:var(--green);}
-    .inv-row{display:flex;gap:7px;margin-top:9px;}
-    .inv-yes{flex:1;padding:7px;border-radius:9px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--green),#0d9488);color:#fff;font-weight:700;font-size:.78rem;transition:all .2s;}
-    .inv-yes:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(5,150,105,.4);}
-    .inv-no{padding:7px 14px;border-radius:9px;cursor:pointer;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:.78rem;transition:background .15s;}
-    .inv-no:hover{background:var(--border);}
+    /* ── PRODUCTS ── */
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    .product-card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; overflow: hidden; transition: all 0.35s; position: relative; }
+    .product-card:hover { transform: translateY(-12px); box-shadow: 0 24px 60px rgba(0,0,0,0.35); border-color: rgba(201,148,26,0.3); }
+    .product-card img { height: 280px; width: 100%; object-fit: contain; background: var(--bg); transition: transform 0.4s; }
+    .product-card:hover img { transform: scale(1.05); }
+    .product-info { padding: 2rem; }
+    .product-info h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .price { font-size: 2rem; color: var(--accent); font-weight: 900; }
+    .add-btn { width: 100%; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0e0e0e; padding: 1rem; border-radius: 999px; margin-top: 1.5rem; font-weight: 700; cursor: pointer; transition: all 0.25s; border: none; font-size: 1rem; }
+    .add-btn:hover { transform: scale(1.03); box-shadow: 0 8px 25px rgba(201,148,26,0.4); }
+    .quick-btn { width: 100%; background: transparent; border: 2px solid var(--accent); color: var(--accent); padding: 0.85rem; border-radius: 999px; margin-top: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.25s; font-size: 1rem; }
+    .quick-btn:hover { background: var(--accent); color: #0e0e0e; transform: scale(1.03); box-shadow: 0 8px 25px rgba(201,148,26,0.4); }
 
-    #cia{display:flex;padding:10px 12px;border-top:1px solid var(--border);background:#fff;gap:7px;align-items:center;}
-    #ui{flex:1;padding:9px 13px;border:1.5px solid var(--border);border-radius:11px;outline:none;font-size:.82rem;font-family:'Outfit',sans-serif;background:#f8fafc;transition:border-color .2s,background .2s;}
-    #ui:focus{border-color:var(--blue);background:#fff;}
-    #sb{width:38px;height:38px;border-radius:11px;background:var(--grad-a);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(37,99,235,.35);transition:transform .15s;}
-    #sb:hover{transform:scale(1.1);}
-    #sb svg{width:15px;height:15px;stroke:#fff;stroke-width:2.5;fill:none;}
-    .cf{text-align:center;padding:6px;background:#f8fafc;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);}
+    /* ── NUTRITION ── */
+    .nutrition-box { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 3rem; max-width: 800px; margin: 0 auto; text-align: center; }
+    .macros-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2rem; }
+    .macro-item { background: var(--bg2); padding: 1.5rem; border-radius: 16px; transition: all 0.3s; cursor: default; }
+    .macro-item:hover { background: rgba(201,148,26,0.1); transform: scale(1.05); }
+    .macro-val { font-size: 1.8rem; font-weight: 900; color: var(--accent); }
 
-    @media(max-width:820px){
-      .body-grid{grid-template-columns:1fr;}
-      .sidebar{border-right:none;border-bottom:1px solid var(--border);}
-      .main{padding:28px 22px;}
-      .header-banner{padding:28px 24px;flex-direction:column;text-align:center;}
-      .hb-info h1{font-size:2.2rem;}
-      .hb-info-top{flex-direction:column;align-items:center;}
-      .hb-chips{justify-content:center;}
-      .hb-actions{align-items:center;}
-      .hb-meta{text-align:center;}
-      #cp{width:calc(100vw - 40px);}
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--bg); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+    .testimonial-card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 2rem; transition: all 0.3s; }
+    .testimonial-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.25); border-color: rgba(201,148,26,0.25); }
+    .testimonial-stars { color: var(--accent); font-size: 1.1rem; margin-bottom: 1rem; }
+    .testimonial-text { font-size: 1rem; color: var(--text2); font-style: italic; margin-bottom: 1.2rem; }
+    .testimonial-author { font-weight: 700; font-size: 0.95rem; }
+
+    /* ── PRIVACY POLICY SECTION ── */
+    #privacy { background: var(--bg2); }
+    .privacy-box { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 3rem; max-width: 900px; margin: 0 auto; line-height: 1.9; color: var(--text2); font-size: 0.95rem; }
+    .privacy-box h3 { color: var(--text); margin: 1.5rem 0 0.5rem; font-size: 1.15rem; }
+    .privacy-box h3:first-child { margin-top: 0; }
+    .privacy-box p { margin-bottom: 0.8rem; }
+
+    /* ── MODALS & TOASTS ── */
+    #toast { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px); background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0e0e0e; padding: 1rem 2.5rem; border-radius: 999px; font-weight: 700; box-shadow: 0 10px 30px rgba(201,148,26,0.4); z-index: 999; display: none; opacity: 0; transition: opacity 0.3s, transform 0.3s; }
+    #toast.show { display: block; opacity: 1; transform: translateX(-50%) translateY(0); }
+    .cart-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 999; backdrop-filter: blur(4px); }
+    .cart-content { background: var(--card); width: 92%; max-width: 480px; border-radius: 24px; max-height: 90vh; overflow-y: auto; padding: 2rem; }
+    .checkout-btn { background: linear-gradient(135deg, #25D366, #1aaa4f); border: none; color: white; width: 100%; padding: 1.2rem; border-radius: 999px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 1rem; transition: all 0.25s; }
+    .checkout-btn:hover { transform: scale(1.02); box-shadow: 0 8px 25px rgba(37,211,102,0.4); }
+
+    /* ── LEGAL MODALS ── */
+    .legal-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(4px); }
+    .legal-modal-content { background: var(--card); width: 92%; max-width: 760px; border-radius: 24px; max-height: 90vh; overflow-y: auto; padding: 2.5rem; position: relative; border: 1px solid var(--border); }
+    .legal-modal-close { float: right; background: none; border: none; color: var(--text); font-size: 2rem; cursor: pointer; line-height: 1; margin: -0.5rem -0.5rem 0.5rem 1rem; transition: color 0.2s; }
+    .legal-modal-close:hover { color: var(--accent); }
+    .legal-modal-content h2 { font-family: "Montserrat", sans-serif; font-weight: 900; font-size: clamp(1.6rem, 4vw, 2.2rem); margin: 0.5rem 0 1.5rem; }
+    .legal-modal-body { color: var(--text2); font-size: 0.95rem; line-height: 1.9; }
+    .legal-modal-body h3 { color: var(--text); margin: 1.5rem 0 0.5rem; font-size: 1.15rem; font-family: "Montserrat", sans-serif; font-weight: 900; }
+    .legal-modal-body h3:first-child { margin-top: 0; }
+    .legal-modal-body p { margin-bottom: 0.8rem; }
+
+    /* ── PRIVACY CONSENT POPUP ── */
+    #privacy-popup {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+      background: var(--card); border-top: 2px solid var(--accent);
+      padding: 1.5rem 5%;
+      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.5);
+      transform: translateY(100%);
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    @media print{
-      body{background:#fff;} #cw{display:none;}
-      .page{padding:0;} .header-banner{border-radius:0;} .body-grid{box-shadow:none;border-radius:0;}
+    #privacy-popup.visible { transform: translateY(0); }
+    .privacy-popup-text { flex: 1; min-width: 240px; font-size: 0.9rem; color: var(--text2); line-height: 1.6; }
+    .privacy-popup-text strong { color: var(--text); }
+    .privacy-popup-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .btn-accept { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0e0e0e; border: none; padding: 0.75rem 1.8rem; border-radius: 999px; font-weight: 700; cursor: pointer; font-size: 0.95rem; transition: all 0.2s; }
+    .btn-accept:hover { transform: scale(1.05); }
+    .btn-decline { background: transparent; border: 1px solid var(--border); color: var(--text2); padding: 0.75rem 1.4rem; border-radius: 999px; font-size: 0.95rem; cursor: pointer; transition: all 0.2s; }
+    .btn-decline:hover { border-color: var(--accent); color: var(--accent); }
+    .privacy-popup-link { color: var(--accent); text-decoration: underline; cursor: pointer; }
+
+    /* ── FOOTER ── */
+    footer { background: #080808; padding: 5rem 5% 3rem; text-align: center; color: var(--text2); }
+    .footer-links a { margin: 0 1rem; color: var(--accent); transition: opacity 0.2s; }
+    .footer-links a:hover { opacity: 0.8; }
+    .social-links { margin-top: 1.5rem; }
+    .social-links a { color: var(--text); font-size: 1.5rem; margin: 0 0.5rem; transition: color 0.2s, transform 0.2s; display: inline-block; }
+    .social-links a:hover { color: var(--accent); transform: scale(1.1); }
+
+    /* ── HERITAGE STORY ── */
+    .heritage-card { background:rgba(245,240,232,0.05); border:1px solid rgba(245,240,232,0.1); border-radius:20px; padding:2rem; transition:all 0.3s; }
+    .heritage-card:hover { transform: translateY(-8px); box-shadow:0 20px 40px rgba(201,148,26,0.3); }
+    .heritage-card h3 { color:var(--accent); margin-bottom:1rem; }
+    .heritage-card h4 { color:var(--accent); margin-bottom:0.5rem; }
+    .heritage-card p { color:rgba(245,240,232,0.8); line-height:1.7; }
+    .heritage-card blockquote { border-left:3px solid var(--accent); padding-left:1rem; margin:1.5rem 0; font-style:italic; color:rgba(245,240,232,0.7); }
+    .heritage-card cite { font-size:0.9rem; }
+
+    /* ── PREMIUM GALLERY ── */
+    .premium-card { border-radius:20px; overflow:hidden; transition:all 0.3s; }
+    .premium-card:hover { transform: translateY(-8px); }
+    .premium-card img { transition:transform 0.5s ease; }
+    .premium-card:hover img { transform: scale(1.05); }
+
+    /* ── LIFESTYLE GALLERY ── */
+    .lifestyle-card { border-radius:20px; overflow:hidden; box-shadow:0 15px 35px rgba(0,0,0,0.3); transition:all 0.3s; background:var(--card); }
+    .lifestyle-card:hover { transform: translateY(-8px); box-shadow:0 25px 50px rgba(0,0,0,0.4); }
+    .lifestyle-card img { width:100%; height:300px; object-fit:cover; transition:transform 0.3s; }
+    .lifestyle-card:hover img { transform: scale(1.05); }
+    .lifestyle-content { padding:1.5rem; }
+    .lifestyle-content h3 { font-size:1.1rem; margin-bottom:0.5rem; }
+    .lifestyle-content p { color:var(--text2); font-size:0.9rem; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
     }
 
-    /* LANGUAGE SWITCH */
-    .lang-switch {
-      position: absolute;
-      top: 16px;
-      right: 20px;
-      z-index: 10;
-      display: flex;
-      gap: 4px;
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-left.visible { opacity: 1; transform: none; }
+
+    /* ── BACK TO TOP ── */
+    #back-to-top { position: fixed; bottom: 30px; right: 25px; background: var(--accent); color: #0e0e0e; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 500; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(201,148,26,0.4); transition: all 0.25s; }
+    #back-to-top.show { display: flex; }
+    #back-to-top:hover { transform: scale(1.15) translateY(-2px); }
+
+    /* ── FLOATING QUICK BUY ── */
+    #qb-fab-wrap { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 300; }
+    #qb-fab-tab {
+      display: block; background: linear-gradient(180deg, var(--accent), var(--accent2));
+      color: #0e0e0e; padding: 1.1rem 0.7rem; border-radius: 12px 0 0 12px;
+      cursor: pointer; writing-mode: vertical-rl; transform: rotate(180deg);
+      font-weight: 900; font-family: "Montserrat", sans-serif; font-size: 0.85rem;
+      letter-spacing: 1px; box-shadow: -4px 0 20px rgba(201,148,26,0.35);
+      transition: box-shadow 0.25s, padding 0.2s; user-select: none; border: none; white-space: nowrap;
     }
-    .lang-btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: .75rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all .2s;
-      letter-spacing: .5px;
+    #qb-fab-tab:hover { box-shadow: -6px 0 28px rgba(201,148,26,0.55); padding-top: 1.35rem; padding-bottom: 1.35rem; }
+    #qb-panel {
+      position: fixed; right: -360px; top: 50%; transform: translateY(-50%);
+      z-index: 300; width: 300px; max-height: 85vh; overflow-y: auto;
+      background: var(--card); border: 1px solid var(--border); border-radius: 20px 0 0 20px;
+      box-shadow: -8px 0 40px rgba(0,0,0,0.4);
+      transition: right 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .lang-btn.active {
-      background: rgba(255,255,255,.9);
-      color: var(--navy);
-      border: 1px solid rgba(255,255,255,1);
+    #qb-panel.open { right: 0; }
+    .qb-panel-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--border);
+      font-family: "Montserrat", sans-serif; font-weight: 900; font-size: 1rem;
     }
-    .lang-btn.inactive {
-      background: rgba(255,255,255,.15);
-      color: rgba(255,255,255,.8);
-      border: 1px solid rgba(255,255,255,.25);
+    .qb-close { background: none; border: none; color: var(--text); font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 0; transition: color 0.2s; }
+    .qb-close:hover { color: var(--accent); }
+    .qb-panel-body { padding: 0.75rem 1.4rem 1.4rem; }
+    .qb-item { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.8rem 0; border-bottom: 1px solid var(--border); }
+    .qb-item:last-child { border-bottom: none; }
+    .qb-item-info strong { display: block; font-size: 0.9rem; margin-bottom: 0.15rem; }
+    .qb-item-info span { font-size: 0.82rem; color: var(--accent); font-weight: 700; }
+    .qb-item-btn {
+      background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0e0e0e;
+      border: none; padding: 0.45rem 0.9rem; border-radius: 999px; font-weight: 700;
+      font-size: 0.82rem; cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: all 0.2s;
     }
-    .lang-btn.inactive:hover {
-      background: rgba(255,255,255,.28);
-      color: rgba(255,255,255,1);
+    .qb-item-btn:hover { transform: scale(1.07); box-shadow: 0 4px 14px rgba(201,148,26,0.45); }
+    @media (max-width: 480px) {
+      #qb-fab-wrap { top: auto; bottom: 90px; transform: none; }
+      #qb-panel { top: auto; bottom: 0; transform: none; max-height: 72vh; border-radius: 20px 0 0 0; width: 280px; right: -280px; }
+    }
+
+    @media (max-width: 768px) {
+      #hero { grid-template-columns: 1fr; padding-top: 7rem; text-align: center; }
+      .hero-desc { margin: 0 auto; }
+      .hero-btns { justify-content: center; }
+      .hero-stats { justify-content: center; gap: 1.5rem; }
+      .macros-grid { grid-template-columns: repeat(2, 1fr); }
+      #privacy-popup { flex-direction: column; align-items: flex-start; gap: 1rem; }
     }
   </style>
 </head>
 <body>
-<div class="page">
 
-  <!-- HEADER -->
-  <div class="header-banner">
-    <div class="lang-switch">
-      <a class="lang-btn active" href="index.html">DE</a>
-      <a class="lang-btn inactive" href="index-en.html">EN</a>
-    </div>
-    <div class="hb-photo">
-      <div class="hb-ring">
-        <img src="profilbild.jpg" alt="Shahim Quraishy"
-             onerror="this.src='https://ui-avatars.com/api/?name=SQ&background=0b1c3e&color=3b82f6&size=130&bold=true&font-size=0.4'"/>
-      </div>
-    </div>
-    <div class="hb-info">
-      <div class="hb-info-top">
-        <div class="hb-title-wrap">
-          <h1>Shahim Quraishy</h1>
-          <div class="hb-role">
-            <span class="dot"></span>
-            Angehender AI Engineer · Fokus: RAG, LLM, AWS · Uni Koblenz
-          </div>
-        </div>
-        <div class="hb-actions">
-          <a class="btn-pdf" href="lebenslauf.pdf" download="Shahim_Quraishy_CV.pdf" rel="noreferrer">
-            <span class="icon">📄</span>
-            <span>PDF herunterladen</span>
-          </a>
-          <div class="hb-meta">
-            Führerschein Klasse B vorhanden
-          </div>
-        </div>
-      </div>
-
-      <p class="hb-bio">
-        Als Informatikstudent an der Uni Koblenz begeistere ich mich für Künstliche Intelligenz und Softwareentwicklung. In eigenen Projekten und Nebenjobs konnte ich bereits wertvolle erste Praxiserfahrungen mit RAG-Systemen, LLMs und Cloud-Technologien (AWS) sammeln. Ich bringe ein solides technisches Fundament mit, bin hochmotiviert, mich in neue Themen einzuarbeiten, und freue mich darauf, in einem erfahrenen Team weiter zu lernen und tatkräftig zu unterstützen.
-      </p>
-      <div class="hb-availability">
-        Verfügbar: <strong>ab sofort</strong> als Werkstudent (AI/Cloud) ·
-        <strong>Vollzeit ab 2027</strong> · Remote &amp; Rhein-Main / RLP möglich
-      </div>
-      <div class="hb-chips">
-        <span class="hb-chip">🎯 Zielrolle: Werkstudent / Junior AI Engineer</span>
-        <span class="hb-chip">🤖 LLM &amp; RAG</span>
-        <span class="hb-chip">☁️ AWS &amp; Azure</span>
-        <span class="hb-chip">💼 1&amp;1 · United Internet</span>
-        <span class="hb-chip">🌱 Green Office &amp; Web-Hiwi</span>
-      </div>
-    </div>
+<!-- ── PRIVACY CONSENT POPUP ── -->
+<div id="privacy-popup" role="dialog" aria-labelledby="privacy-popup-title" aria-modal="true">
+  <div class="privacy-popup-text">
+    <strong id="privacy-popup-title">🍃 We respect your privacy.</strong><br>
+    This website uses only essential cookies to keep your cart working. We do not track you or share your data with third parties.
+    By clicking <strong>Accept</strong> you agree to our <span class="privacy-popup-link" onclick="openModal('privacy')">Privacy Policy</span>.
   </div>
-
-  <!-- BODY -->
-  <div class="body-grid">
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-
-      <div class="sb-section">
-        <h3>Kontakt</h3>
-        <div class="contact-item">
-          <div class="ci-dot" style="background:linear-gradient(135deg,#f97316,#ea580c)">📍</div>
-          <div class="ci-txt"><span class="ci-lbl">Adresse</span><span class="ci-val">Hillscheiderstr. 9, 56179 Vallendar</span></div>
-        </div>
-        <div class="contact-item">
-          <div class="ci-dot" style="background:linear-gradient(135deg,#22c55e,#16a34a)">📱</div>
-          <div class="ci-txt"><span class="ci-lbl">Telefon</span><span class="ci-val">+49 1525 8414 768</span></div>
-        </div>
-        <div class="contact-item">
-          <div class="ci-dot" style="background:linear-gradient(135deg,#3b82f6,#2563eb)">✉️</div>
-          <div class="ci-txt"><span class="ci-lbl">E-Mail</span><span class="ci-val">quraishyshahim@icloud.com</span></div>
-        </div>
-        <div class="contact-item">
-          <div class="ci-dot" style="background:linear-gradient(135deg,#0ea5e9,#0284c7)">🔗</div>
-          <div class="ci-txt"><span class="ci-lbl">LinkedIn</span><span class="ci-val">shahim-quraishy</span></div>
-        </div>
-        <div class="contact-item">
-          <div class="ci-dot" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)">💻</div>
-          <div class="ci-txt"><span class="ci-lbl">GitHub</span><span class="ci-val">github.com/ShahimQuraishy</span></div>
-        </div>
-      </div>
-
-      <div class="sb-section">
-        <h3>Core Skills</h3>
-        <div class="skill-block">
-          <div class="skill-cat">KI &amp; Machine Learning</div>
-          <div class="tags">
-            <span class="tag hi">LLMs / GPT-4</span>
-            <span class="tag hi">RAG-Systeme</span>
-            <span class="tag hi">Prompt Engineering</span>
-            <span class="tag">Deep Learning</span>
-            <span class="tag">Embeddings</span>
-          </div>
-        </div>
-        <div class="skill-block">
-          <div class="skill-cat">Programmierung</div>
-          <div class="tags">
-            <span class="tag hi">Python</span>
-            <span class="tag hi">Java · OOP</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">SQL</span>
-            <span class="tag">HTML · CSS</span>
-          </div>
-        </div>
-        <div class="skill-block">
-          <div class="skill-cat">Cloud &amp; DevOps</div>
-          <div class="tags">
-            <span class="tag hi">AWS (EC2, S3, Lambda)</span>
-            <span class="tag">Azure</span>
-            <span class="tag">Docker</span>
-            <span class="tag">CI/CD</span>
-            <span class="tag">Git</span>
-            <span class="tag">CMS (Uni Koblenz)</span>
-          </div>
-        </div>
-        <div class="skill-block">
-          <div class="skill-cat">Datenbanken &amp; Web</div>
-          <div class="tags">
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">ChromaDB</span>
-            <span class="tag">REST</span>
-            <span class="tag">GraphQL</span>
-            <span class="tag">Web Content</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="sb-section">
-        <h3>Sprachen</h3>
-        <div class="lang-row">
-          <div class="lang-top"><span>Deutsch</span><span class="lang-lvl">C1–C2 · Fließend</span></div>
-          <div class="bar-bg"><div class="bar-fill" style="width:95%"></div></div>
-        </div>
-        <div class="lang-row">
-          <div class="lang-top"><span>Englisch</span><span class="lang-lvl">B2 · Gut</span></div>
-          <div class="bar-bg"><div class="bar-fill" style="width:72%"></div></div>
-        </div>
-        <div class="lang-row">
-          <div class="lang-top"><span>Französisch</span><span class="lang-lvl">A2–B1 · Grundkenntnisse</span></div>
-          <div class="bar-bg"><div class="bar-fill" style="width:40%"></div></div>
-        </div>
-      </div>
-
-      <div class="sb-section">
-        <h3>Zertifizierungen</h3>
-        <div class="cert-badge">
-          <div class="cert-icon" style="background:rgba(37,99,235,.12);font-size:1.3rem;">☁️</div>
-          <div class="cert-txt">
-            <div class="ct-name">AWS CLF-C02</div>
-            <div class="ct-sub">Cloud Practitioner</div>
-          </div>
-        </div>
-        <div class="cert-badge">
-          <div class="cert-icon" style="background:rgba(0,164,255,.1);font-size:1.3rem;">🔷</div>
-          <div class="cert-txt">
-            <div class="ct-name">Azure AZ-900</div>
-            <div class="ct-sub">Fundamentals</div>
-          </div>
-        </div>
-        <div class="cert-badge">
-          <div class="cert-icon" style="background:rgba(5,150,105,.1);font-size:1.3rem;">🤖</div>
-          <div class="cert-txt">
-            <div class="ct-name">KI &amp; Agile Development</div>
-            <div class="ct-sub">BPU GmbH · 09/2024–08/2025</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sb-section">
-        <h3>Methodik</h3>
-        <div class="tags">
-          <span class="tag">Scrum</span>
-          <span class="tag">Kanban</span>
-          <span class="tag">Systemanalyse</span>
-          <span class="tag">Unit-Testing</span>
-          <span class="tag">Microservices</span>
-          <span class="tag">DSGVO</span>
-        </div>
-      </div>
-
-    </aside>
-
-    <!-- MAIN -->
-    <main class="main">
-
-      <!-- KI-Projekte -->
-      <div class="sec-hd">
-        <div class="sec-hd-icon" style="background:rgba(5,150,105,.1)">🚀</div>
-        <h2>KI-Projekte</h2>
-      </div>
-
-      <div class="tl-card teal">
-        <div class="tl-top">
-          <span class="tl-title">RAG-Wissenssystem für die Pflegebranche</span>
-          <span class="tl-badge teal">✅ Live · GitHub</span>
-        </div>
-        <div class="tl-sub">Eigenentwicklung · Python · LangChain · ChromaDB</div>
-        <div class="tl-body">
-          <ul>
-            <li><strong>Problem:</strong> Unstrukturierte PDF-Handbücher — kein intelligenter Zugriff auf Inhalte.</li>
-            <li><strong>Lösung:</strong> RAG-Pipeline mit Text-Chunking, Vektor-Embeddings und LLM-Prompting für kontextnahe Antworten.</li>
-            <li><strong>Status:</strong> Funktionsfähiger Prototyp auf GitHub.</li>
-            <li><strong>Was ich hier gelernt habe:</strong> In diesem Projekt habe ich mich intensiv damit beschäftigt, wie man unstrukturierte PDFs für ein KI-System nutzbar macht. Meine größte Lernkurve lag darin, eine funktionierende Chunking-Strategie zu entwickeln und erste praktische Erfahrungen mit LangChain und Vektordatenbanken (ChromaDB) zu sammeln.</li>
-          </ul>
-        </div>
-        <div class="pill-row">
-          <span class="pill teal">Python</span><span class="pill teal">LangChain</span>
-          <span class="pill teal">ChromaDB</span><span class="pill teal">Hugging Face</span><span class="pill teal">RAG</span>
-        </div>
-      </div>
-
-      <div class="tl-card green">
-        <div class="tl-top">
-          <span class="tl-title">Voice-KI-Plattform „hilfefuersenioren"</span>
-          <span class="tl-badge green">🎓 EXIST · Seit 09/2025</span>
-        </div>
-        <div class="tl-sub">EXIST-Gründungsvorhaben · Universität Koblenz</div>
-        <div class="tl-body">
-          <ul>
-            <li><strong>Konzept:</strong> Voice-First-Architektur vernetzt Senioren per Telefon mit Dienstleistern — vollautomatisch über KI-Routing.</li>
-            <li><strong>Stack:</strong> Node.js-Backend, React-Native-App, PostgreSQL, Twilio Voice API.</li>
-            <li><strong>Besonderheit:</strong> Solo-Entwicklerprojekt — von der ersten Idee bis zum Prototyp.</li>
-            <li><strong>Was ich hier gelernt habe:</strong> Bei diesem Konzept war es für mich eine spannende Herausforderung zu verstehen, wie verschiedene Technologien ineinandergreifen. Ich habe mich als Solo-Entwickler in die Anbindung der Twilio Voice API an ein Node.js-Backend eingearbeitet, um zu testen, wie echtzeitnahes KI-Routing in der Praxis funktionieren kann.</li>
-          </ul>
-        </div>
-        <div class="pill-row">
-          <span class="pill green">Node.js</span><span class="pill green">React Native</span>
-          <span class="pill green">PostgreSQL</span><span class="pill green">Twilio Voice</span><span class="pill green">KI-Routing</span>
-        </div>
-      </div>
-
-      <!-- Berufserfahrung -->
-      <div class="sec-hd">
-        <div class="sec-hd-icon" style="background:rgba(37,99,235,.1)">💼</div>
-        <h2>Berufserfahrung</h2>
-      </div>
-
-      <!-- Green Office -->
-      <div class="tl-card green">
-        <div class="tl-top">
-          <span class="tl-title">Studentische Hilfskraft – Green Office</span>
-          <span class="tl-badge green">seit 02/2026</span>
-        </div>
-        <div class="tl-sub">Nachhaltigkeit &amp; Digitalisierung · Universität Koblenz</div>
-        <div class="tl-body">
-          <ul>
-            <li>Unterstützung der digitalen Kommunikation und Pflege von Inhalten rund um Nachhaltigkeitsprojekte der Universität.</li>
-            <li>Mitarbeit bei der Planung und Dokumentation von Events und Aktionen des Green Office.</li>
-            <li>Eigenverantwortliche, strukturierte Arbeit in einem interdisziplinären Hochschulumfeld.</li>
-          </ul>
-        </div>
-        <div class="pill-row">
-          <span class="pill green">Nachhaltigkeit</span>
-          <span class="pill green">Kommunikation</span>
-          <span class="pill green">Organisation</span>
-        </div>
-      </div>
-
-      <!-- Web-Hiwi -->
-      <div class="tl-card blue">
-        <div class="tl-top">
-          <span class="tl-title">Studentische Hilfskraft – Web-Hiwi</span>
-          <span class="tl-badge blue">seit 04/2026</span>
-        </div>
-        <div class="tl-sub">Institut für Wirtschafts- und Verwaltungsinformatik · Universität Koblenz</div>
-        <div class="tl-body">
-          <ul>
-            <li>Pflege des Web-Auftritts des Instituts im Content Management System der Universität.</li>
-            <li>Unterstützung der Forschungsgruppen bei Verwaltung und Gestaltung ihrer Web-Seiten.</li>
-            <li>Selbstständiges Aktualisieren von Inhalten und redaktionelle Tätigkeiten (Berichte zu Aktivitäten &amp; Events).</li>
-          </ul>
-        </div>
-        <div class="pill-row">
-          <span class="pill blue">CMS Uni Koblenz</span>
-          <span class="pill blue">HTML/CSS</span>
-          <span class="pill blue">Web-Design</span>
-          <span class="pill blue">Editorial</span>
-        </div>
-      </div>
-
-      <div class="tl-card blue">
-        <div class="tl-top">
-          <span class="tl-title">Werkstudent – Development Business Systems</span>
-          <span class="tl-badge blue">11/2024 – 04/2025</span>
-        </div>
-        <div class="tl-sub">1&amp;1 Telecommunication SE · Montabaur</div>
-        <div class="tl-body">
-          <ul>
-            <li>Automatisierungsskripte (Python/SQL) zur Datenbankbereinigung im Produktivumfeld.</li>
-            <li>Bugfixing, Unit-Tests und Code-Optimierungen an laufenden Systemen.</li>
-            <li>Erstellung und Optimierung komplexer SQL-Abfragen sowie technischer Dokumentationen.</li>
-          </ul>
-        </div>
-        <div class="pill-row">
-          <span class="pill blue">SQL</span>
-          <span class="pill blue">Python</span>
-          <span class="pill blue">Automatisierung</span>
-          <span class="pill blue">Unit-Testing</span>
-        </div>
-      </div>
-
-      <div class="tl-card blue">
-        <div class="tl-top">
-          <span class="tl-title">Werkstudent – 1st &amp; 2nd Level Support</span>
-          <span class="tl-badge blue">02/2024 – 10/2024</span>
-        </div>
-        <div class="tl-sub">United Internet Corporate Services GmbH · Montabaur</div>
-        <div class="tl-body">
-          Internationaler IT-Support (DE/EN), Fehlerdiagnose remote und vor Ort, ITSM-Ticketing (Jira), Netzwerk-Patch-Arbeiten.
-        </div>
-        <div class="pill-row">
-          <span class="pill blue">Jira</span>
-          <span class="pill blue">Netzwerk</span>
-          <span class="pill blue">ITSM</span>
-        </div>
-      </div>
-
-      <div class="tl-card blue">
-        <div class="tl-top">
-          <span class="tl-title">Werkstudent – First-Level-Support</span>
-          <span class="tl-badge blue">05/2023 – 11/2023</span>
-        </div>
-        <div class="tl-sub">RTI Group GmbH · Koblenz</div>
-        <div class="tl-body">
-          Ticketbearbeitung, Anwenderunterstützung, Hardware-Inventarisierung und IT-Infrastrukturaufbau.
-        </div>
-        <div class="pill-row">
-          <span class="pill blue">Jira</span>
-          <span class="pill blue">IT-Infrastruktur</span>
-        </div>
-      </div>
-
-      <!-- Ausbildung -->
-      <div class="sec-hd">
-        <div class="sec-hd-icon" style="background:rgba(109,40,217,.1)">🎓</div>
-        <h2>Ausbildung &amp; Zertifizierung</h2>
-      </div>
-
-      <div class="tl-card blue">
-        <div class="tl-top">
-          <span class="tl-title">Zertifizierter Agiler Junior Softwareentwickler – KI-Fokus</span>
-          <span class="tl-badge blue">09/2024 – 08/2025</span>
-        </div>
-        <div class="tl-sub">BPU GmbH · Koblenz</div>
-        <div class="tl-body">
-          <div class="cg">
-            <div class="cg-item">🤖 KI &amp; Machine Learning</div>
-            <div class="cg-item">☁️ AWS CLF-C02 &amp; Azure AZ-900</div>
-            <div class="cg-item">⚙️ Systemarchitektur &amp; Microservices</div>
-            <div class="cg-item">🔒 Cloud Security &amp; DSGVO</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tl-card blue">
-        <div class="tl-top">
-          <span class="tl-title">B.Sc. Informatik (Nebenfach: Wirtschaftsinformatik)</span>
-          <span class="tl-badge blue">Seit 10/2021</span>
-        </div>
-        <div class="tl-sub">Universität Koblenz · Abschluss voraussichtlich 04/2027</div>
-        <div class="tl-body">
-          Algorithmen &amp; Datenstrukturen · Softwaretechnik · Datenbanken · Betriebssysteme · Webentwicklung · Projektmanagement
-        </div>
-      </div>
-
-      <div class="tl-card blue">
-        <div class="tl-top">
-          <span class="tl-title">Abitur – Allgemeine Hochschulreife</span>
-          <span class="tl-badge blue">08/2020 – 07/2021</span>
-        </div>
-        <div class="tl-sub">Julius Wegeler Schule · Koblenz</div>
-      </div>
-
-    </main>
+  <div class="privacy-popup-actions">
+    <button class="btn-accept" onclick="acceptPrivacy()">Accept</button>
+    <button class="btn-decline" onclick="declinePrivacy()">Decline</button>
   </div>
 </div>
 
-<!-- CHATBOT -->
-<div id="cw">
-  <div id="cp">
-    <div class="c-hd">
-      <div class="c-av">
-        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9" stroke-width="3" stroke-linecap="round"/><line x1="15" y1="9" x2="15.01" y2="9" stroke-width="3" stroke-linecap="round"/></svg>
-      </div>
-      <div class="c-info">
-        <div class="c-name">Shahims KI-Assistent</div>
-        <div class="c-stat"><span class="sdot"></span><span>Online &amp; bereit</span></div>
-      </div>
-      <button id="minb" onclick="toggleChat()">
-        <svg viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-      </button>
-    </div>
+<nav>
+  <div class="nav-logo">TALKHAN</div>
+  <div class="nav-right">
+    <button class="theme-toggle" onclick="toggleTheme()">☀️</button>
+    <a href="#products" style="font-weight:600;">Shop</a>
+    <a href="#heritage" style="font-weight:600;">Our Story</a>
+    <a href="#faq" style="font-weight:600;">FAQ</a>
+    <a href="#reviews" style="font-weight:600;">Reviews</a>
+    <button onclick="showCart()" class="cart-icon">🛒 <span id="cart-count" class="cart-count">0</span></button>
+  </div>
+</nav>
 
-    <div id="cbox">
-      <div class="msg bot">👋 Hallo! Fragen zu Shahims Skills, Projekten, Uni-Jobs oder Verfügbarkeit? Ich helfe gerne!</div>
-      <div class="msg bot">
-        Kurzprofil: Angehender AI Engineer (RAG/LLM, AWS), Werkstudent bei 1&amp;1 &amp; Uni Koblenz (Green Office &amp; Web-Hiwi).
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    🔒 Secure Payments &nbsp;•&nbsp; 🌍 Ships Worldwide &nbsp;•&nbsp; ♻️ 100% Plastic-Free &nbsp;•&nbsp; ⭐ Trusted by 200+ Athletes &nbsp;•&nbsp;
+    🔒 Secure Payments &nbsp;•&nbsp; 🌍 Ships Worldwide &nbsp;•&nbsp; ♻️ 100% Plastic-Free &nbsp;•&nbsp; ⭐ Trusted by 200+ Athletes
+  </div>
+</div>
+
+<!-- ── HERITAGE STORY ── -->
+<section id="heritage" style="background:linear-gradient(135deg, #0e0e0e, #1a1a1a); padding:4rem 5%; color:#F5F0E8;">
+  <div class="section-header">
+    <div class="hero-badge" style="background:rgba(201,148,26,0.2); color:var(--accent); border:1px solid rgba(201,148,26,0.3);">🏔️ LEGENDARY HISTORY</div>
+    <h2 class="section-title" style="color:#F5F0E8;">More Than Just a Snack</h2>
+    <p style="color:rgba(245,240,232,0.8); max-width:700px; margin:1rem auto 0; font-size:1.1rem;">Talkhan isn't just food—it's a living symbol of Afghan resilience, food sovereignty, and Tajik mountain culture.</p>
+  </div>
+  
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(350px, 1fr)); gap:3rem; max-width:1200px; margin:0 auto;">
+    
+    <!-- The Legend -->
+    <div class="heritage-card reveal" style="transition-delay:0.1s; background:rgba(245,240,232,0.05); border:1px solid rgba(245,240,232,0.1); border-radius:20px; padding:2rem;">
+      <div style="font-size:2.5rem; margin-bottom:1rem;">⚔️</div>
+      <h3 style="color:var(--accent); margin-bottom:1rem;">The Energy Bar That Defeated the Soviet Union</h3>
+      <p style="color:rgba(245,240,232,0.8); line-height:1.7;">During the Soviet-Afghan War (1979-1989), Talkhan became the main ration for Mujahideen fighters in the Tajik mountains. A 100g pack provided 500 calories and could last for months without refrigeration—even in freezing temperatures.</p>
+      <blockquote style="border-left:3px solid var(--accent); padding-left:1rem; margin:1.5rem 0; font-style:italic; color:rgba(245,240,232,0.7);">
+        "The two hundred Mujahideen here have no lunch... We cannot even find dried mulberries and talkhan because all the houses are burned."
+        <br><cite style="font-size:0.9rem;">— Mujahideen account after Soviet scorched-earth offensive</cite>
+      </blockquote>
+    </div>
+    
+    <!-- Cultural Heritage -->
+    <div class="heritage-card reveal" style="transition-delay:0.2s; background:rgba(245,240,232,0.05); border:1px solid rgba(245,240,232,0.1); border-radius:20px; padding:2rem;">
+      <div style="font-size:2.5rem; margin-bottom:1rem;">🌿</div>
+      <h3 style="color:var(--accent); margin-bottom:1rem;">Sacred Mountain Berry</h3>
+      <p style="color:rgba(245,240,232,0.8); line-height:1.7;">In Yezidi practice, mulberry trees are sacred and associated with healing and endurance. Talkhan represents the wisdom of the mountains—pure nature without sugar, without preservatives, without compromise.</p>
+      <div style="background:rgba(201,148,26,0.1); padding:1rem; border-radius:12px; margin-top:1rem;">
+        <h4 style="color:var(--accent); margin-bottom:0.5rem;">🍽 Spiritual Dimensions:</h4>
+        <ul style="list-style:none; padding:0; color:rgba(245,240,232,0.8);">
+          <li style="margin-bottom:0.5rem;">✨ Mulberry = Purity and Healing</li>
+          <li style="margin-bottom:0.5rem;">🧘 Sufi Symbolism: Patience and Soul Journey</li>
+          <li style="margin-bottom:0.5rem;">💪 Medicinal Belief: Causes no thirst, stomach heaviness, or fatigue</li>
+        </ul>
       </div>
     </div>
-
-    <div id="inv-banner">
-      🎉 <strong>Interesse geweckt?</strong> Möchten Sie mit Shahim einen
-      <strong>30‑minütigen Kennenlern-Call</strong> vereinbaren?
-      <div class="inv-row">
-        <button class="inv-yes" onclick="sendInvite()">✅ Ja, Kennenlern-Call anfragen</button>
-        <button class="inv-no" onclick="dismissInvite()">Vielleicht später</button>
+    
+    <!-- Geographic Heart -->
+    <div class="heritage-card reveal" style="transition-delay:0.3s; background:rgba(245,240,232,0.05); border:1px solid rgba(245,240,232,0.1); border-radius:20px; padding:2rem;">
+      <div style="font-size:2.5rem; margin-bottom:1rem;">🏔️</div>
+      <h3 style="color:var(--accent); margin-bottom:1rem;">Geographic & Cultural Heartland</h3>
+      <p style="color:rgba(245,240,232,0.8); line-height:1.7;">Core regions: Parwan, Panjshir, Kapisa (northern Afghanistan) and southern Tajikistan. Highland Tajiks, Lapis Lazuli miners in Panjshir mountains, and mountain communities who needed food that wouldn't spoil.</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.5rem;">
+        <div style="background:rgba(201,148,26,0.1); padding:1rem; border-radius:12px;">
+          <h4 style="color:var(--accent); margin-bottom:0.5rem;">🏔️ Why These Regions?</h4>
+          <p style="font-size:0.9rem; color:rgba(245,240,232,0.8); margin:0;">Mulberry trees thrive at high altitudes; harsh climate made preservation essential.</p>
+        </div>
+        <div style="background:rgba(201,148,26,0.1); padding:1rem; border-radius:12px;">
+          <h4 style="color:var(--accent); margin-bottom:0.5rem;">👥 Traditional Users</h4>
+          <p style="font-size:0.9rem; color:rgba(245,240,232,0.8); margin:0;">Highland Tajiks, mountain communities, people who needed survival food.</p>
+        </div>
       </div>
     </div>
-
-    <div id="qr"></div>
-
-    <div id="cia">
-      <input type="text" id="ui" placeholder="Frage stellen..." onkeypress="if(event.key==='Enter')send()"/>
-      <button id="sb" onclick="send()">
-        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-      </button>
+  </div>
+  
+  <!-- Modern Identity -->
+  <div style="text-align:center; margin-top:3rem;">
+    <div style="background:linear-gradient(135deg, var(--accent), var(--accent2)); padding:2rem; border-radius:20px; max-width:700px; margin:0 auto;">
+      <h3 style="color:#0e0e0e; margin-bottom:1rem;">🌍 Talkhan Today: Diaspora & Identity</h3>
+      <p style="color:rgba(14,14,14,0.9); margin-bottom:1.5rem;">In diaspora, Talkhan is no longer about survival—it becomes a symbol of identity. A "taste-test for identity," as immigrants bring it wrapped in tissue paper.</p>
+      <div style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap;">
+        <div style="background:rgba(14,14,14,0.2); padding:1rem; border-radius:12px; text-align:left; min-width:200px;">
+          <h4 style="color:var(--accent); margin-bottom:0.5rem;">🏆 Slow Food Recognition</h4>
+          <p style="font-size:0.9rem; color:rgba(14,14,14,0.9); margin:0;">Listed in Slow Food Foundation's Ark of Taste</p>
+        </div>
+        <div style="background:rgba(14,14,14,0.2); padding:1rem; border-radius:12px; text-align:left; min-width:200px;">
+          <h4 style="color:var(--accent); margin-bottom:0.5rem;">🛡️ Survival Essence</h4>
+          <p style="font-size:0.9rem; color:rgba(14,14,14,0.9); margin:0;">500 calories from 100g of pure mulberry + walnut</p>
+        </div>
+      </div>
     </div>
-    <div class="cf">Powered by Shahim Quraishy · AI Engineer</div>
+  </div>
+</section>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div>
+    <div class="hero-badge reveal-left">⚡ 2,847+ CUSTOMERS • 4.9⭐ RATING</div>
+    <h1 class="reveal-left" style="transition-delay:0.1s;">
+      The 3-Ingredient Energy Bar<br>
+      <span class="hero-highlight">That Fuels Your Day Without The Crash</span>
+    </h1>
+    <p class="hero-sub reveal-left" style="transition-delay:0.2s;">
+      Ancient Afghan recipe meets modern nutrition. Hand-pressed mulberries, walnuts & almonds give you sustained energy while 100% plastic-free packaging protects our planet.
+    </p>
+    <p class="hero-desc reveal-left" style="transition-delay:0.3s;">
+      Join thousands who've ditched sugary energy bars for natural, crash-free fuel that actually works.
+    </p>
+    <div class="hero-btns reveal-left" style="transition-delay:0.4s;">
+      <a href="#products" class="btn-primary">Get Started - Starter Pack Just €9.99</a>
+      <a href="#reviews" class="btn-outline">See Why Customers Love Talkhan →</a>
+    </div>
+    <div class="hero-stats reveal-left" style="transition-delay:0.5s;">
+      <div><div class="stat-num">2,847+</div><div>Happy Customers</div></div>
+      <div><div class="stat-num">4.9/5</div><div>Average Rating</div></div>
+      <div><div class="stat-num">30-Day</div><div>Money Back</div></div>
+    </div>
+  </div>
+  <div class="hero-img-wrap reveal" style="transition-delay:0.2s;">
+    <img src="22.png" alt="Talkhan Superfood Premium" style="box-shadow: 0 30px 60px rgba(0,0,0,0.5); border-radius:24px;">
+  </div>
+</section>
+
+<!-- ── SOCIAL PROOF BAR ── -->
+<section id="reviews" style="background:linear-gradient(135deg, var(--accent), var(--accent2)); padding:2rem 5%; text-align:center;">
+  <div style="max-width:1000px; margin:0 auto;">
+    <h3 style="color:#0e0e0e; margin-bottom:2rem; font-size:1.5rem;">Why Customers Love Talkhan</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:2rem;">
+      <div style="background:rgba(14,14,14,0.1); padding:1.5rem; border-radius:12px;">
+        <div style="display:flex; align-items:center; margin-bottom:1rem;">
+          <div style="width:50px; height:50px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; font-weight:bold; color:#0e0e0e;">SK</div>
+          <div style="margin-left:1rem; text-align:left;">
+            <div style="font-weight:bold;">Sarah K.</div>
+            <div style="font-size:0.9rem; color:rgba(14,14,14,0.8);">Verified Buyer</div>
+          </div>
+        </div>
+        <div style="color:#0e0e0e;">"Finally found my afternoon energy solution! No more 3pm crashes, just steady energy. The taste is amazing too!"</div>
+        <div style="color:#ffd700; margin-top:0.5rem;">⭐⭐⭐⭐⭐</div>
+      </div>
+      <div style="background:rgba(14,14,14,0.1); padding:1.5rem; border-radius:12px;">
+        <div style="display:flex; align-items:center; margin-bottom:1rem;">
+          <div style="width:50px; height:50px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; font-weight:bold; color:#0e0e0e;">MR</div>
+          <div style="margin-left:1rem; text-align:left;">
+            <div style="font-weight:bold;">Mark R.</div>
+            <div style="font-size:0.9rem; color:rgba(14,14,14,0.8);">Verified Buyer</div>
+          </div>
+        </div>
+        <div style="color:#0e0e0e;">"As a busy professional, these are perfect. I keep one in my desk for the 3pm slump. Much better than coffee!"</div>
+        <div style="color:#ffd700; margin-top:0.5rem;">⭐⭐⭐⭐⭐</div>
+      </div>
+      <div style="background:rgba(14,14,14,0.1); padding:1.5rem; border-radius:12px;">
+        <div style="display:flex; align-items:center; margin-bottom:1rem;">
+          <div style="width:50px; height:50px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; font-weight:bold; color:#0e0e0e;">JM</div>
+          <div style="margin-left:1rem; text-align:left;">
+            <div style="font-weight:bold;">Jennifer M.</div>
+            <div style="font-size:0.9rem; color:rgba(14,14,14,0.8);">Verified Buyer</div>
+          </div>
+        </div>
+        <div style="color:#0e0e0e;">"My kids actually ask for these! Finally a healthy snack they love that doesn't come in plastic."</div>
+        <div style="color:#ffd700; margin-top:0.5rem;">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BADGES ── -->
+<section id="trust-badges" style="background:linear-gradient(135deg, var(--bg2), var(--bg)); padding:3rem 5%; border-bottom:1px solid var(--border);">
+  <div style="max-width:1000px; margin:0 auto; text-align:center;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:2rem; align-items:center;">
+      <div class="reveal" style="transition-delay:0.1s;">
+        <div style="font-size:2.5rem; margin-bottom:0.5rem;">🏆</div>
+        <h4 style="font-size:1rem; margin-bottom:0.3rem; color:var(--text);">Award Winning</h4>
+        <p style="font-size:0.85rem; color:var(--text2);">Best Natural Energy Snack 2025</p>
+      </div>
+      <div class="reveal" style="transition-delay:0.2s;">
+        <div style="font-size:2.5rem; margin-bottom:0.5rem;">🌱</div>
+        <h4 style="font-size:1rem; margin-bottom:0.3rem; color:var(--text);">100% Organic</h4>
+        <p style="font-size:0.85rem; color:var(--text2);">USDA Certified Organic</p>
+      </div>
+      <div class="reveal" style="transition-delay:0.3s;">
+        <div style="font-size:2.5rem; margin-bottom:0.5rem;">🔬</div>
+        <h4 style="font-size:1rem; margin-bottom:0.3rem; color:var(--text);">Lab Tested</h4>
+        <p style="font-size:0.85rem; color:var(--text2);">Third Party Verified</p>
+      </div>
+      <div class="reveal" style="transition-delay:0.4s;">
+        <div style="font-size:2.5rem; margin-bottom:0.5rem;">🛡️</div>
+        <h4 style="font-size:1rem; margin-bottom:0.3rem; color:var(--text);">Satisfaction Guaranteed</h4>
+        <p style="font-size:0.85rem; color:var(--text2);">30-Day Money Back</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES ── -->
+<section id="features">
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <span class="feature-icon">🌿</span>
+      <h3>100% Natural</h3>
+      <p>No artificial flavors, colors, or preservatives. Just real food.</p>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:0.1s;">
+      <span class="feature-icon">♻️</span>
+      <h3>Plastic-Free</h3>
+      <p>Eco-friendly packaging that looks great and feels even better.</p>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:0.2s;">
+      <span class="feature-icon">⚡</span>
+      <h3>Sustained Energy</h3>
+      <p>No sugar crash. Just clean, steady fuel for your day.</p>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:0.3s;">
+      <span class="feature-icon">🌍</span>
+      <h3>Ships Worldwide</h3>
+      <p>Free shipping on orders over €50. From Germany to your door.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ── -->
+<section id="products" style="background:var(--bg2);">
+  <div class="section-header">
+    <div class="hero-badge">CHOOSE YOUR ENERGY SOLUTION</div>
+    <h2 class="section-title">Find Your Perfect Match</h2>
+    <p style="color:var(--text2); margin-top:1rem;">Join 2,847+ customers who've made the switch to natural energy. Free shipping on orders over €50!</p>
   </div>
 
-  <button id="ctb" onclick="toggleChat()">
-    <div id="udot"></div>
-    <svg id="ic-c" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-    <svg id="ic-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-  </button>
+  <div class="products-grid">
+    <!-- Starter Pack -->
+    <div class="product-card reveal" style="transition-delay:0.1s; position:relative;">
+      <div style="position:absolute; top:15px; left:15px; background:#25D366; color:white; padding:4px 12px; border-radius:8px; font-weight:bold; font-size:0.75rem; z-index:2;">MOST POPULAR</div>
+      <img src="talkhan-starter-pack-hero.jpg" alt="Starter Pack">
+      <div class="product-info">
+        <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:0.5rem;">
+          <h3>Starter Pack</h3>
+          <div style="text-align:right;">
+            <div class="price">€9.99</div>
+            <div style="font-size:0.8rem; color:#25D366; font-weight:600;">✓ Free Shipping</div>
+          </div>
+        </div>
+        <p style="color:var(--text2); margin-bottom:1rem;"><strong>Perfect First Taste</strong> - Discover why 2,847+ customers made the switch</p>
+        <div style="background:rgba(37,211,102,0.1); padding:0.75rem; border-radius:8px; margin-bottom:1rem;">
+          <p style="color:#25D366; font-size:0.9rem; margin:0; font-style:italic;">"Finally found my afternoon energy solution!" - Sarah K.</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; font-size:0.85rem; color:var(--text2);">
+          <span>🔒 SSL Secure</span>
+          <span>•</span>
+          <span>⚡ Fast Delivery</span>
+        </div>
+        <button onclick="addToCart(2)" class="add-btn">Add to Cart</button>
+        <button onclick="quickBuy(2)" class="quick-btn">⚡ Quick Buy</button>
+      </div>
+    </div>
+    <!-- 4-Pack -->
+    <div class="product-card reveal" style="transition-delay:0.2s; position:relative;">
+      <div style="position:absolute; top:15px; left:15px; background:var(--accent); color:#0e0e0e; padding:4px 12px; border-radius:8px; font-weight:bold; font-size:0.75rem; z-index:2;">PROFESSIONAL'S CHOICE</div>
+      <img src="talkhan-4-pack.jpg" alt="4-Pack">
+      <div class="product-info">
+        <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:0.5rem;">
+          <h3>4-Pack</h3>
+          <div style="text-align:right;">
+            <div class="price">€14.99</div>
+            <div style="background:linear-gradient(135deg, var(--accent), var(--accent2)); padding:0.5rem 1rem; border-radius:8px; color:#0e0e0e; font-weight:bold; font-size:0.8rem;">Save 25%</div>
+          </div>
+        </div>
+        <p style="color:var(--text2); margin-bottom:1rem;"><strong>Busy Professional's Choice</strong> - One week of crash-free energy</p>
+        <div style="background:rgba(201,148,26,0.1); padding:0.75rem; border-radius:8px; margin-bottom:1rem;">
+          <p style="color:var(--accent); font-size:0.9rem; margin:0; font-style:italic;">"No more 3pm energy slumps!" - Mark R.</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; font-size:0.85rem; color:var(--text2);">
+          <span>🔒 SSL Secure</span>
+          <span>•</span>
+          <span>⚡ Fast Delivery</span>
+        </div>
+        <button onclick="addToCart(3)" class="add-btn">Add to Cart</button>
+        <button onclick="quickBuy(3)" class="quick-btn">⚡ Quick Buy</button>
+      </div>
+    </div>
+    <!-- 8-Pack -->
+    <div class="product-card reveal" style="transition-delay:0.3s; position:relative;">
+      <div style="position:absolute; top:15px; left:15px; background:var(--accent); color:#0e0e0e; padding:4px 12px; border-radius:8px; font-weight:bold; font-size:0.75rem; z-index:2;">FAMILY FAVORITE</div>
+      <img src="talkhan-8-pack.jpg" alt="8-Pack">
+      <div class="product-info">
+        <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:0.5rem;">
+          <h3>8-Pack</h3>
+          <div style="text-align:right;">
+            <div class="price">€24.99</div>
+            <div style="background:linear-gradient(135deg, var(--accent), var(--accent2)); padding:0.5rem 1rem; border-radius:8px; color:#0e0e0e; font-weight:bold; font-size:0.8rem;">Save 37%</div>
+          </div>
+        </div>
+        <p style="color:var(--text2); margin-bottom:1rem;"><strong>Family Favorite</strong> - Share the energy with loved ones</p>
+        <div style="background:rgba(201,148,26,0.1); padding:0.75rem; border-radius:8px; margin-bottom:1rem;">
+          <p style="color:var(--accent); font-size:0.9rem; margin:0; font-style:italic;">"My kids actually ask for these!" - Jennifer M.</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; font-size:0.85rem; color:var(--text2);">
+          <span>🔒 SSL Secure</span>
+          <span>•</span>
+          <span>⚡ Fast Delivery</span>
+        </div>
+        <button onclick="addToCart(4)" class="add-btn">Add to Cart</button>
+        <button onclick="quickBuy(4)" class="quick-btn">⚡ Quick Buy</button>
+      </div>
+    </div>
+    <!-- Premium 18-Pack -->
+    <div class="product-card reveal" style="border-color: var(--accent); transition-delay:0.4s; position:relative;">
+      <div style="position:absolute; top:15px; left:15px; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#0e0e0e; padding:4px 12px; border-radius:8px; font-weight:bold; font-size:0.75rem; z-index:2;">BEST VALUE</div>
+      <div style="position:absolute; top:15px; right:15px; background:#25D366; color:white; padding:4px 12px; border-radius:8px; font-weight:bold; font-size:0.75rem; z-index:2;">SHIPS FREE</div>
+      <img src="talkhan-18-pack-premium.jpg" alt="Premium 18-Pack">
+      <div class="product-info">
+        <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:0.5rem;">
+          <h3>Premium 18-Pack</h3>
+          <div style="text-align:right;">
+            <div class="price">€49.99</div>
+            <div style="background:linear-gradient(135deg, var(--accent), var(--accent2)); padding:0.5rem 1rem; border-radius:8px; color:#0e0e0e; font-weight:bold; font-size:0.8rem;">Save 44% + Free Shipping</div>
+          </div>
+        </div>
+        <p style="color:var(--text2); margin-bottom:1rem;"><strong>Ultimate Energy Solution</strong> - One month supply, never run out</p>
+        <div style="background:rgba(37,211,102,0.1); padding:0.75rem; border-radius:8px; margin-bottom:1rem;">
+          <p style="color:#25D366; font-size:0.9rem; margin:0; font-style:italic;">"Game changer for my training" - Athlete Mike</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; font-size:0.85rem; color:var(--text2);">
+          <span>🔒 SSL Secure</span>
+          <span>•</span>
+          <span>⚡ Fast Delivery</span>
+        </div>
+        <button onclick="addToCart(5)" class="add-btn">Add to Cart</button>
+        <button onclick="quickBuy(5)" class="quick-btn">⚡ Quick Buy</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ SECTION ── -->
+<section id="faq" style="background:var(--bg2); padding:4rem 5%;">
+  <div class="section-header">
+    <h2 class="section-title">Everything You Need to Know</h2>
+    <p style="color:var(--text2); max-width:600px; margin:1rem auto 0;">Got questions? We've got answers. If you don't see your question here, our support team is here to help.</p>
+  </div>
+  
+  <div style="max-width:800px; margin:0 auto;">
+    <div style="background:var(--card); padding:1.5rem; border-radius:12px; margin:1rem 0;">
+      <h4 style="color:var(--accent); margin-bottom:1rem;">Q: How is Talkhan different from other energy bars?</h4>
+      <p style="color:var(--text2); line-height:1.6;">Most energy bars contain 15+ ingredients, added sugars, and plastic packaging. Talkhan uses just 3 real ingredients, no added sugar, and 100% compostable packaging. It's the same recipe Afghan mountain communities have used for centuries.</p>
+    </div>
+    
+    <div style="background:var(--card); padding:1.5rem; border-radius:12px; margin:1rem 0;">
+      <h4 style="color:var(--accent); margin-bottom:1rem;">Q: Will this really give me energy without a crash?</h4>
+      <p style="color:var(--text2); line-height:1.6;">Yes! The natural combination of mulberries (complex carbs), walnuts (healthy fats), and almonds (protein) provides sustained energy release. No sugar spikes, no crashes - just steady fuel.</p>
+    </div>
+    
+    <div style="background:var(--card); padding:1.5rem; border-radius:12px; margin:1rem 0;">
+      <h4 style="color:var(--accent); margin-bottom:1rem;">Q: Is this really plastic-free?</h4>
+      <p style="color:var(--text2); line-height:1.6;">Absolutely. Our packaging is made from compostable materials that break down naturally. Even our shipping materials are eco-friendly.</p>
+    </div>
+    
+    <div style="background:var(--card); padding:1.5rem; border-radius:12px; margin:1rem 0;">
+      <h4 style="color:var(--accent); margin-bottom:1rem;">Q: What if I don't like it?</h4>
+      <p style="color:var(--text2); line-height:1.6;">Try it risk-free! If you're not completely satisfied with your first order, we'll refund every penny. No questions asked.</p>
+    </div>
+    
+    <div style="background:var(--card); padding:1.5rem; border-radius:12px; margin:1rem 0;">
+      <h4 style="color:var(--accent); margin-bottom:1rem;">Q: How long does shipping take?</h4>
+      <p style="color:var(--text2); line-height:1.6;">Orders ship within 24 hours from Germany. EU delivery: 2-3 days. International: 5-7 days. Free shipping on orders over €50.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── NUTRITION ── -->
+<section id="nutrition">
+  <div class="section-header">
+    <h2 class="section-title">Nothing to hide.</h2>
+    <p style="color:var(--text2); max-width:600px; margin:1rem auto 0;">Just three powerful ingredients: Hand-pressed mulberries, walnuts, and almonds. Designed to give you sustained energy without the sugar crash.</p>
+  </div>
+  
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem; max-width:1000px; margin:0 auto; align-items:center;">
+    <div class="nutrition-box reveal">
+      <h3>Nutritional Value (per 100g)</h3>
+      <div class="macros-grid">
+        <div class="macro-item">
+          <div class="macro-val">340</div>
+          <div>Calories</div>
+        </div>
+        <div class="macro-item">
+          <div class="macro-val">9g</div>
+          <div>Protein</div>
+        </div>
+        <div class="macro-item">
+          <div class="macro-val">65g</div>
+          <div>Carbs</div>
+        </div>
+        <div class="macro-item">
+          <div class="macro-val">5g</div>
+          <div>Fat</div>
+        </div>
+      </div>
+      <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text2);">*Naturally occurring sugars from mulberries. Zero artificial syrups.</p>
+    </div>
+    
+    <div class="reveal" style="text-align:center;">
+      <img src="talkhan-ingredient-detail.png" alt="Talkhan Ingredients Detail" style="max-width:100%; height:auto; border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.3);">
+      <p style="margin-top:1.5rem; color:var(--text2); font-size:0.95rem;">Premium quality ingredients, carefully selected</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── LIFESTYLE GALLERY ── -->
+<section id="lifestyle" style="background:var(--bg2);">
+  <div class="section-header">
+    <div class="hero-badge">REAL MOMENTS</div>
+    <h2 class="section-title">Fuel your adventures</h2>
+    <p style="color:var(--text2); max-width:600px; margin:1rem auto 0;">See how Talkhan fits into your active lifestyle - from study sessions to outdoor adventures.</p>
+  </div>
+  
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem; max-width:1200px; margin:0 auto;">
+    <div class="lifestyle-card reveal" style="transition-delay:0.1s;">
+      <img src="talkhan-product-lifestyle-1.jpg" alt="Talkhan in daily life" style="width:100%; height:300px; object-fit:cover; transition:transform 0.3s;">
+      <div class="lifestyle-content">
+        <h3>Study Fuel</h3>
+        <p>Perfect for long study sessions and exam prep</p>
+      </div>
+    </div>
+    <div class="lifestyle-card reveal" style="transition-delay:0.2s;">
+      <img src="talkhan-product-lifestyle-2.jpg" alt="Talkhan outdoor adventure" style="width:100%; height:300px; object-fit:cover; transition:transform 0.3s;">
+      <div class="lifestyle-content">
+        <h3>Adventure Ready</h3>
+        <p>Your natural energy companion for outdoor activities</p>
+      </div>
+    </div>
+    <div class="lifestyle-card reveal" style="transition-delay:0.3s;">
+      <img src="talkhan-product-lifestyle-3.png" alt="Talkhan workout energy" style="width:100%; height:300px; object-fit:cover; transition:transform 0.3s;">
+      <div class="lifestyle-content">
+        <h3>Workout Boost</h3>
+        <p>Clean energy for your fitness routine</p>
+      </div>
+    </div>
+    <div class="lifestyle-card reveal" style="transition-delay:0.4s;">
+      <img src="talkhan-product-lifestyle-4.jpg" alt="Talkhan daily routine" style="width:100%; height:300px; object-fit:cover; transition:transform 0.3s;">
+      <div class="lifestyle-content">
+        <h3>Daily Essential</h3>
+        <p>Your go-to snack for busy days</p>
+      </div>
+    </div>
+  </div>
+  
+  <div style="text-align:center; margin-top:3rem;">
+    <a href="#products" class="btn-primary">Shop Your Favorite</a>
+  </div>
+</section>
+
+<!-- ── PRODUCT SHOWCASE ── -->
+<section id="showcase" style="background:var(--bg);">
+  <div class="section-header">
+    <div class="hero-badge">SEE THE DETAILS</div>
+    <h2 class="section-title">Crafted with care</h2>
+    <p style="color:var(--text2); max-width:600px; margin:1rem auto 0;">Every Talkhan piece is hand-pressed with the finest mulberries, walnuts, and almonds. See the quality up close.</p>
+  </div>
+  
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:2rem; max-width:1000px; margin:0 auto;">
+    <div class="reveal" style="text-align:center;">
+      <img src="12.png" alt="Talkhan Premium Collection" style="margin:0 auto 1.5rem; box-shadow:0 20px 40px rgba(0,0,0,0.3); border-radius:16px;">
+      <h3 style="font-size:1.3rem; margin-bottom:0.5rem;">Premium Quality</h3>
+      <p style="color:var(--text2);">Hand-selected mulberries and walnuts</p>
+    </div>
+    <div class="reveal" style="text-align:center; transition-delay:0.1s;">
+      <img src="22.png" alt="Talkhan Detail View" style="margin:0 auto 1.5rem; box-shadow:0 20px 40px rgba(0,0,0,0.3); border-radius:16px;">
+      <h3 style="font-size:1.3rem; margin-bottom:0.5rem;">Perfect Texture</h3>
+      <p style="color:var(--text2);">Hand-pressed natural consistency</p>
+    </div>
+    <div class="reveal" style="text-align:center; transition-delay:0.2s;">
+      <img src="33.png" alt="Talkhan Natural Ingredients" style="margin:0 auto 1.5rem; box-shadow:0 20px 40px rgba(0,0,0,0.3); border-radius:16px;">
+      <h3 style="font-size:1.3rem; margin-bottom:0.5rem;">Pure Nature</h3>
+      <p style="color:var(--text2);">100% natural ingredients</p>
+    </div>
+    <div class="reveal" style="text-align:center; transition-delay:0.3s;">
+      <img src="44.png" alt="Talkhan Packaging" style="margin:0 auto 1.5rem; box-shadow:0 20px 40px rgba(0,0,0,0.3); border-radius:16px;">
+      <h3 style="font-size:1.3rem; margin-bottom:0.5rem;">Eco-Friendly</h3>
+      <p style="color:var(--text2);">Plastic-free sustainable packaging</p>
+    </div>
+    <div class="reveal" style="text-align:center; transition-delay:0.4s;">
+      <img src="221.png" alt="Talkhan Production Process" style="margin:0 auto 1.5rem; box-shadow:0 20px 40px rgba(0,0,0,0.3); border-radius:16px;">
+      <h3 style="font-size:1.3rem; margin-bottom:0.5rem;">Traditional Craft</h3>
+      <p style="color:var(--text2);">Centuries-old production methods</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── URGENCY SCARCITY ── -->
+<section id="urgency" style="background:linear-gradient(135deg, var(--accent), var(--accent2)); padding:2rem 5%; text-align:center;">
+  <div style="max-width:800px; margin:0 auto;">
+    <div style="background:rgba(14,14,14,0.9); padding:2rem; border-radius:20px; color:#F5F0E8;">
+      <div style="display:flex; justify-content:center; align-items:center; gap:1rem; margin-bottom:1rem;">
+        <span style="font-size:2rem;">⏰</span>
+        <div>
+          <h3 style="margin:0; font-size:1.5rem;">Limited Time Offer</h3>
+          <p style="margin:0.5rem 0 0; opacity:0.9;">Free worldwide shipping ends in:</p>
+        </div>
+      </div>
+      <div id="countdown" style="display:flex; justify-content:center; gap:1rem; margin:1.5rem 0;">
+        <div style="background:rgba(255,255,255,0.1); padding:1rem; border-radius:10px; min-width:80px;">
+          <div style="font-size:2rem; font-weight:bold;" id="hours">23</div>
+          <div style="font-size:0.9rem; opacity:0.8;">Hours</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); padding:1rem; border-radius:10px; min-width:80px;">
+          <div style="font-size:2rem; font-weight:bold;" id="minutes">47</div>
+          <div style="font-size:0.9rem; opacity:0.8;">Minutes</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); padding:1rem; border-radius:10px; min-width:80px;">
+          <div style="font-size:2rem; font-weight:bold;" id="seconds">12</div>
+          <div style="font-size:0.9rem; opacity:0.8;">Seconds</div>
+        </div>
+      </div>
+      <div style="margin-bottom:1.5rem;">
+        <p style="margin:0; font-size:0.9rem; opacity:0.8;">
+          <strong>Only 47 Premium 18-Packs left in stock!</strong> • 1,234 people viewing this now
+        </p>
+      </div>
+      <a href="#products" class="btn-primary" style="background:#25D366; transform:scale(1.05);">Shop Now - Claim Your Free Shipping</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PAYMENT METHODS ── -->
+<section id="payment-methods" style="background:var(--bg2); padding:3rem 5%;">
+  <div style="max-width:1000px; margin:0 auto; text-align:center;">
+    <div class="hero-badge" style="background:rgba(37,211,102,0.1); color:#25D366; border:1px solid rgba(37,211,102,0.25);">💳 PAYMENT OPTIONS</div>
+    <h2 class="section-title">Secure & Flexible Payment</h2>
+    <p style="color:var(--text2); max-width:600px; margin:1rem auto 2rem;">Choose from multiple secure payment methods. All transactions are protected and encrypted.</p>
+    
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:2rem;">
+      <div style="background:var(--card); padding:2rem; border-radius:20px; border:1px solid var(--border); text-align:left;">
+        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+          <div style="font-size:2rem;">💳</div>
+          <div>
+            <h4 style="margin:0; font-size:1.1rem;">Credit/Debit Cards</h4>
+            <p style="margin:0; font-size:0.85rem; color:var(--accent);">Visa, Mastercard, Amex</p>
+          </div>
+        </div>
+        <ul style="list-style:none; padding:0; margin:0; font-size:0.9rem; color:var(--text2);">
+          <li style="margin-bottom:0.5rem;">✓ Instant processing</li>
+          <li style="margin-bottom:0.5rem;">✓ SSL encrypted</li>
+          <li style="margin-bottom:0.5rem;">✓ Fraud protection</li>
+        </ul>
+      </div>
+      
+      <div style="background:var(--card); padding:2rem; border-radius:20px; border:1px solid var(--border); text-align:left;">
+        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+          <div style="font-size:2rem;">📱</div>
+          <div>
+            <h4 style="margin:0; font-size:1.1rem;">Digital Wallets</h4>
+            <p style="margin:0; font-size:0.85rem; color:var(--accent);">Google Pay, Apple Pay</p>
+          </div>
+        </div>
+        <ul style="list-style:none; padding:0; margin:0; font-size:0.9rem; color:var(--text2);">
+          <li style="margin-bottom:0.5rem;">✓ One-click checkout</li>
+          <li style="margin-bottom:0.5rem;">✓ No card details needed</li>
+          <li style="margin-bottom:0.5rem;">✓ Biometric security</li>
+        </ul>
+      </div>
+      
+      <div style="background:var(--card); padding:2rem; border-radius:20px; border:1px solid var(--border); text-align:left; border:2px solid var(--accent);">
+        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+          <div style="font-size:2rem;">🔒</div>
+          <div>
+            <h4 style="margin:0; font-size:1.1rem;">PayPal</h4>
+            <p style="margin:0; font-size:0.85rem; color:var(--accent);">Recommended • Buyer Protection</p>
+          </div>
+        </div>
+        <ul style="list-style:none; padding:0; margin:0; font-size:0.9rem; color:var(--text2);">
+          <li style="margin-bottom:0.5rem;">✓ Purchase protection</li>
+          <li style="margin-bottom:0.5rem;">✓ Easy returns</li>
+          <li style="margin-bottom:0.5rem;">✓ Global acceptance</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div style="background:linear-gradient(135deg, rgba(37,211,102,0.1), rgba(201,148,26,0.1)); padding:2rem; border-radius:20px; margin-top:2rem; border:1px solid rgba(37,211,102,0.25);">
+      <h3 style="margin-bottom:1rem; color:var(--text);">🛡️ 100% Secure Payments</h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1.5rem; text-align:left; font-size:0.9rem; color:var(--text2);">
+        <div>🔐 SSL Encryption</div>
+        <div>🛡️ Fraud Protection</div>
+        <div>🔒 Data Security</div>
+        <div>⚡ Instant Processing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GUARANTEE ── -->
+<section id="guarantee" style="background:var(--bg2); padding:3rem 5%;">
+  <div style="max-width:1000px; margin:0 auto; text-align:center;">
+    <div class="hero-badge" style="background:rgba(37,211,102,0.1); color:#25D366; border:1px solid rgba(37,211,102,0.25);">🛡️ RISK-FREE PROMISE</div>
+    <h2 class="section-title">30-Day Satisfaction Guarantee</h2>
+    <p style="color:var(--text2); max-width:600px; margin:1rem auto 2rem;">We're so confident you'll love Talkhan that we offer a complete money-back guarantee. No questions asked.</p>
+    
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:2rem;">
+      <div style="background:var(--card); padding:2rem; border-radius:20px; border:1px solid var(--border);">
+        <div style="font-size:2rem; margin-bottom:1rem;">🚚</div>
+        <h4 style="margin-bottom:0.5rem;">Fast Free Shipping</h4>
+        <p style="font-size:0.9rem; color:var(--text2);">Orders over €50 ship free worldwide</p>
+      </div>
+      <div style="background:var(--card); padding:2rem; border-radius:20px; border:1px solid var(--border);">
+        <div style="font-size:2rem; margin-bottom:1rem;">💰</div>
+        <h4 style="margin-bottom:0.5rem;">30-Day Money Back</h4>
+        <p style="font-size:0.9rem; color:var(--text2);">Full refund if you're not satisfied</p>
+      </div>
+      <div style="background:var(--card); padding:2rem; border-radius:20px; border:1px solid var(--border);">
+        <div style="font-size:2rem; margin-bottom:1rem;">🔒</div>
+        <h4 style="margin-bottom:0.5rem;">Secure Payment</h4>
+        <p style="font-size:0.9rem; color:var(--text2);">PayPal protection & SSL encryption</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section id="testimonials">
+  <div class="section-header">
+    <div class="hero-badge">REAL CUSTOMERS, REAL RESULTS</div>
+    <h2 class="section-title">Trusted by 10,000+ Happy Customers</h2>
+    <p style="color:var(--text2); max-width:600px; margin:1rem auto 0;">Join thousands who've made the switch to natural energy</p>
+  </div>
+  
+  <div style="text-align:center; margin-bottom:3rem;">
+    <div style="display:inline-flex; align-items:center; gap:1rem; background:var(--card); padding:1rem 2rem; border-radius:999px; border:1px solid var(--border);">
+      <div style="display:flex; gap:0.2rem;">
+        <span style="color:var(--accent); font-size:1.2rem;">★</span>
+        <span style="color:var(--accent); font-size:1.2rem;">★</span>
+        <span style="color:var(--accent); font-size:1.2rem;">★</span>
+        <span style="color:var(--accent); font-size:1.2rem;">★</span>
+        <span style="color:var(--accent); font-size:1.2rem;">★</span>
+      </div>
+      <div>
+        <strong style="color:var(--text);">4.9 out of 5</strong>
+        <span style="color:var(--text2); font-size:0.9rem;"> based on 6,357 reviews</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; font-size:0.85rem; color:var(--accent);">
+        <span>✓ Verified Purchase</span>
+      </div>
+      <p class="testimonial-text">"Finally a snack that actually gives me energy without the crash. Tastes incredible and I love that it's plastic-free! I've been ordering monthly for 6 months now."</p>
+      <div class="testimonial-author">— Leila Schmidt, Marathon Runner 🇩🇪</div>
+      <div style="margin-top:0.5rem; font-size:0.8rem; color:var(--text2);">Ordered: Premium 18-Pack x6</div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.15s;">
+      <div class="testimonial-stars">★★★★★</div>
+      <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; font-size:0.85rem; color:var(--accent);">
+        <span>✓ Verified Purchase</span>
+      </div>
+      <p class="testimonial-text">"I eat the Boost Pack before every exam. My focus is on another level. Highly recommend to every student! The natural ingredients make me feel good about what I'm putting in my body."</p>
+      <div class="testimonial-author">— Jonas Weber, University of Koblenz 📚</div>
+      <div style="margin-top:0.5rem; font-size:0.8rem; color:var(--text2);">Ordered: 8-Pack x3</div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.3s;">
+      <div class="testimonial-stars">★★★★★</div>
+      <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; font-size:0.85rem; color:var(--accent);">
+        <span>✓ Verified Purchase</span>
+      </div>
+      <p class="testimonial-text">"I ordered the Ultimate Pack and it lasted me all month. Amazing value, amazing taste. Shipping was super fast! This has replaced all my other energy snacks completely."</p>
+      <div class="testimonial-author">— Amira Hassan, Yoga Instructor 🧘</div>
+      <div style="margin-top:0.5rem; font-size:0.8rem; color:var(--text2);">Ordered: Premium 18-Pack x2</div>
+    </div>
+  </div>
+  
+  <div style="text-align:center; margin-top:3rem;">
+    <div style="background:var(--card); padding:2rem; border-radius:20px; border:1px solid var(--border); max-width:600px; margin:0 auto;">
+      <h3 style="margin-bottom:1rem;">Join 10,000+ Happy Customers</h3>
+      <p style="color:var(--text2); margin-bottom:1.5rem;">Start your natural energy journey today</p>
+      <a href="#products" class="btn-primary">Shop Now - Free Shipping €50+</a>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="nav-logo" style="font-size:2rem;margin-bottom:1rem;">TALKHAN</div>
+  <p>Premium natural energy snacks • Plastic-free forever • Made for young people who care</p>
+
+  <div class="social-links">
+    <a href="https://www.instagram.com/talkhansuperfood/" target="_blank" title="Instagram" aria-label="Instagram profile with 500+ followers">📸 Instagram · <span id="ig-followers">500+</span> Followers</a>
+    <a href="#" target="_blank" title="TikTok">🎵 TikTok</a>
+  </div>
+
+  <div class="footer-links" style="margin:2rem 0;">
+    <a href="#" onclick="openModal('legal');return false;">Legal Notice</a>
+    <a href="#" onclick="openModal('privacy');return false;">Privacy Policy</a>
+    <a href="#" onclick="openModal('terms');return false;">Terms &amp; Conditions</a>
+    <a href="mailto:hello@talkhansuperfood.me">Contact</a>
+  </div>
+  <p style="font-size:0.85rem;">© 2026 Talkhan Superfood • Ships worldwide with ❤️ from Germany</p>
+</footer>
+
+<div id="toast">Added to cart ✓</div>
+
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+
+<div id="cart-modal" class="cart-modal">
+  <div class="cart-content">
+    <h3 style="margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center;">
+      Your Cart
+      <span onclick="hideCart()" style="cursor:pointer;font-size:1.8rem;">×</span>
+    </h3>
+    <div id="cart-items"></div>
+    <div id="cart-total" style="font-size: 1.5rem; text-align: right; margin: 1.5rem 0; color: var(--accent); font-weight: 900;">Gesamt: €0.00</div>
+    
+    <!-- PayPal Buttons Container -->
+    <div id="paypal-button-container" style="margin-bottom: 1rem;"></div>
+    
+    <div style="text-align:center; margin-top:1rem;">
+      <p style="font-size:0.85rem; color:var(--text2); margin-bottom:0.5rem;">Oder bezahlen mit:</p>
+      <div style="display:flex; gap:0.5rem; justify-content:center; align-items:center; flex-wrap:wrap;">
+        <button onclick="checkoutWithCard()" style="background:transparent; border:2px solid var(--border); color:var(--text); padding:0.75rem 1.5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:0.5rem;">
+          💳 Kreditkarte
+        </button>
+        <button onclick="checkoutWithGooglePay()" style="background:transparent; border:2px solid var(--border); color:var(--text); padding:0.75rem 1.5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:0.5rem;">
+          📱 Google Pay
+        </button>
+        <button onclick="checkoutWithApplePay()" style="background:transparent; border:2px solid var(--border); color:var(--text); padding:0.75rem 1.5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:0.5rem;">
+          🍎 Apple Pay
+        </button>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:1rem;font-size:0.9rem;color:var(--text2);">
+      🔒 Sichere Zahlung • SSL-Verschlüsselt • Käuferschutz
+    </p>
+  </div>
+</div>
+
+<!-- ── PRIVACY POLICY MODAL ── -->
+<div id="modal-privacy" class="legal-modal" role="dialog" aria-labelledby="modal-privacy-title" aria-modal="true" onclick="handleModalBackdrop(event,'privacy')">
+  <div class="legal-modal-content">
+    <button class="legal-modal-close" onclick="closeModal('privacy')" aria-label="Close privacy policy">×</button>
+    <div class="hero-badge" style="margin-bottom:0.75rem;">🔒 DATA &amp; PRIVACY</div>
+    <h2 id="modal-privacy-title">Privacy Policy</h2>
+    <div class="legal-modal-body">
+      <h3>1. Who We Are</h3>
+      <p>Talkhan Superfood operates the website at this domain. We are committed to protecting your personal data and being fully transparent about how we use it.</p>
+      <p>Contact for privacy matters: <a href="mailto:hello@talkhansuperfood.me" style="color:var(--accent);">hello@talkhansuperfood.me</a></p>
+
+      <h3>2. Data We Collect</h3>
+      <p><strong>When you place an order via PayPal:</strong> Payment and delivery information is processed directly by PayPal. We receive only the information necessary to fulfil your order (your name, shipping address, and order details).</p>
+      <p><strong>Cookies:</strong> We use one essential cookie (<code>privacy_accepted</code>) to remember your privacy consent choice. We do not use tracking, advertising, or analytics cookies.</p>
+      <p><strong>Contact emails:</strong> If you email us, we store your email address and message solely to respond to your enquiry.</p>
+
+      <h3>3. How We Use Your Data</h3>
+      <p>We use your data exclusively to process and deliver your order, respond to customer service enquiries, and comply with legal obligations under German law (HGB, AO). We do not sell, rent, or share your personal data with any third parties for marketing purposes.</p>
+
+      <h3>4. Legal Basis (GDPR)</h3>
+      <p>Processing is based on: <strong>Art. 6(1)(b) GDPR</strong> (performance of a contract) for order fulfilment, and <strong>Art. 6(1)(f) GDPR</strong> (legitimate interests) for basic website operation.</p>
+
+      <h3>5. Your Rights</h3>
+      <p>Under the GDPR you have the right to: access your data, correct inaccurate data, request deletion, restrict or object to processing, and data portability. To exercise any of these rights, email us at <a href="mailto:hello@talkhansuperfood.me" style="color:var(--accent);">hello@talkhansuperfood.me</a>. You also have the right to lodge a complaint with your local data protection authority.</p>
+
+      <h3>6. Data Retention</h3>
+      <p>Order-related data is retained for 10 years in line with German commercial and tax law. Email correspondence is deleted after 3 years unless a longer retention period is legally required.</p>
+
+      <h3>7. Third-Party Services</h3>
+      <p><strong>PayPal:</strong> Payments are processed by PayPal (Europe) S.à r.l. et Cie, S.C.A. Please review <a href="https://www.paypal.com/en/webapps/mpp/ua/privacy-full" target="_blank" rel="noopener" style="color:var(--accent);">PayPal's Privacy Policy</a>.</p>
+      <p><strong>Google Fonts:</strong> We load fonts from Google's CDN. Google may log your IP address when the fonts are fetched. Please review <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--accent);">Google's Privacy Policy</a>.</p>
+
+      <h3>8. Changes to This Policy</h3>
+      <p>We may update this policy from time to time. Any significant changes will be communicated via a notice on this website. Last updated: March 2026.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── TERMS & CONDITIONS MODAL ── -->
+<div id="modal-terms" class="legal-modal" role="dialog" aria-labelledby="modal-terms-title" aria-modal="true" onclick="handleModalBackdrop(event,'terms')">
+  <div class="legal-modal-content">
+    <button class="legal-modal-close" onclick="closeModal('terms')" aria-label="Close terms and conditions">×</button>
+    <div class="hero-badge" style="margin-bottom:0.75rem;">📋 TERMS &amp; CONDITIONS</div>
+    <h2 id="modal-terms-title">Terms &amp; Conditions</h2>
+    <div class="legal-modal-body">
+      <h3>1. Scope</h3>
+      <p>These Terms &amp; Conditions govern all purchases made through the Talkhan Superfood website at this domain. By placing an order you agree to these terms.</p>
+
+      <h3>2. Products &amp; Prices</h3>
+      <p>All prices are shown in euros (€) and include applicable VAT. We reserve the right to change prices without prior notice. Product availability is subject to stock levels.</p>
+
+      <h3>3. Ordering</h3>
+      <p>By clicking "Pay with PayPal" you submit a binding order. A contract is formed once your payment is confirmed by PayPal and you receive an order confirmation from us. We reserve the right to refuse or cancel any order.</p>
+
+      <h3>4. Payment</h3>
+      <p>Payment is handled exclusively through PayPal. Talkhan Superfood does not store or process card details. By completing a purchase you agree to PayPal's Terms of Service.</p>
+
+      <h3>5. Shipping</h3>
+      <p>We ship worldwide. Delivery times vary by destination. Orders totalling €50 or more qualify for free shipping. Risk of loss passes to you upon delivery.</p>
+
+      <h3>6. Returns &amp; Refunds</h3>
+      <p>If you are not satisfied with your order, contact us within 14 days of receipt at <a href="mailto:hello@talkhansuperfood.me" style="color:var(--accent);">hello@talkhansuperfood.me</a>. Unopened products may be returned for a full refund. Return shipping costs are borne by the customer unless the item is faulty.</p>
+
+      <h3>7. Liability</h3>
+      <p>Talkhan Superfood is not liable for indirect, incidental, or consequential damages. Our total liability for any claim shall not exceed the value of the relevant order. Nothing in these terms limits liability for personal injury or fraud.</p>
+
+      <h3>8. Governing Law</h3>
+      <p>These terms are governed by the laws of the Federal Republic of Germany. Any disputes shall be subject to the jurisdiction of the courts of Koblenz, Germany.</p>
+
+      <h3>9. Changes to These Terms</h3>
+      <p>We may update these Terms &amp; Conditions at any time. Continued use of the website after changes are posted constitutes acceptance of the new terms. Last updated: March 2026.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── LEGAL NOTICE MODAL ── -->
+<div id="modal-legal" class="legal-modal" role="dialog" aria-labelledby="modal-legal-title" aria-modal="true" onclick="handleModalBackdrop(event,'legal')">
+  <div class="legal-modal-content">
+    <button class="legal-modal-close" onclick="closeModal('legal')" aria-label="Close legal notice">×</button>
+    <div class="hero-badge" style="margin-bottom:0.75rem;">⚖️ LEGAL NOTICE</div>
+    <h2 id="modal-legal-title">Legal Notice (Impressum)</h2>
+    <div class="legal-modal-body">
+      <p><strong>Angaben gemäß § 5 TMG</strong></p>
+      <p><strong>Talkhan Superfood</strong><br>
+      [Your Full Name or Company Name]<br>
+      [Your Street Address]<br>
+      [ZIP Code] Koblenz<br>
+      Germany</p>
+      <p><strong>Contact</strong><br>
+      E-Mail: <a href="mailto:hello@talkhansuperfood.me" style="color:var(--accent);">hello@talkhansuperfood.me</a></p>
+      <p><strong>VAT ID</strong><br>
+      Umsatzsteuer-Identifikationsnummer: [Your VAT-ID or "applied for"]</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── FLOATING QUICK BUY ── -->
+<div id="qb-fab-wrap">
+  <button id="qb-fab-tab" onclick="toggleQBPanel()" aria-label="Open Quick Buy panel" aria-expanded="false" aria-controls="qb-panel">⚡ Quick Buy</button>
+</div>
+
+<div id="qb-panel" role="dialog" aria-label="Quick Buy" aria-hidden="true">
+  <div class="qb-panel-header">
+    <span>⚡ Quick Buy</span>
+    <button class="qb-close" onclick="toggleQBPanel()" aria-label="Close Quick Buy">×</button>
+  </div>
+  <div class="qb-panel-body">
+    <div class="qb-item">
+      <div class="qb-item-info"><strong>Starter Pack</strong><span>Perfect first taste — €9.99</span></div>
+      <button class="qb-item-btn" onclick="quickBuy(2)">⚡ Buy</button>
+    </div>
+    <div class="qb-item">
+      <div class="qb-item-info"><strong>4-Pack</strong><span>For busy days — €14.99</span></div>
+      <button class="qb-item-btn" onclick="quickBuy(3)">⚡ Buy</button>
+    </div>
+    <div class="qb-item">
+      <div class="qb-item-info"><strong>8-Pack</strong><span>For the whole week — €24.99</span></div>
+      <button class="qb-item-btn" onclick="quickBuy(4)">⚡ Buy</button>
+    </div>
+    <div class="qb-item">
+      <div class="qb-item-info"><strong>Premium 18-Pack</strong><span>One month supply — €49.99 🚚</span></div>
+      <button class="qb-item-btn" onclick="quickBuy(5)">⚡ Buy</button>
+    </div>
+  </div>
 </div>
 
 <script>
-  const API='https://myaicv.onrender.com/chat';
-  let isOpen=false, msgCount=0, inviteSent=false, qrIdx=0;
+  // ── THEME ──
+  function toggleTheme() {
+    const html = document.documentElement;
+    const btn = document.querySelector('.theme-toggle');
+    if (html.getAttribute('data-theme') === 'dark') {
+      html.setAttribute('data-theme', 'light'); btn.textContent = '🌙';
+    } else {
+      html.setAttribute('data-theme', 'dark'); btn.textContent = '☀️';
+    }
+  }
 
-  const QR=[
-    {l:'🤖 KI-Skills',      q:'Welche KI-Kenntnisse hat Shahim?'},
-    {l:'☁️ AWS',            q:'Was sind Shahims AWS-Kenntnisse?'},
-    {l:'🚀 RAG-Projekt',    q:'Erzähl mir vom RAG-Wissenssystem.'},
-    {l:'🎙️ Voice-KI',       q:'Was ist die Voice-KI-Plattform hilfefuersenioren?'},
-    {l:'💼 1&1 Erfahrung',  q:'Was hat Shahim bei 1&1 gemacht?'},
-    {l:'🎓 Ausbildung',     q:'Welche Ausbildung hat Shahim?'},
-    {l:'🐍 Python',         q:'Wie gut ist Shahim in Python?'},
-    {l:'⚙️ DevOps',         q:'Was sind Shahims DevOps-Skills?'},
-    {l:'📅 Verfügbarkeit',  q:'Wann ist Shahim verfügbar?'},
-    {l:'🏆 Zertifikate',    q:'Welche Zertifikate hat Shahim?'},
-    {l:'💡 Stärken',        q:'Was sind Shahims größte Stärken?'},
-    {l:'🌍 Uni-Jobs',       q:'Was macht Shahim im Green Office und als Web-Hiwi?'},
+  // ── CART ──
+  let cart = [];
+  const products = [
+    { id: 2, name: "Starter Pack", price: 9.99, img: "talkhan-starter-pack-hero.jpg" },
+    { id: 3, name: "4-Pack", price: 14.99, img: "talkhan-4-pack.jpg" },
+    { id: 4, name: "8-Pack", price: 24.99, img: "talkhan-8-pack.jpg" },
+    { id: 5, name: "Premium 18-Pack", price: 49.99, img: "talkhan-18-pack-premium.jpg" }
   ];
 
-  function renderQR(){
-    const box=document.getElementById('qr');
-    box.innerHTML='';
-    for(let i=0;i<4;i++){
-      const item=QR[(qrIdx+i)%QR.length];
-      const b=document.createElement('button');
-      b.className='qb'; b.textContent=item.l;
-      b.onclick=()=>quickAsk(item.q);
-      box.appendChild(b);
+  function addToCart(id) {
+    const product = products.find(p => p.id === id);
+    const existingItem = cart.find(item => item.id === id);
+    
+    if (existingItem) {
+      // Wenn Artikel bereits im Warenkorb, erhöhe Menge
+      existingItem.quantity = (existingItem.quantity || 1) + 1;
+      existingItem.totalPrice = existingItem.price * existingItem.quantity;
+    } else {
+      // Neuer Artikel zum Warenkorb hinzufügen
+      const newItem = {...product, quantity: 1, totalPrice: product.price};
+      cart.push(newItem);
+    }
+    
+    updateCartCount();
+    showToast();
+    trackAddToCart(product.name);
+    
+    // Zeige Nachricht bei mehreren Artikeln
+    setTimeout(() => {
+      const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+      if (totalItems >= 2) {
+        showMultiItemMessage();
+      }
+    }, 1000);
+  }
+
+  function quickBuy(id) {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+    const confirmed = confirm(` Quick Buy: ${product.name}\nTotal: €${product.price.toFixed(2)}\n\nClick OK to pay instantly with PayPal.\n\nIMPORTANT: On the PayPal page, please enter exactly €${product.price.toFixed(2)} as the amount.`);
+    if (confirmed) {
+      window.open("https://www.paypal.com/ncp/payment/3AHXTZRU673FU", "_blank");
     }
   }
 
-  function quickAsk(t){document.getElementById('ui').value=t;send();}
+  function updateCartCount() {
+    document.getElementById('cart-count').textContent = cart.length;
+  }
 
-  function toggleChat(){
-    isOpen=!isOpen;
-    document.getElementById('cw').classList.toggle('open',isOpen);
-    if(isOpen){
-      document.getElementById('udot').style.display='none';
-      renderQR();
-      setTimeout(()=>document.getElementById('ui').focus(),350);
+  function showToast() {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2400);
+  }
+
+  function renderPayPalButtons() {
+    if (cart.length === 0) {
+      document.getElementById('paypal-button-container').innerHTML = '';
+      return;
+    }
+    
+    const total = cart.reduce((sum, item) => sum + (item.totalPrice || item.price), 0).toFixed(2);
+    
+    // Clear previous buttons
+    document.getElementById('paypal-button-container').innerHTML = '';
+    
+    // Render PayPal buttons
+    paypal.Buttons({
+      style: {
+        layout: 'vertical',
+        color: 'gold',
+        shape: 'rect',
+        label: 'pay'
+      },
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: total
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('Zahlung erfolgreich! Vielen Dank für Ihre Bestellung.');
+          cart = [];
+          updateCartCount();
+          hideCart();
+        });
+      },
+      onError: function(err) {
+        alert('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.');
+        console.error('PayPal Error:', err);
+      }
+    }).render('#paypal-button-container');
+  }
+
+  function showCart() {
+    const modal = document.getElementById('cart-modal');
+    const itemsDiv = document.getElementById('cart-items');
+    itemsDiv.innerHTML = '';
+    let total = 0;
+    let totalItems = 0;
+
+    if (cart.length === 0) {
+      itemsDiv.innerHTML = '<p style="text-align:center;color:var(--text2);">Ihr Warenkorb ist leer</p>';
+      document.getElementById('paypal-button-container').innerHTML = '';
+    } else {
+      cart.forEach((item, index) => {
+        const quantity = item.quantity || 1;
+        const itemTotal = item.totalPrice || (item.price * quantity);
+        total += itemTotal;
+        totalItems += quantity;
+        
+        itemsDiv.innerHTML += `
+          <div style="display:flex;gap:1rem;margin-bottom:1rem; padding-bottom:1rem; border-bottom:1px solid var(--border);">
+            <img src="${item.img}" style="width:70px;height:70px;object-fit:cover;border-radius:12px;">
+            <div style="flex:1;">
+              <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:0.5rem;">
+                <strong>${item.name}</strong>
+                <span style="color:var(--accent);">€${item.price.toFixed(2)}</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div style="font-size:0.9rem; color:var(--text2);">
+                  <span>Menge: ${quantity}</span>
+                  ${quantity > 1 ? `<span style="margin-left:0.5rem;">Gesamt: €${itemTotal.toFixed(2)}</span>` : ''}
+                </div>
+                <div style="display:flex; gap:0.5rem;">
+                  <button onclick="updateQuantity(${index}, -1)" style="background:var(--accent); color:#0e0e0e; border:none; width:24px; height:24px; border-radius:4px; cursor:pointer; font-weight:bold;">-</button>
+                  <button onclick="updateQuantity(${index}, 1)" style="background:var(--accent); color:#0e0e0e; border:none; width:24px; height:24px; border-radius:4px; cursor:pointer; font-weight:bold;">+</button>
+                  <button onclick="removeFromCart(${index});" style="background:none;border:none;color:#ff4444;font-size:1.5rem;cursor:pointer;">×</button>
+                </div>
+              </div>
+            </div>
+          </div>`;
+      });
+      
+      // Render PayPal buttons after cart is updated
+      setTimeout(renderPayPalButtons, 100);
+    }
+
+    const shippingText = total >= 50
+      ? "<br><span style='font-size:1rem; color:#25D366;'>+ KOSTENLOSER VERSAND 🌍</span>"
+      : `<br><span style='font-size:1rem; color:var(--text2);'>Noch €${(50 - total).toFixed(2)} für kostenlosen Versand</span>`;
+
+    document.getElementById('cart-total').innerHTML = `Gesamt: €${total.toFixed(2)} ${total > 0 ? shippingText : ''}`;
+    modal.style.display = 'flex';
+  }
+
+  function updateQuantity(index, change) {
+    const item = cart[index];
+    if (!item) return;
+    
+    const newQuantity = Math.max(1, (item.quantity || 1) + change);
+    item.quantity = newQuantity;
+    item.totalPrice = item.price * newQuantity;
+    
+    updateCartCount();
+    showCart();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartCount();
+    showCart();
+  }
+
+  function hideCart() {
+    document.getElementById('cart-modal').style.display = 'none';
+  }
+
+  function checkoutWithPayPal() {
+    if (cart.length === 0) return alert("Ihr Warenkorb ist leer!");
+    const total = cart.reduce((sum, item) => sum + (item.totalPrice || item.price), 0).toFixed(2);
+    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    hideCart();
+    
+    let orderSummary = 'Ihre Bestellung:\n\n';
+    cart.forEach(item => {
+      const quantity = item.quantity || 1;
+      const itemTotal = item.totalPrice || (item.price * quantity);
+      orderSummary += `${item.name} (Menge: ${quantity}) - €${itemTotal.toFixed(2)}\n`;
+    });
+    
+    const confirmed = confirm(`${orderSummary}\nGesamt: €${total}\n\nKlicken Sie OK für PayPal-Zahlung.\n\nWICHTIG: Auf der PayPal-Seite bitte genau €${total} als Betrag eingeben.`);
+    if (confirmed) {
+      window.open("https://www.paypal.com/de/ncp/payment/3AHXTZRU673FU", "_blank");
+      cart = [];
+      updateCartCount();
     }
   }
 
-  function addMsg(t,isUser){
-    const b=document.getElementById('cbox');
-    const d=document.createElement('div');
-    d.className='msg '+(isUser?'usr':'bot');
-    d.innerHTML=t;
-    b.appendChild(d);
-    b.scrollTop=b.scrollHeight;
-  }
-
-  async function send(){
-    const inp=document.getElementById('ui');
-    const t=inp.value.trim();
-    if(!t)return;
-    addMsg(t,true); inp.value=''; msgCount++;
-
-    const b=document.getElementById('cbox');
-    const tw=document.createElement('div');
-    tw.className='tw';
-    tw.innerHTML='<div class="td"></div><div class="td"></div><div class="td"></div>';
-    b.appendChild(tw); b.scrollTop=b.scrollHeight;
-
-    try{
-      const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({frage:t})});
-      const d=await r.json();
-      tw.remove();
-      addMsg(d.antwort,false);
-    }catch{
-      tw.remove();
-      addMsg('⚠️ Server kurz offline – bitte nochmal versuchen.',false);
-    }
-
-    qrIdx=(qrIdx+4)%QR.length;
-    renderQR();
-
-    if(msgCount>=3 && !inviteSent){
-      setTimeout(()=>{
-        document.getElementById('inv-banner').style.display='block';
-        document.getElementById('cbox').scrollTop=9999;
-      },600);
+  function checkoutWithCard() {
+    if (cart.length === 0) return alert("Cart is empty!");
+    const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+    hideCart();
+    const confirmed = confirm(`💳 Pay with Credit/Debit Card\n\nTotal: €${total}\n\nClick OK to proceed to secure card payment.\n\nAll transactions are encrypted and secure.`);
+    if (confirmed) {
+      // Redirect to your payment processor or card form
+      window.open("https://www.paypal.com/ncp/payment/3AHXTZRU673FU", "_blank");
+      cart = [];
+      updateCartCount();
     }
   }
 
-  function sendInvite(){
-    inviteSent=true;
-    document.getElementById('inv-banner').style.display='none';
-    addMsg('🎉 Shahim freut sich! Bitte, rufen Sie ihn an oder hinterlassen Sie ihm eine E-Mail.<br>📧 quraishyshahim@icloud.com &nbsp;|&nbsp; 📱 +49 1525 8414 768',false);
+  function checkoutWithGooglePay() {
+    if (cart.length === 0) return alert("Cart is empty!");
+    const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+    hideCart();
+    const confirmed = confirm(`📱 Pay with Google Pay\n\nTotal: €${total}\n\nClick OK to use Google Pay for fast checkout.`);
+    if (confirmed) {
+      // Redirect to Google Pay or PayPal with Google Pay option
+      window.open("https://www.paypal.com/ncp/payment/3AHXTZRU673FU", "_blank");
+      cart = [];
+      updateCartCount();
+    }
   }
 
-  function dismissInvite(){
-    document.getElementById('inv-banner').style.display='none';
-    addMsg('Kein Problem! Ich beantworte weitere Fragen jederzeit gerne. 😊',false);
+  function checkoutWithApplePay() {
+    if (cart.length === 0) return alert("Cart is empty!");
+    const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+    hideCart();
+    const confirmed = confirm(`🍎 Pay with Apple Pay\n\nTotal: €${total}\n\nClick OK to use Apple Pay for quick checkout.`);
+    if (confirmed) {
+      // Redirect to Apple Pay or PayPal with Apple Pay option
+      window.open("https://www.paypal.com/ncp/payment/3AHXTZRU673FU", "_blank");
+      cart = [];
+      updateCartCount();
+    }
   }
 
-  setTimeout(()=>{ if(!isOpen) document.getElementById('udot').style.display='block'; },3000);
+  // ── PRIVACY POPUP ──
+  function acceptPrivacy() {
+    try { localStorage.setItem('privacy_accepted', '1'); } catch(e) {}
+    document.getElementById('privacy-popup').classList.remove('visible');
+  }
+
+  function declinePrivacy() {
+    document.getElementById('privacy-popup').classList.remove('visible');
+  }
+
+  function initPrivacyPopup() {
+    let accepted = false;
+    try { accepted = localStorage.getItem('privacy_accepted') === '1'; } catch(e) {}
+    if (!accepted) {
+      setTimeout(() => {
+        document.getElementById('privacy-popup').classList.add('visible');
+      }, 1200);
+    }
+  }
+
+  // ── LEGAL MODALS ──
+  function openModal(name) {
+    const modal = document.getElementById('modal-' + name);
+    if (!modal) return;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(name) {
+    const modal = document.getElementById('modal-' + name);
+    if (!modal) return;
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function handleModalBackdrop(event, name) {
+    if (event.target === event.currentTarget) closeModal(name);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      ['privacy', 'terms', 'legal'].forEach(name => closeModal(name));
+      const panel = document.getElementById('qb-panel');
+      if (panel && panel.classList.contains('open')) toggleQBPanel();
+    }
+  });
+
+  // ── FLOATING QUICK BUY ──
+  function toggleQBPanel() {
+    const panel = document.getElementById('qb-panel');
+    const tab = document.getElementById('qb-fab-tab');
+    const isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open');
+    panel.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+    tab.setAttribute('aria-expanded', String(!isOpen));
+  }
+
+  document.addEventListener('click', function(e) {
+    const panel = document.getElementById('qb-panel');
+    const wrap = document.getElementById('qb-fab-wrap');
+    if (panel && panel.classList.contains('open') &&
+        !panel.contains(e.target) && !wrap.contains(e.target)) {
+      toggleQBPanel();
+    }
+  });
+
+  // ── SCROLL REVEAL ──
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .reveal-left').forEach(el => obs.observe(el));
+
+  // ── NAV SCROLL ──
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    const btn = document.getElementById('back-to-top');
+    if (window.scrollY > 60) { nav.classList.add('scrolled'); btn.classList.add('show'); }
+    else { nav.classList.remove('scrolled'); btn.classList.remove('show'); }
+  });
+
+  // ── COUNTDOWN TIMER ──
+  function startCountdown() {
+    const endTime = new Date().getTime() + (24 * 60 * 60 * 1000); // 24 hours from now
+    
+    const timer = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = endTime - now;
+      
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+      
+      if (distance < 0) {
+        clearInterval(timer);
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+      }
+    }, 1000);
+  }
+
+  // ── ENHANCED CONVERSION TRACKING ──
+  function trackAddToCart(productName) {
+    // Enhanced analytics tracking could go here
+    console.log('Product added to cart:', productName);
+  }
+
+  function showUrgencyMessage() {
+    const urgencyMsg = document.createElement('div');
+    urgencyMsg.style.cssText = `
+      position: fixed; top: 100px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #0e0e0e; padding: 1rem 2rem; border-radius: 12px;
+      font-weight: 700; z-index: 1000; box-shadow: 0 10px 30px rgba(201,148,26,0.4);
+      animation: slideDown 0.5s ease;
+    `;
+    urgencyMsg.innerHTML = '🔥 3 people just bought the Premium 18-Pack!';
+    document.body.appendChild(urgencyMsg);
+    
+    setTimeout(() => {
+      urgencyMsg.remove();
+    }, 4000);
+  }
+
+  // ── INIT ──
+  updateCartCount();
+  initPrivacyPopup();
+  startCountdown();
 </script>
 </body>
 </html>
